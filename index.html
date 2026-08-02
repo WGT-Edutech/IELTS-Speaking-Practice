@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>IELTS Speaking Practice · B2</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060a14; --cyan: #22d3ee; --purple: #a78bfa; --gold: #fbbf24;
+  --green: #34d399; --text: #e2e8f0; --text-dim: #b0bec5;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  line-height: 1.75;
+  min-height: 100vh;
+  padding: 0 5vw 4em;
+}
+.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; text-align: center; padding: 1.2em 4vw 0; pointer-events: none; }
+/* ═══ DOTFIELD BACKGROUND (React Bits DotField, vanilla port) ═══ */
+#dotfield { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; }
+#dotfield canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+#dotfield svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+/* ═══ VARIABLE PROXIMITY BACKGROUND (React Bits VariableProximity, vanilla port) ═══ */
+#varprox { position: fixed; top: 0; left: 0; right: 0; height: 25vh; z-index: 3; display: flex; align-items: center; justify-content: center; pointer-events: none; overflow: hidden; }
+#varprox .variable-proximity {
+  font-family: 'Roboto Flex', sans-serif;
+  font-size: clamp(1.6rem, 7vw, 8.5rem);
+  white-space: nowrap;
+  font-weight: 400;
+  letter-spacing: .02em;
+  line-height: 1.2;
+  text-align: center;
+  color: rgba(226,232,240,.16);
+  user-select: none;
+  -webkit-user-select: none;
+}
+#gallery { position: fixed; inset: 0; z-index: 2; }
+.gallery-stage { position: relative; width: 100%; height: 100%; perspective: 1400px; display: flex; align-items: center; justify-content: center; }
+.card-ring { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.ring-card { position: absolute; width: 50vh; height: 33.3vh; cursor: pointer; will-change: transform, opacity; }
+.ring-card-inner {
+  width: 100%; height: 100%; border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.15); background: rgba(15,15,30,.85);
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  -webkit-box-reflect: below 14px linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.35));
+}
+.ring-card img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; display: block; }
+.ring-card .done-badge { position: absolute; top: 10px; right: 10px; z-index: 2; background: var(--green); color: #04120b; font-size: .85rem; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: .04em; display: none; }
+.ring-card.done .done-badge { display: block; }
+#card-info { position: fixed; bottom: 14vh; left: 50%; transform: translateX(-50%); z-index: 30; text-align: center; opacity: 0; transition: opacity .4s; pointer-events: none; }
+#card-info.visible { opacity: 1; }
+.card-name { font-family: 'Montserrat', sans-serif; font-size: 1.45rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--cyan); text-shadow: 0 0 12px rgba(34,211,238,.4); }
+.card-desc { font-size: 1.1rem; color: var(--text-dim); margin-top: .2em; }
+/* gallery arrows */
+.cover-nav { position: fixed; bottom: 3vh; left: 50%; transform: translateX(-50%); z-index: 40; display: flex; align-items: center; gap: 1.4rem; padding: .7rem 1.6rem; background: rgba(10,14,26,.55); border: 1px solid rgba(34,211,238,.25); border-radius: 999px; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 8px 32px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08); }
+.cover-arrow { width: auto; min-width: 110px; padding: .85em 1.8em; border-radius: 999px; background: linear-gradient(135deg, rgba(34,211,238,.14), rgba(167,139,250,.14)); border: 1px solid rgba(34,211,238,.4); color: var(--text); font-size: 1.05rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: all .25s cubic-bezier(.25,.46,.45,.94); display: inline-flex; align-items: center; justify-content: center; gap: .55em; box-shadow: 0 0 0 rgba(34,211,238,0), inset 0 1px 0 rgba(255,255,255,.1); }
+.cover-arrow .arr { font-size: 1.2rem; line-height: 1; }
+.cover-arrow:hover { background: linear-gradient(135deg, rgba(34,211,238,.28), rgba(167,139,250,.28)); border-color: rgba(34,211,238,.75); color: #fff; box-shadow: 0 0 24px rgba(34,211,238,.35), 0 6px 24px rgba(0,0,0,.35); transform: translateY(-3px); }
+.cover-arrow:active { transform: translateY(-1px) scale(.97); box-shadow: 0 0 12px rgba(34,211,238,.2); }
+.cover-arrow.next { background: linear-gradient(135deg, rgba(34,211,238,.22), rgba(167,139,250,.22)); }
+@media (max-width: 768px) {
+  .ring-card { width: 60vw; height: 40vw; }
+  .cover-nav { bottom: 2vh; gap: .8rem; padding: .55rem 1rem; }
+  .cover-arrow { min-width: 88px; padding: .7em 1.3em; font-size: .95rem; }
+  #card-info { bottom: 15vh; }
+}
+h1 {
+  font-family: 'Montserrat', sans-serif; font-weight: 900;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  background: linear-gradient(120deg, var(--cyan) 0%, var(--purple) 40%, var(--gold) 80%, var(--cyan) 100%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; text-align: center; margin-bottom: .25em;
+  letter-spacing: -.02em;
+  filter: drop-shadow(0 2px 18px rgba(34,211,238,.22)) drop-shadow(0 1px 2px rgba(0,0,0,.6));
+  animation: titleFlow 8s ease-in-out infinite;
+}
+@keyframes titleFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.subtitle {
+  text-align: center; color: var(--text-dim); margin-bottom: 0;
+  font-size: clamp(1.2rem, 2.5vw, 1.7rem); letter-spacing: .02em;
+  text-shadow: 0 1px 2px rgba(0,0,0,.5);
+}
+
+.deck-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5em;
+  max-width: 1200px; margin: 0 auto;
+}
+.deck-card {
+  background: rgba(255,255,255,0.04);
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: 18px;
+  padding: 0;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.06);
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.3s ease;
+  text-decoration: none; color: var(--text); display: block;
+}
+.deck-card:hover { transform: scale(1.03); box-shadow: 0 12px 40px rgba(34,211,238,0.15); }
+.deck-card:active { transform: scale(0.97); }
+.deck-card .card-img {
+  width: 100%; height: 160px; object-fit: cover; display: block;
+}
+.deck-card .card-body { padding: 1.2em 1.4em; }
+.deck-card h2 {
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 1.2rem; color: var(--cyan); margin-bottom: .3em;
+}
+.deck-card .card-info {
+  font-size: .82rem; color: var(--text-dim);
+  display: flex; gap: 1em; flex-wrap: wrap;
+}
+.deck-card .badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em;
+}
+.badge-p1 { background: rgba(251,191,36,.15); color: var(--gold); }
+.badge-p2 { background: rgba(34,211,238,.15); color: var(--cyan); }
+.badge-p3 { background: rgba(167,139,250,.15); color: var(--purple); }
+.progress-dot {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.2); margin-right: 4px;
+}
+.progress-dot.done { background: var(--green); }
+footer { text-align: center; color: var(--text-dim); margin-top: 3em; font-size: .95rem; }
+@media (max-width: 768px) {
+  body { padding: 1em 4vw 3em; }
+}
+</style></head>
+<body>
+<div id="dotfield"></div>
+<div id="varprox" aria-hidden="true"></div>
+
+<section id="gallery"><div class="gallery-stage"><div class="card-ring" id="cardRing"></div></div></section>
+<div id="card-info"><div class="card-name" id="cardName"></div><div class="card-desc" id="cardDesc"></div></div>
+<div class="cover-nav">
+  <button class="cover-arrow prev" id="prevBtn" aria-label="Back"><span class="arr">&larr;</span> Back</button>
+  <button class="cover-arrow next" id="nextBtn" aria-label="Next">Next <span class="arr">&rarr;</span></button>
+</div>
+<script>
+var decks = [
+  { file: "deck-1-technology.html", title: "Technology & Society", img: "https://pixabay.com/get/g94aea9eeb1d65197e4940f687f4d99d45198a3d008352fb8017cab05a98851762c7221e9ec06579602c7f9d5eb52d5d3c687bff2f67dbc24a36a3cbb751a1997_1280.jpg", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-2-environment.html", title: "Environment & Climate", img: "https://pixabay.com/get/g5557f620e9cf5dc402d23e55e9d8375028ac183746294f8b3d49332d245758c04003463d1016260ae837af679e6d7bbf53102552b118fb7f310e8582c1eff737_1280.jpg", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-3-education.html", title: "Education & Learning", img: "https://pixabay.com/get/gaa66563ffcaa919a4bb1702ac5d2e1e33a77492783cd893b60abbf3bd574f5ef4a3e8b24a014c3ffacd28e7f70e446c513dda8810e3078b44bee5b662cf43560_1280.jpg", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-4-health.html", title: "Health & Wellbeing", img: "https://pixabay.com/get/gcbbf6bc5549cfbf8cdea1889296e45e1bb503d55264dd94b985de8f45806b452a3a51a6f3aa01f23d7f533a445cbb02717c58ac99fe025bef6cb6efed13be7bd_1280.jpg", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-5-work.html", title: "Work & Employment", img: "https://pixabay.com/get/g29631c3e6ef34ca955598772c451604e8f37c10b0600e8837dc9657575c5821eee143920b24f259cd68be7e058d7fe32b6bf79b6065587897e527d758ded2cf5_1280.jpg", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-6-culture.html", title: "Culture & Tradition", img: "https://pixabay.com/get/gb3246f62f92fd314ad765f6b7501ec20b0aafbc67c416f06596efb428dff13dfbb4a29db1bf4d59919e8aabb25488723cd1a72f13cee5b630fa0e97d3929f16f_1280.jpg", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-7-globalization.html", title: "Globalization", img: "https://pixabay.com/get/g79887e6159600de87e28184154d2ba88ae28b740214e8fff8c4af1969c7788d243a609538f1378c16e160acd157454771991c48c3567948687211c8242fbd2a3_1280.jpg", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-8-media.html", title: "Media & Communication", img: "https://pixabay.com/get/g5c45bb674892466e718b11581ade6a2f1510a670bff9798d649bc99862fd67436303011e5431824bb3a48d546341dc22d0e5b7b17b738fec2bd8fee86a4c092c_1280.jpg", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-9-science.html", title: "Science & Innovation", img: "https://pixabay.com/get/g07624c21b89de329e726d8abd5492a11d9f9dff2dc6dcb401b9cf54aef5061caa0910aeec1126bb2905e9d2a64639e97dbae686ad4cc8c557d5cae11c3082e97_1280.jpg", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-10-city.html", title: "City & Urban Life", img: "https://pixabay.com/get/g1532f2435dc56206234af522a8321defdb31f6352863bc4370ee39cbb6f466a4bc93306b3ca586efd23bcf666e66dfda3f72c1dedf83f4b874e067b92371abc3_1280.jpg", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-11-food.html", title: "Food & Cooking", img: "https://pixabay.com/get/gdfedabc2ef757f431a63522c1675484af7d0970ff9a78b367fdd15774a83f7e689b31ed4d85b57e3dcdf00b613ddd9d7106d1036350236f7caa8067a6edb9489_1280.jpg", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-12-shopping.html", title: "Shopping & Consumer Habits", img: "https://pixabay.com/get/g630b056fbfa91152931052f997104a04ccb0e6f83629540d39f43a0e3dddafb9905caf8bc54cfaf0cfe1e3577a0cab432552fa843590dad50e4e1755ad4a6e91_1280.jpg", p1: 6, p2: 1, p3: 4 },
+];
+
+var progress = JSON.parse(localStorage.getItem('ielts-b2-progress') || '{}');
+
+// ═══ COVER FLOW GALLERY (scroll-driven, spring physics) ═══
+// ═══ PLEASANT SWISH SOUNDS (Web Audio, no deps) ═══
+var audioCtx = null;
+function ensureAudio(){
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+}
+function playSwish(dir){
+  try {
+    ensureAudio();
+    var now = audioCtx.currentTime;
+    // soft filtered noise burst with rising/falling sweep = pleasant whoosh
+    var dur = 0.22, sr = audioCtx.sampleRate;
+    var buf = audioCtx.createBuffer(1, Math.floor(sr * dur), sr);
+    var d = buf.getChannelData(0);
+    for (var i = 0; i < d.length; i++) {
+      d[i] = (Math.random() * 2 - 1) * Math.sin(Math.PI * i / d.length);
+    }
+    var src = audioCtx.createBufferSource(); src.buffer = buf;
+    var f = audioCtx.createBiquadFilter(); f.type = 'bandpass'; f.Q.value = 6;
+    var g = audioCtx.createGain();
+    if (dir > 0) { f.frequency.setValueAtTime(500, now); f.frequency.exponentialRampToValueAtTime(2600, now + dur); }
+    else { f.frequency.setValueAtTime(2600, now); f.frequency.exponentialRampToValueAtTime(500, now + dur); }
+    g.gain.setValueAtTime(0, now);
+    g.gain.linearRampToValueAtTime(0.08, now + 0.03);
+    g.gain.exponentialRampToValueAtTime(0.001, now + dur);
+    src.connect(f); f.connect(g); g.connect(audioCtx.destination);
+    src.start(now); src.stop(now + dur + 0.05);
+  } catch(e) {}
+}
+
+(function(){
+  var ring = document.getElementById('cardRing');
+  var cn = document.getElementById('cardName');
+  var cd = document.getElementById('cardDesc');
+  var ci = document.getElementById('card-info');
+  var cardEls = [];
+
+  decks.forEach(function(d, i){
+    var el = document.createElement('div');
+    el.className = 'ring-card';
+    if (progress[d.file] && progress[d.file].completed) el.classList.add('done');
+    el.innerHTML = '<div class="ring-card-inner"><span class="done-badge">&#10003; Done</span>'
+      + '<img src="' + d.img + '" alt="' + d.title + '" onerror="this.style.display=\'none\'"></div>';
+    el.addEventListener('click', function(){
+      // bring non-focused card into focus; only the focused card opens the deck
+      if (Math.round(smoothPos) !== i) {
+        go(i);
+        return;
+      }
+      window.location.href = d.file;
+    });
+    el.addEventListener('mouseenter', function(){
+      cn.textContent = d.title;
+      cd.textContent = d.p1 + ' Part 1 \u00b7 ' + d.p2 + ' Part 2 \u00b7 ' + d.p3 + ' Part 3';
+      ci.classList.add('visible');
+    });
+    el.addEventListener('mouseleave', function(){ ci.classList.remove('visible'); });
+    el._spring = {tx:0,tz:-400,ry:0,sc:.5,op:0,vtx:0,vtz:0,vry:0,vsc:0,vop:0};
+    if (i === 0) el._spring = {tx:0,tz:180,ry:0,sc:1,op:1,vtx:0,vtz:0,vry:0,vsc:0,vop:0};
+    ring.appendChild(el);
+    cardEls.push(el);
+  });
+
+  var STIFF = .06, DAMP = .78;
+  var lastActive = -1;
+
+  function showInfo(i){
+    var cur = decks[i];
+    cn.textContent = cur.title;
+    cd.textContent = cur.p1 + ' Part 1 \u00b7 ' + cur.p2 + ' Part 2 \u00b7 ' + cur.p3 + ' Part 3';
+    ci.classList.add('visible');
+  }
+
+  // ── Wheel/touch-driven position (page never scrolls) ──
+  var targetPos = 0;   // fractional card position, 0 .. total-1
+  var smoothPos = 0;
+  var uiScale = 1;     // ctrl+wheel card/button zoom
+
+  function go(n){
+    var total = cardEls.length;
+    targetPos = Math.max(0, Math.min(total - 1, n));
+  }
+
+  document.addEventListener('wheel', function(e){
+    e.preventDefault();
+    if (e.ctrlKey) {
+      uiScale = Math.max(0.5, Math.min(2.5, uiScale + (e.deltaY < 0 ? 0.1 : -0.1)));
+      var stage = document.querySelector('.gallery-stage');
+      var nav = document.querySelector('.cover-nav');
+      if (stage) stage.style.transform = 'scale(' + uiScale + ')';
+      if (nav) nav.style.transform = 'translateX(-50%) scale(' + uiScale + ')';
+      return;
+    }
+    targetPos += e.deltaY > 0 ? 0.35 : -0.35;
+    targetPos = Math.max(0, Math.min(cardEls.length - 1, targetPos));
+  }, { passive: false });
+
+  var touchY = null;
+  document.addEventListener('touchstart', function(e){
+    touchY = e.touches[0].clientY;
+  }, { passive: true });
+  document.addEventListener('touchmove', function(e){
+    if (touchY === null) return;
+    var dy = e.touches[0].clientY - touchY;
+    if (Math.abs(dy) > 12) {
+      targetPos += dy > 0 ? -0.35 : 0.35;
+      targetPos = Math.max(0, Math.min(cardEls.length - 1, targetPos));
+      touchY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  function frameLoop(){
+    requestAnimationFrame(frameLoop);
+    var total = cardEls.length;
+    // --- buttery position smoothing ---
+    smoothPos += (targetPos - smoothPos) * 0.14;
+    var activeIdx = Math.max(0, Math.min(total - 1, Math.round(smoothPos)));
+
+    if (activeIdx !== lastActive) { showInfo(activeIdx); lastActive = activeIdx; }
+
+    cardEls.forEach(function(card, i){
+      var dist = i - activeIdx, s = card._spring, tx, tz, ry, sc, op;
+      var s1 = Math.max(window.innerWidth * 0.34, 460);
+      var s2 = Math.max(window.innerWidth * 0.52, 700);
+      if (dist === 0) { tx = 0; tz = 180; ry = 0; sc = 1; op = 1; }
+      else if (dist === -1) { tx = -s1; tz = -220; ry = 30; sc = 1; op = 1; }
+      else if (dist === 1) { tx = s1; tz = -220; ry = -30; sc = 1; op = 1; }
+      else if (dist === -2) { tx = -s2; tz = -360; ry = 40; sc = .92; op = .5; }
+      else if (dist === 2) { tx = s2; tz = -360; ry = -40; sc = .92; op = .5; }
+      else { tx = 0; tz = -500; ry = 0; sc = .5; op = 0; }
+
+      s.vtx += (tx - s.tx) * STIFF; s.vtx *= DAMP; s.tx += s.vtx;
+      s.vtz += (tz - s.tz) * STIFF; s.vtz *= DAMP; s.tz += s.vtz;
+      s.vry += (ry - s.ry) * STIFF; s.vry *= DAMP; s.ry += s.vry;
+      s.vsc += (sc - s.sc) * STIFF; s.vsc *= DAMP; s.sc += s.vsc;
+      s.vop += (op - s.op) * STIFF; s.vop *= DAMP; s.op += s.vop;
+
+      card.style.transform = 'translateX(' + s.tx.toFixed(1) + 'px) translateZ(' + s.tz.toFixed(1)
+        + 'px) rotateY(' + s.ry.toFixed(1) + 'deg) scale(' + s.sc.toFixed(2) + ')';
+      card.style.opacity = Math.max(0, Math.min(1, s.op)).toFixed(3);
+      card.style.zIndex = dist === 0 ? '100' : Math.abs(dist) === 1 ? '50' : '30';
+      card.style.pointerEvents = s.op > .3 ? 'auto' : 'none';
+      // active glow border
+      card.style.boxShadow = dist === 0 ? '0 0 50px rgba(34,211,238,.3), 0 25px 80px rgba(0,0,0,.6)' : '';
+    });
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', function(){
+    playSwish(-1);
+    go(Math.round(smoothPos) - 1);
+  });
+  document.getElementById('nextBtn').addEventListener('click', function(){
+    playSwish(1);
+    go(Math.round(smoothPos) + 1);
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowLeft') { playSwish(-1); go(Math.round(smoothPos) - 1); }
+    if (e.key === 'ArrowRight') { playSwish(1); go(Math.round(smoothPos) + 1); }
+  });
+
+  showInfo(0);
+  requestAnimationFrame(frameLoop);
+})();
+
+// ═══ DOTFIELD BACKGROUND (React Bits DotField -> vanilla JS) ═══
+(function(){
+  var ctn = document.getElementById('dotfield');
+  if (!ctn) return;
+  var TWO_PI = Math.PI * 2;
+  var dotRadius = 3, dotSpacing = 14, cursorRadius = 500, cursorForce = 0.1;
+  var bulgeOnly = true, bulgeStrength = 67, glowRadius = 160, sparkle = false, waveAmplitude = 0;
+  var gradientFrom = 'rgba(34,211,238,.30)';
+  var gradientTo = 'rgba(167,139,250,.22)';
+  var glowColor = '#0d1220';
+
+  var canvas = document.createElement('canvas');
+  ctn.appendChild(canvas);
+  var ctx = canvas.getContext('2d', { alpha: true });
+  var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  var defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+  var gid = 'dotfield-glow-' + Math.random().toString(36).slice(2, 9);
+  var rg = document.createElementNS('http://www.w3.org/2000/svg', 'radialGradient');
+  rg.setAttribute('id', gid);
+  var stop0 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+  stop0.setAttribute('offset', '0%'); stop0.setAttribute('stop-color', glowColor);
+  var stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+  stop1.setAttribute('offset', '100%'); stop1.setAttribute('stop-color', 'transparent');
+  rg.appendChild(stop0); rg.appendChild(stop1); defs.appendChild(rg); svg.appendChild(defs);
+  var glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  glow.setAttribute('cx', '-9999'); glow.setAttribute('cy', '-9999');
+  glow.setAttribute('r', glowRadius); glow.setAttribute('fill', 'url(#' + gid + ')');
+  glow.style.opacity = '0'; glow.style.willChange = 'opacity';
+  svg.appendChild(glow); ctn.appendChild(svg);
+
+  var dots = [];
+  var mouse = { x: -9999, y: -9999, prevX: -9999, prevY: -9999, speed: 0 };
+  var size = { w: 0, h: 0 };
+  var glowOpacity = 0, engagement = 0;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  function buildDots(w, h){
+    var step = dotRadius + dotSpacing;
+    var cols = Math.floor(w / step), rows = Math.floor(h / step);
+    var padX = (w % step) / 2, padY = (h % step) / 2;
+    var arr = new Array(rows * cols), idx = 0;
+    for (var row = 0; row < rows; row++) {
+      for (var col = 0; col < cols; col++) {
+        var ax = padX + col * step + step / 2;
+        var ay = padY + row * step + step / 2;
+        arr[idx++] = { ax: ax, ay: ay, sx: ax, sy: ay, vx: 0, vy: 0, x: ax, y: ay };
+      }
+    }
+    dots = arr;
+  }
+
+  function doResize(){
+    var rect = ctn.getBoundingClientRect();
+    var w = rect.width, h = rect.height;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    size.w = w; size.h = h;
+    buildDots(w, h);
+  }
+  var resizeTimer = null;
+  function onResize(){ clearTimeout(resizeTimer); resizeTimer = setTimeout(doResize, 100); }
+  doResize();
+  window.addEventListener('resize', onResize);
+
+  function onMouseMove(e){
+    mouse.x = e.clientX; mouse.y = e.clientY;
+  }
+  window.addEventListener('mousemove', onMouseMove, { passive: true });
+
+  function updateMouseSpeed(){
+    var dx = mouse.prevX - mouse.x, dy = mouse.prevY - mouse.y;
+    var dist = Math.sqrt(dx * dx + dy * dy);
+    mouse.speed += (dist - mouse.speed) * 0.5;
+    if (mouse.speed < 0.001) mouse.speed = 0;
+    mouse.prevX = mouse.x; mouse.prevY = mouse.y;
+  }
+  var speedInterval = setInterval(updateMouseSpeed, 20);
+
+  var frameCount = 0;
+
+  function tick(){
+    frameCount++;
+    var len = dots.length;
+    var t = frameCount * 0.02;
+    var targetEng = Math.min(mouse.speed / 5, 1);
+    engagement += (targetEng - engagement) * 0.06;
+    if (engagement < 0.001) engagement = 0;
+    var eng = engagement;
+    glowOpacity += (eng - glowOpacity) * 0.08;
+
+    glow.setAttribute('cx', mouse.x);
+    glow.setAttribute('cy', mouse.y);
+    glow.style.opacity = glowOpacity;
+
+    ctx.clearRect(0, 0, size.w, size.h);
+    var grad = ctx.createLinearGradient(0, 0, size.w, size.h);
+    grad.addColorStop(0, gradientFrom);
+    grad.addColorStop(1, gradientTo);
+    ctx.fillStyle = grad;
+
+    var cr = cursorRadius, crSq = cr * cr, rad = dotRadius / 2;
+    ctx.beginPath();
+
+    for (var i = 0; i < len; i++) {
+      var d = dots[i];
+      var dx = mouse.x - d.ax, dy = mouse.y - d.ay;
+      var distSq = dx * dx + dy * dy;
+
+      if (distSq < crSq && eng > 0.01) {
+        var dist = Math.sqrt(distSq);
+        if (bulgeOnly) {
+          var bt = 1 - dist / cr;
+          var push = bt * bt * bulgeStrength * eng;
+          var angle = Math.atan2(dy, dx);
+          d.sx += (d.ax - Math.cos(angle) * push - d.sx) * 0.15;
+          d.sy += (d.ay - Math.sin(angle) * push - d.sy) * 0.15;
+        } else {
+          var angle2 = Math.atan2(dy, dx);
+          var move = (500 / dist) * (mouse.speed * cursorForce);
+          d.vx += Math.cos(angle2) * -move;
+          d.vy += Math.sin(angle2) * -move;
+        }
+      } else if (bulgeOnly) {
+        d.sx += (d.ax - d.sx) * 0.1;
+        d.sy += (d.ay - d.sy) * 0.1;
+      }
+
+      if (!bulgeOnly) {
+        d.vx *= 0.9; d.vy *= 0.9;
+        d.x = d.ax + d.vx; d.y = d.ay + d.vy;
+        d.sx += (d.x - d.sx) * 0.1;
+        d.sy += (d.y - d.sy) * 0.1;
+      }
+
+      var drawX = d.sx, drawY = d.sy;
+      if (waveAmplitude > 0) {
+        drawY += Math.sin(d.ax * 0.03 + t) * waveAmplitude;
+        drawX += Math.cos(d.ay * 0.03 + t * 0.7) * waveAmplitude * 0.5;
+      }
+
+      if (sparkle) {
+        var hash = ((i * 2654435761) ^ (frameCount >> 3)) >>> 0;
+        if ((hash % 100) < 3) {
+          ctx.moveTo(drawX + rad * 1.8, drawY);
+          ctx.arc(drawX, drawY, rad * 1.8, 0, TWO_PI);
+        } else {
+          ctx.moveTo(drawX + rad, drawY);
+          ctx.arc(drawX, drawY, rad, 0, TWO_PI);
+        }
+      } else {
+        ctx.moveTo(drawX + rad, drawY);
+        ctx.arc(drawX, drawY, rad, 0, TWO_PI);
+      }
+    }
+
+    ctx.fill();
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+
+// ═══ VARIABLE PROXIMITY BACKGROUND (React Bits VariableProximity -> vanilla JS) ═══
+(function(){
+  var ctn = document.getElementById('varprox');
+  if (!ctn) return;
+
+  // props (see React Bits VariableProximity props table)
+  var label = 'IELTS Speaking Practice';
+  var fromFontVariationSettings = "'wght' 400, 'opsz' 9";
+  var toFontVariationSettings = "'wght' 1000, 'opsz' 40";
+  var radius = 160;
+  var falloff = 'linear';
+
+  function parseSettings(str){
+    var map = {};
+    str.split(',').forEach(function(s){
+      s = s.trim();
+      var parts = s.split(' ');
+      map[parts[0].replace(/['"]/g, '')] = parseFloat(parts[1]);
+    });
+    return map;
+  }
+  var fromMap = parseSettings(fromFontVariationSettings);
+  var toMap = parseSettings(toFontVariationSettings);
+  var axes = Object.keys(fromMap).map(function(axis){
+    return { axis: axis, fromValue: fromMap[axis], toValue: toMap[axis] !== undefined ? toMap[axis] : fromMap[axis] };
+  });
+
+  // ── render label as per-letter spans (faithful to component markup) ──
+  var letterEls = [];
+  var letterIndex = 0;
+  var rootSpan = document.createElement('span');
+  rootSpan.className = 'variable-proximity';
+  ctn.appendChild(rootSpan);
+  label.split(' ').forEach(function(word, wordIndex){
+    var wspan = document.createElement('span');
+    wspan.style.display = 'inline-block';
+    wspan.style.whiteSpace = 'nowrap';
+    word.split('').forEach(function(ch){
+      var l = document.createElement('span');
+      l.style.display = 'inline-block';
+      l.setAttribute('aria-hidden', 'true');
+      l.textContent = ch;
+      wspan.appendChild(l);
+      letterEls[letterIndex++] = l;
+    });
+    rootSpan.appendChild(wspan);
+    if (wordIndex < label.split(' ').length - 1) {
+      var sp = document.createElement('span');
+      sp.style.display = 'inline-block';
+      sp.innerHTML = '&nbsp;';
+      rootSpan.appendChild(sp);
+    }
+  });
+
+  var mouseRef = { x: 0, y: 0 };
+  var lastPositionRef = { x: null, y: null };
+  var rectCache = null;
+
+  function updateRect(){ rectCache = ctn.getBoundingClientRect(); }
+  updateRect();
+  window.addEventListener('resize', updateRect);
+
+  window.addEventListener('mousemove', function(ev){
+    mouseRef.x = ev.clientX; mouseRef.y = ev.clientY;
+  }, { passive: true });
+  window.addEventListener('touchmove', function(ev){
+    var touch = ev.touches[0];
+    if (touch) { mouseRef.x = touch.clientX; mouseRef.y = touch.clientY; }
+  }, { passive: true });
+
+  function calculateDistance(x1, y1, x2, y2){ return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)); }
+
+  function calculateFalloff(distance){
+    var norm = Math.min(Math.max(1 - distance / radius, 0), 1);
+    switch (falloff) {
+      case 'exponential': return norm * norm;
+      case 'gaussian': return Math.exp(-Math.pow(distance / (radius / 2), 2) / 2);
+      case 'linear':
+      default: return norm;
+    }
+  }
+
+  function loop(){
+    requestAnimationFrame(loop);
+    if (!ctn) return;
+    var x = mouseRef.x, y = mouseRef.y;
+    if (lastPositionRef.x === x && lastPositionRef.y === y) return;
+    lastPositionRef.x = x; lastPositionRef.y = y;
+    if (!rectCache) return;
+
+    letterEls.forEach(function(letterEl){
+      if (!letterEl) return;
+      var rect = letterEl.getBoundingClientRect();
+      var letterCenterX = rect.left + rect.width / 2 - rectCache.left;
+      var letterCenterY = rect.top + rect.height / 2 - rectCache.top;
+
+      var distance = calculateDistance(x, y, letterCenterX, letterCenterY);
+
+      if (distance >= radius) {
+        letterEl.style.fontVariationSettings = fromFontVariationSettings;
+        return;
+      }
+
+      var falloffValue = calculateFalloff(distance);
+      letterEl.style.fontVariationSettings = axes.map(function(a){
+        var interpolatedValue = a.fromValue + (a.toValue - a.fromValue) * falloffValue;
+        return "'" + a.axis + "' " + interpolatedValue;
+      }).join(', ');
+    });
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+</body></html>
