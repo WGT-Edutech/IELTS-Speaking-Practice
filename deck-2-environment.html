@@ -363,7 +363,7 @@ update();
 
     function readThemeColors() {
       lineColor = accentRgb();
-      baseColor = dim(lineColor, 0.42);
+      baseColor = dim(lineColor, 0.62);
     }
     readThemeColors();
     if (window.MutationObserver) {
@@ -417,11 +417,12 @@ update();
       var dt = Math.min((now - last) / 1000, 0.05);
       last = now;
       idleAngle += 0.35 * dt;
-      var steer = pointerAngle != null;
+      var steer = pointerAngle != null && proximityT > 0.01;
       var target = steer ? pointerAngle : idleAngle;
       var diff = ((target - angle + Math.PI*3) % (Math.PI*2)) - Math.PI;
       angle += diff * (1 - Math.exp(-dt * 7));
-      bright += (proximityT - bright) * (1 - Math.exp(-dt * 8));
+      var brightTarget = 0.75 + proximityT * 0.25;  // always-on shine, brighter on hover
+      bright += (brightTarget - bright) * (1 - Math.exp(-dt * 8));
 
       gl.uniform1f(U.uAngle, angle);
       gl.uniform1f(U.uPx, dpr);
