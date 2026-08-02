@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Health &amp; Wellbeing &middot; IELTS Speaking B2</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060a14; --cyan: #22d3ee; --purple: #a78bfa; --gold: #fbbf24;
+  --green: #34d399; --red: #f87171; --text: #f2f0f8; --text-dim: #b8bcc8;
+  --accent: #fbbf24; --accent-glow: rgba(251,191,36,.22);
+  --accent-dim: rgba(251,191,36,.1); --bg-deep: #060a14;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:clamp(1.1rem,1.5vw,1.35rem);line-height:1.75}
+.slide{position:fixed;inset:0;background-size:cover;background-position:center;opacity:0;pointer-events:none;transition:opacity .35s ease;display:flex;flex-direction:column;justify-content:flex-start;padding:3vh 5vw 10vh;overflow-y:auto}
+.slide::-webkit-scrollbar{width:0;background:transparent}
+.slide{scrollbar-width:none;-ms-overflow-style:none}
+.slide.active{opacity:1;pointer-events:auto}
+.slide::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--bg) 78%,transparent) 0%,color-mix(in srgb,var(--bg) 45%,transparent) 45%,color-mix(in srgb,var(--bg) 18%,transparent) 100%);z-index:0}
+.content{position:relative;z-index:1;max-width:88vw;width:100%;background:color-mix(in srgb,var(--bg) 60%,transparent);border:1px solid var(--accent-glow);box-shadow:0 0 25px var(--accent-glow),0 0 60px rgba(0,0,0,.3);border-radius:16px;padding:2.5em 3em;backdrop-filter:blur(10px);margin:auto 0}
+.content.wide{max-width:92vw}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-dim));z-index:200;transition:width .35s ease}
+.nav{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:1.2em;z-index:200;background:color-mix(in srgb,var(--bg) 85%,transparent);border:1px solid var(--accent-glow);border-radius:40px;padding:10px 24px;backdrop-filter:blur(6px)}
+.nav button{background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:1rem;padding:8px 18px;border-radius:24px;cursor:pointer;transition:transform .15s ease,box-shadow .2s;min-width:44px;min-height:44px}
+.nav button:hover{background:var(--accent-glow);box-shadow:0 0 15px var(--accent-glow);transform:scale(1.05)}
+.nav button:active{transform:scale(.94)}
+.nav .slide-counter{font-family:'Inter',monospace;color:var(--text-dim);font-size:1rem;min-width:60px;text-align:center}
+h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(2rem,4.5vw,3.8rem);background:linear-gradient(135deg,var(--accent),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5em;line-height:1.15;filter:drop-shadow(0 2px 14px var(--accent-glow)) drop-shadow(0 1px 2px rgba(0,0,0,.6))}
+h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.5vw,1.8rem);color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.7em;text-shadow:0 0 14px var(--accent-glow),0 1px 3px rgba(0,0,0,.6);animation:popGlow 3.2s ease-in-out infinite}
+@keyframes popGlow{0%,100%{text-shadow:0 0 10px var(--accent-glow),0 1px 3px rgba(0,0,0,.6)}50%{text-shadow:0 0 22px var(--accent-glow),0 0 40px var(--accent-glow),0 1px 3px rgba(0,0,0,.6)}}
+.card{background:color-mix(in srgb,var(--bg) 55%,transparent);border:1.5px solid var(--accent-glow);border-radius:14px;padding:1em 1.4em;margin:.7em 0;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 4px 16px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,.04)}
+.card .ctag{display:inline-block;font-size:.9rem;padding:3px 10px;border-radius:10px;background:var(--accent-dim);color:var(--accent);margin-bottom:.5em;font-weight:700;text-transform:uppercase;letter-spacing:.04em;box-shadow:0 0 10px var(--accent-glow)}
+.card p{font-size:1.2rem;line-height:1.7;text-shadow:0 1px 3px rgba(0,0,0,.55),0 0 12px rgba(0,0,0,.3)}
+.cue-box{background:color-mix(in srgb,var(--bg) 58%,transparent);border:2px solid var(--accent-glow);box-shadow:0 0 30px var(--accent-glow);border-radius:14px;padding:1.4em 1.8em;margin:1em 0;text-align:center}
+.cue-box .cue-main{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--accent);font-size:1.8rem;margin-bottom:.6em;text-shadow:0 0 18px var(--accent-glow),0 2px 4px rgba(0,0,0,.6);animation:popGlow 3.2s ease-in-out infinite}
+.cue-box .cue-bullets{font-size:1.25rem;color:var(--text);text-shadow:0 1px 3px rgba(0,0,0,.55)}
+.mark-complete-btn{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.4);color:var(--green);font-family:'Inter',sans-serif;font-size:1.05rem;padding:10px 24px;border-radius:24px;cursor:pointer;transition:all .2s;font-weight:600;min-width:44px;min-height:44px}
+.mark-complete-btn:hover{background:rgba(52,211,153,.2);box-shadow:0 0 15px rgba(52,211,153,.3);transform:scale(1.05)}
+.mark-complete-btn.completed{background:rgba(52,211,153,.25);border-color:rgba(52,211,153,.7);box-shadow:0 0 20px rgba(52,211,153,.4)}
+.mark-complete-btn:active{transform:scale(.94)}
+.vocab-word{border-bottom:1.5px dotted var(--accent);cursor:pointer;transition:background .2s;position:relative;color:var(--accent);font-weight:600;text-shadow:0 0 10px var(--accent-glow),0 1px 2px rgba(0,0,0,.6)}
+.vocab-word:hover{background:var(--accent-glow);text-shadow:0 0 16px var(--accent-glow),0 0 30px var(--accent-glow),0 1px 2px rgba(0,0,0,.6)}
+.vocab-tooltip{display:none;position:fixed;z-index:999;background:var(--bg-deep);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px 14px;max-width:340px;font-size:1rem;line-height:1.5;color:var(--text);box-shadow:0 6px 24px rgba(0,0,0,0.5);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);pointer-events:none}
+.vocab-tooltip.show{display:block}
+.vocab-tooltip .tt-word{font-weight:700;color:var(--cyan)}
+.vocab-tooltip .tt-pos{font-size:.85rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px}
+.vocab-tooltip .tt-def{margin-top:4px}
+.theme-btn{position:fixed;top:1em;right:1em;z-index:300;width:44px;height:44px;border-radius:50%;background:var(--accent-dim);border:1.5px solid var(--accent-glow);cursor:pointer;backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;transition:transform .15s ease}
+.theme-btn:hover{transform:scale(1.1);background:rgba(255,255,255,0.08)}
+.theme-btn:active{transform:scale(.93)}
+.theme-btn svg{width:22px;height:22px;fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s,filter .3s;filter:drop-shadow(0 0 6px var(--accent-glow))}
+[data-theme="1"]{--accent:#fbbf24;--accent-glow:rgba(251,191,36,.22);--accent-dim:rgba(251,191,36,.1)}
+[data-theme="2"]{--accent:#34d399;--accent-glow:rgba(52,211,153,.22);--accent-dim:rgba(52,211,153,.1)}
+[data-theme="3"]{--accent:#a78bfa;--accent-glow:rgba(167,139,250,.22);--accent-dim:rgba(167,139,250,.1)}
+[data-theme="4"]{--accent:#f59e0b;--accent-glow:rgba(245,158,11,.22);--accent-dim:rgba(245,158,11,.1)}
+[data-theme="5"]{--accent:#fb7185;--accent-glow:rgba(251,113,133,.22);--accent-dim:rgba(251,113,133,.1)}
+[data-theme="6"]{--accent:#22d3ee;--accent-glow:rgba(34,211,238,.22);--accent-dim:rgba(34,211,238,.1)}
+[data-theme="7"]{--bg:#0a0a24;--accent:#818cf8;--accent-glow:rgba(129,140,248,.25);--accent-dim:rgba(129,140,248,.12)}
+.home-link{position:fixed;top:1em;left:1em;z-index:300;color:var(--accent);text-decoration:none;font-size:.95rem;padding:6px 12px;border-radius:16px;background:var(--accent-dim);border:1px solid var(--accent-glow);transition:all .2s;backdrop-filter:blur(8px)}
+.home-link:hover{color:var(--accent);background:var(--accent-glow);box-shadow:0 0 12px var(--accent-glow)}
+@media(max-width:768px){.content{max-width:92vw;padding:1.5em 1.8em}.content.wide{max-width:95vw}h1{font-size:1.8rem}h2{font-size:1.3rem}.nav{bottom:12px;padding:8px 16px;gap:.6em}.nav button{padding:6px 12px;font-size:.95rem}}
+
+/* ═══ SPECULAR BUTTON (React Bits SpecularButton, vanilla WebGL2 port) ═══ */
+.specular-button {
+  --sb-radius: 18px;
+  --sb-tint: #ffffff;
+  --sb-tint-opacity: 0;
+  --sb-blur: 0px;
+  --sb-text-color: var(--text, #f5f5f5);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  margin: 0;
+  font-family: inherit;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  color: var(--sb-text-color);
+  background: color-mix(in srgb, var(--sb-tint) calc(var(--sb-tint-opacity) * 100%), transparent);
+  border-radius: var(--sb-radius);
+  backdrop-filter: blur(var(--sb-blur));
+  -webkit-backdrop-filter: blur(var(--sb-blur));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.15s ease;
+}
+.specular-button:active { transform: scale(0.97); }
+.specular-button:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--sb-text-color) 60%, transparent);
+  outline-offset: 3px;
+}
+.specular-button__fx {
+  position: absolute;
+  inset: -20px;
+  pointer-events: none;
+  z-index: 1;
+}
+.specular-button__fx canvas { display: block; width: 100%; height: 100%; }
+.specular-button__label { position: relative; z-index: 2; }
+
+
+/* specular-fx: adds the shine to ANY button without fighting its own styles */
+.specular-fx { position: relative; }
+.specular-button__label { display: inline-flex; align-items: center; justify-content: center; }
+</style></head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<a href="index.html" class="home-link">&larr; Portal</a>
+<button class="theme-btn specular-fx" id="themeBtn" title="Cycle theme" aria-label="Cycle color theme"><span class="specular-button__label">
+  <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+</span></button>
+
+<section class="slide active" style="background-image:url('https://plus.unsplash.com/premium_photo-1674605365723-15e6749630f4?w=1600&amp;q=80')"><div class="content narrow" style="text-align:center;"><h1>Health &amp; Wellbeing</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2</p><p style="font-size:1.05rem;color:var(--text-dim);margin-top:.5em;">6 Part 1 questions &middot; 1 Part 2 cue card &middot; 4 Part 3 discussion questions</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
+
+<section class="slide" style="background-image:url('https://images.unsplash.com/photo-1759674861540-afed9f86f94a?w=1600&amp;q=80')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
+<div class="card"><span class="ctag">Question 1 &middot; Exercise</span><p>Do you do much exercise?</p></div>
+<div class="card"><span class="ctag">Question 2 &middot; Food</span><p>Do you have a healthy diet?</p></div>
+<div class="card"><span class="ctag">Question 3 &middot; Lifestyle</span><p>Has your life changed much in the last year?</p></div>
+</div></section>
+
+<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1685303469251-4ee0ea014bb3?w=1600&amp;q=80')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
+<div class="card"><span class="ctag">Question 4 &middot; Sports</span><p>Do you play any sports?</p></div>
+<div class="card"><span class="ctag">Question 5 &middot; Daily Routine</span><p>What would you like to change about your daily routine?</p></div>
+<div class="card"><span class="ctag">Question 6 &middot; Food</span><p>Do you prefer eating at home or eating out?</p></div>
+</div></section>
+
+<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1661777196224-bfda51e61cfd?w=1600&amp;q=80')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe something healthy you enjoy doing.</div><div class="cue-bullets">what you do &middot; where you do it &middot; who you do it with &middot; and explain why you think doing this is healthy</div></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
+
+<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1673953510197-0950d951c6d9?w=1600&amp;q=80')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
+<div class="card"><span class="ctag">Discussion 1</span><p>How can people improve their health?</p></div>
+<div class="card"><span class="ctag">Discussion 2</span><p>Do elderly people exercise much in your country?</p></div>
+<div class="card"><span class="ctag">Discussion 3</span><p>Do you think all illnesses can be prevented?</p></div>
+<div class="card"><span class="ctag">Discussion 4</span><p>Do you think healthcare should be free?</p></div>
+</div></section>
+
+<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1675798983878-604c09f6d154?w=1600&amp;q=80')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="nutrition">nutrition</span></p>
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="wellbeing">wellbeing</span></p>
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="prevention">prevention</span></p>
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="chronic">chronic</span></p>
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="immunity">immunity</span></p>
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="rehabilitation">rehabilitation</span></p>
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="sedentary">sedentary</span></p>
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="diagnosis">diagnosis</span></p>
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="therapy">therapy</span></p>
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="resilience">resilience</span></p>
+</div></div></section>
+
+<div class="nav"><button id="prevBtn" class="specular-button"><span class="specular-button__label">&larr; Prev</span></button><span class="slide-counter" id="slideCounter">1 / 6</span><button id="nextBtn" class="specular-button"><span class="specular-button__label">Next &rarr;</span></button></div>
+
+<div class="vocab-tooltip" id="vocabTooltip"><span class="tt-pos" id="ttPos"></span> <span class="tt-word" id="ttWord"></span><div class="tt-def" id="ttDef"></div></div>
+
+<script>
+var vocabDict = {
+  "nutrition": {"pos": "noun", "def": "the process of eating the right kinds of food for health"},
+  "wellbeing": {"pos": "noun", "def": "the state of being comfortable, healthy, and happy"},
+  "prevention": {"pos": "noun", "def": "the act of stopping something bad from happening"},
+  "chronic": {"pos": "adj", "def": "lasting for a long time, especially of an illness"},
+  "immunity": {"pos": "noun", "def": "the body's ability to resist infection or disease"},
+  "rehabilitation": {"pos": "noun", "def": "the process of restoring health through therapy"},
+  "sedentary": {"pos": "adj", "def": "involving little physical activity; sitting a lot"},
+  "diagnosis": {"pos": "noun", "def": "the identification of an illness by examining symptoms"},
+  "therapy": {"pos": "noun", "def": "treatment intended to relieve or heal a condition"},
+  "resilience": {"pos": "noun", "def": "the ability to recover quickly from difficulties"}
+};
+
+var tooltip = document.getElementById('vocabTooltip');
+document.addEventListener('mouseover', function(e) {
+  var el = e.target.closest('.vocab-word');
+  if (!el) { tooltip.classList.remove('show'); return; }
+  var word = el.dataset.word;
+  var info = vocabDict[word];
+  if (!info) return;
+  document.getElementById('ttWord').textContent = word;
+  document.getElementById('ttPos').textContent = info.pos;
+  document.getElementById('ttDef').textContent = info.def;
+  tooltip.classList.add('show');
+  var rect = el.getBoundingClientRect();
+  var top = rect.top - tooltip.offsetHeight - 8;
+  if (top < 10) top = rect.bottom + 8;
+  tooltip.style.top = top + 'px';
+  tooltip.style.left = Math.min(rect.left, window.innerWidth - 270) + 'px';
+});
+document.addEventListener('mouseout', function(e) {
+  if (e.target.closest('.vocab-word')) tooltip.classList.remove('show');
+});
+
+var themes = ["Classic","Forest","Violet","Gold","Rose","Ocean","Indigo"];
+var themeIcons = {1: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>', 2: '<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>', 3: '<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/>', 4: '<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>', 5: '<path d="M12 18.176a3 3 0 1 1 -4.953 -2.449l-.025 .023a4.502 4.502 0 0 1 1.483 -8.75c1.414 0 2.675 .652 3.5 1.671a4.5 4.5 0 1 1 4.983 7.079a3 3 0 1 1 -4.983 2.25l-.005 .176"/><path d="M12 19v-10"/><path d="M9 3l3 2l3 -2"/>', 6: '<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>', 7: '<path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/><path d="M18 5h4"/><path d="M20 3v4"/>'};
+var currentTheme = parseInt(localStorage.getItem('ielts-b2-theme')) || 1;
+function applyTheme(n) {
+  currentTheme = n;
+  if (n === 1) document.body.removeAttribute('data-theme');
+  else document.body.setAttribute('data-theme', n);
+  localStorage.setItem('ielts-b2-theme', n);
+  var icon = document.getElementById('themeIcon');
+  if (icon && themeIcons[n]) icon.innerHTML = themeIcons[n];
+}
+document.getElementById('themeBtn').addEventListener('click', function() {
+  applyTheme(currentTheme === 7 ? 1 : currentTheme + 1);
+});
+applyTheme(currentTheme);
+
+function toggleMarkComplete(btn) {
+  var key = 'deck-4-health';
+  var progress = JSON.parse(localStorage.getItem('ielts-b2-progress') || '{}');
+  if (btn.classList.contains('completed')) {
+    btn.classList.remove('completed'); btn.textContent = 'Mark Complete';
+    if (progress[key]) progress[key].completed = false;
+  } else {
+    btn.classList.add('completed'); btn.querySelector('.specular-button__label').innerHTML = '&#10003; Completed!';
+    if (!progress[key]) progress[key] = {};
+    progress[key].completed = true;
+    progress[key].date = new Date().toISOString().split('T')[0];
+  }
+  localStorage.setItem('ielts-b2-progress', JSON.stringify(progress));
+}
+(function() {
+  var key = 'deck-4-health';
+  var progress = JSON.parse(localStorage.getItem('ielts-b2-progress') || '{}');
+  var btn = document.getElementById('markCompleteBtn');
+  if (btn && progress[key] && progress[key].completed) {
+    btn.classList.add('completed'); btn.querySelector('.specular-button__label').innerHTML = '&#10003; Completed!';
+  }
+})();
+
+var slides = document.querySelectorAll('.slide');
+var current = 0;
+document.getElementById('prevBtn').addEventListener('click', function() { if (current > 0) { current--; update(); } });
+document.getElementById('nextBtn').addEventListener('click', function() { if (current < slides.length - 1) { current++; update(); } });
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight' || e.key === ' ') { if (current < slides.length - 1) { current++; update(); } }
+  if (e.key === 'ArrowLeft') { if (current > 0) { current--; update(); } }
+});
+function update() {
+  slides.forEach(function(s, i) { s.classList.toggle('active', i === current); });
+  document.getElementById('slideCounter').textContent = (current + 1) + ' / ' + slides.length;
+  document.getElementById('progressBar').style.width = ((current + 1) / slides.length) * 100 + '%';
+}
+update();
+
+// ═══ SPECULAR BUTTON (React Bits SpecularButton -> vanilla WebGL2, theme-aware) ═══
+(function(){
+  var PAD = 20;
+  var VERT = '#version 300 es\nin vec2 position;\nvoid main() {\n  gl_Position = vec4(position, 0.0, 1.0);\n}\n';
+  var FRAG = [
+    '#version 300 es',
+    'precision highp float;',
+    'uniform vec2 uCenter;',
+    'uniform vec2 uHalfSize;',
+    'uniform float uRadius;',
+    'uniform float uAngle;',
+    'uniform float uPx;',
+    'uniform vec3 uLineColor;',
+    'uniform vec3 uBaseColor;',
+    'uniform float uIntensity;',
+    'uniform float uShineSize;',
+    'uniform float uShineFade;',
+    'uniform float uThickness;',
+    'uniform float uBaseWidth;',
+    'out vec4 fragColor;',
+    'float sdRoundedRect(vec2 p, vec2 b, float r) {',
+    '  vec2 q = abs(p) - b + r;',
+    '  return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r;',
+    '}',
+    'float shapeSDF(vec2 p) { return sdRoundedRect(p, uHalfSize, uRadius); }',
+    'float gaussianLine(float d, float sigma) {',
+    '  float x = d / (sigma + 1e-6);',
+    '  float k = mix(1.0, 1.6, smoothstep(0.0, 1.5, x));',
+    '  return exp(-k * x * x);',
+    '}',
+    'void main() {',
+    '  vec2 p = gl_FragCoord.xy - uCenter;',
+    '  float d = shapeSDF(p);',
+    '  vec2 L = vec2(cos(uAngle), sin(uAngle));',
+    '  float base = (1.0 - smoothstep(0.0, uBaseWidth, abs(d))) * 0.45;',
+    '  vec2 nEll = normalize(p / (uHalfSize * uHalfSize) + 1e-6);',
+    '  float phi = acos(clamp(abs(dot(nEll, L)), 0.0, 1.0));',
+    '  float rim = 1.0 - smoothstep(uShineSize - uShineFade, uShineSize + uShineFade + 1e-4, phi);',
+    '  float line = gaussianLine(d, uThickness);',
+    '  float edgeClamp = 1.0 - smoothstep(0.5 * uPx, 3.0 * uPx, abs(d));',
+    '  float hi = line * rim * edgeClamp * uIntensity;',
+    '  vec3 col = uBaseColor * base + uLineColor * hi;',
+    '  float a = clamp(base + hi, 0.0, 1.0);',
+    '  fragColor = vec4(col, a);',
+    '}'
+  ].join('\n');
+
+  function hexToRgb(hex) {
+    hex = (hex || '').trim().replace('#', '');
+    if (hex.length === 3) hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+    var n = parseInt(hex, 16);
+    if (isNaN(n)) return [1, 1, 1];
+    return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
+  }
+  function cssVar(name, fallback) {
+    var v = getComputedStyle(document.body).getPropertyValue(name).trim();
+    return v || fallback;
+  }
+  function accentRgb() {
+    var accent = cssVar('--accent', '#818cf8');
+    if (accent.indexOf('#') === 0) return hexToRgb(accent);
+    // rgba(...) fallback
+    var m = accent.match(/[\d.]+/g);
+    if (m && m.length >= 3) return [m[0]/255, m[1]/255, m[2]/255];
+    return [1, 1, 1];
+  }
+  function dim(rgb, f) { return [rgb[0]*f, rgb[1]*f, rgb[2]*f]; }
+
+  function initAll() {
+    var buttons = document.querySelectorAll('.specular-button, .specular-fx');
+    if (!buttons.length || !window.WebGL2RenderingContext) return;
+
+  Array.prototype.forEach.call(buttons, function(btn){
+    var fx = document.createElement('span');
+    fx.className = 'specular-button__fx';
+    fx.setAttribute('aria-hidden', 'true');
+    btn.appendChild(fx);
+
+    var canvas = document.createElement('canvas');
+    fx.appendChild(canvas);
+    var gl = canvas.getContext('webgl2', { alpha: true, premultipliedAlpha: true, antialias: true });
+    if (!gl) return;
+    gl.clearColor(0, 0, 0, 0);
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+
+    function compile(type, src) {
+      var s = gl.createShader(type);
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      return s;
+    }
+    var prog = gl.createProgram();
+    gl.attachShader(prog, compile(gl.VERTEX_SHADER, VERT));
+    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FRAG));
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+    gl.useProgram(prog);
+
+    // fullscreen triangle
+    var buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+    var posLoc = gl.getAttribLocation(prog, 'position');
+    gl.enableVertexAttribArray(posLoc);
+    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+    var U = {};
+    ['uCenter','uHalfSize','uRadius','uAngle','uPx','uLineColor','uBaseColor','uIntensity','uShineSize','uShineFade','uThickness','uBaseWidth'].forEach(function(n){
+      U[n] = gl.getUniformLocation(prog, n);
+    });
+
+    var dpr = window.devicePixelRatio || 1;
+    var sizeRef = { w: 1, h: 1 };
+    var radius = 18;
+    var lineColor = [1,1,1], baseColor = [0.32,0.32,0.32];
+
+    function readThemeColors() {
+      lineColor = accentRgb();
+      baseColor = dim(lineColor, 0.42);
+    }
+    readThemeColors();
+    if (window.MutationObserver) {
+      new MutationObserver(readThemeColors).observe(document.body, { attributes: true, attributeFilter: ['data-theme'] });
+    }
+
+    function resize() {
+      var rect = btn.getBoundingClientRect();
+      var w = rect.width, h = rect.height;
+      if (w < 1 || h < 1) return;  // hidden (timer popup) — wait for ResizeObserver when shown
+      sizeRef.w = w; sizeRef.h = h;
+      var cw = w + PAD * 2, ch = h + PAD * 2;
+      canvas.width = Math.max(2, Math.round(cw * dpr));
+      canvas.height = Math.max(2, Math.round(ch * dpr));
+      canvas.style.width = cw + 'px';
+      canvas.style.height = ch + 'px';
+      gl.viewport(0, 0, canvas.width, canvas.height);
+      gl.uniform2f(U.uCenter, (PAD + w/2) * dpr, (PAD + h/2) * dpr);
+      gl.uniform2f(U.uHalfSize, (w/2) * dpr, (h/2) * dpr);
+      gl.uniform1f(U.uRadius, Math.min(radius, Math.min(w, h)/2) * dpr);
+    }
+    var ro = new ResizeObserver(resize);
+    ro.observe(btn);
+    resize();
+
+    var pointerAngle = null;
+    var proximityT = 0;
+    function onPointerMove(e) {
+      var rect = btn.getBoundingClientRect();
+      var cx = rect.left + rect.width/2, cy = rect.top + rect.height/2;
+      var dx = Math.max(rect.left - e.clientX, 0, e.clientX - rect.right);
+      var dy = Math.max(rect.top - e.clientY, 0, e.clientY - rect.bottom);
+      var dist = Math.hypot(dx, dy);
+      if (dist === 0) {
+        var nx = (e.clientX - cx) / (rect.width/2);
+        var ny = (cy - e.clientY) / (rect.height/2);
+        pointerAngle = Math.atan2(2/rect.height, -2/rect.width) + nx*0.3 + ny*0.15;
+      } else {
+        pointerAngle = Math.atan2(cy - e.clientY, e.clientX - cx);
+      }
+      var t = Math.max(0, 1 - dist / Math.max(250, 1));
+      proximityT = t * t * (3 - 2 * t);
+    }
+    window.addEventListener('pointermove', onPointerMove);
+
+    var angle = 2.4, idleAngle = 2.4, bright = 0;
+    var last = performance.now();
+
+    function update(now) {
+      requestAnimationFrame(update);
+      var dt = Math.min((now - last) / 1000, 0.05);
+      last = now;
+      idleAngle += 0.35 * dt;
+      var steer = pointerAngle != null;
+      var target = steer ? pointerAngle : idleAngle;
+      var diff = ((target - angle + Math.PI*3) % (Math.PI*2)) - Math.PI;
+      angle += diff * (1 - Math.exp(-dt * 7));
+      bright += (proximityT - bright) * (1 - Math.exp(-dt * 8));
+
+      gl.uniform1f(U.uAngle, angle);
+      gl.uniform1f(U.uPx, dpr);
+      gl.uniform3fv(U.uLineColor, lineColor);
+      gl.uniform3fv(U.uBaseColor, baseColor);
+      gl.uniform1f(U.uIntensity, bright);
+      gl.uniform1f(U.uShineSize, (10 * Math.PI) / 180);
+      gl.uniform1f(U.uShineFade, (40 * Math.PI) / 180);
+      gl.uniform1f(U.uThickness, 1 * dpr);
+      gl.uniform1f(U.uBaseWidth, dpr);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    }
+    requestAnimationFrame(update);
+  });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAll);
+  else initAll();
+})();
+
+</script>
+</body></html>
