@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Technology &amp; Society &middot; IELTS Speaking B2</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+/* ── Theme System (6 vibrant palettes) ── */
+:root {
+  --bg: #180a10; --bg2: #241018; --surface: rgba(36,16,24,0.35);
+  --text: #f2f0f8; --text-dim: #b8b4cc;
+  --accent: #f070a0; --accent2: #d05080; --accent-glow: rgba(240,112,160,.25);
+  --cyan: #f090b8; --purple: #d080a0; --gold: #f0a0c0;
+  --green: #40d890; --red: #f06070;
+  --card-bg: rgba(36,16,24,0.7); --card-border: rgba(240,112,160,0.1);
+    --nav-bg: rgba(24,10,16,0.92); --nav-border: rgba(240,112,160,0.2);
+    --btn-bg: rgba(240,112,160,0.1); --btn-border: rgba(240,112,160,0.4); --btn-color: var(--accent);
+    --tag-bg: rgba(240,112,160,0.12); --tag-color: var(--cyan);
+    --cue-bg: linear-gradient(135deg,rgba(240,112,160,.08),rgba(240,144,180,.08));
+    --cue-border: rgba(240,112,160,.35);
+    --vocab-color: #f0a0c0; --vocab-underline: #d080a0;
+    --overlay: linear-gradient(90deg,rgba(24,10,16,.82) 0%,rgba(24,10,16,.5) 45%,rgba(24,10,16,.2) 100%);
+    --progress: linear-gradient(90deg,var(--accent),var(--accent2));
+    --particle-color: rgba(240,112,160,0.3);
+}
+[data-theme="1"]{--bg:#180a10;--bg2:#241018;--surface:rgba(36,16,24,0.35);--accent:#f070a0;--accent2:#d05080;--accent-glow:rgba(240,112,160,.25);--cyan:#f090b8;--purple:#d080a0;--gold:#f0a0c0;--tag-bg:rgba(240,112,160,0.12);--tag-color:#f090b8;--nav-border:rgba(240,112,160,.2);--btn-bg:rgba(240,112,160,.1);--btn-border:rgba(240,112,160,.4);--btn-color:#f070a0;--cue-bg:linear-gradient(135deg,rgba(240,112,160,.08),rgba(240,144,180,.08));--cue-border:rgba(240,112,160,.35);--vocab-color:#f0a0c0;--vocab-underline:#d080a0;--progress:linear-gradient(90deg,#f070a0,#d05080);--particle-color:rgba(240,112,160,0.3)}
+[data-theme="2"]{--bg:#061412;--bg2:#0a1e1a;--surface:rgba(10,30,26,0.35);--accent:#30d890;--accent2:#20b070;--accent-glow:rgba(48,216,144,.25);--cyan:#40e0a0;--purple:#70d0a0;--gold:#80f0b0;--tag-bg:rgba(48,216,144,.12);--tag-color:#40e0a0;--nav-border:rgba(48,216,144,.2);--btn-bg:rgba(48,216,144,.1);--btn-border:rgba(48,216,144,.4);--btn-color:#30d890;--cue-bg:linear-gradient(135deg,rgba(48,216,144,.08),rgba(112,208,160,.08));--cue-border:rgba(48,216,144,.35);--vocab-color:#60f0b0;--vocab-underline:#40d090;--progress:linear-gradient(90deg,#30d890,#20b070);--particle-color:rgba(48,216,144,0.3)}
+[data-theme="3"]{--bg:#0a0c20;--bg2:#0e1030;--surface:rgba(14,16,48,0.35);--accent:#7070e0;--accent2:#5050c0;--accent-glow:rgba(112,112,224,.25);--cyan:#9090f0;--purple:#8080e0;--gold:#9090f0;--tag-bg:rgba(112,112,224,.12);--tag-color:#9090f0;--nav-border:rgba(112,112,224,.2);--btn-bg:rgba(112,112,224,.1);--btn-border:rgba(112,112,224,.4);--btn-color:#7070e0;--cue-bg:linear-gradient(135deg,rgba(112,112,224,.08),rgba(128,128,224,.08));--cue-border:rgba(112,112,224,.35);--vocab-color:#b0b0f8;--vocab-underline:#9090e0;--progress:linear-gradient(90deg,#7070e0,#5050c0);--particle-color:rgba(112,112,224,0.3)}
+[data-theme="4"]{--bg:#1a0c08;--bg2:#281410;--surface:rgba(40,20,16,0.35);--accent:#f06050;--accent2:#e04030;--accent-glow:rgba(240,96,80,.25);--cyan:#f08070;--purple:#e09080;--gold:#f0a090;--tag-bg:rgba(240,96,80,.12);--tag-color:#f08070;--nav-border:rgba(240,96,80,.2);--btn-bg:rgba(240,96,80,.1);--btn-border:rgba(240,96,80,.4);--btn-color:#f06050;--cue-bg:linear-gradient(135deg,rgba(240,96,80,.08),rgba(224,144,128,.08));--cue-border:rgba(240,96,80,.35);--vocab-color:#f0a090;--vocab-underline:#e08070;--progress:linear-gradient(90deg,#f06050,#e04030);--particle-color:rgba(240,96,80,0.3)}
+[data-theme="5"]{--bg:#0a1418;--bg2:#0e1e24;--surface:rgba(14,30,36,0.35);--accent:#40b8e0;--accent2:#2090c0;--accent-glow:rgba(64,184,224,.25);--cyan:#60d0f0;--purple:#80c0e0;--gold:#a0d8f0;--tag-bg:rgba(64,184,224,.12);--tag-color:#60d0f0;--nav-border:rgba(64,184,224,.2);--btn-bg:rgba(64,184,224,.1);--btn-border:rgba(64,184,224,.4);--btn-color:#40b8e0;--cue-bg:linear-gradient(135deg,rgba(64,184,224,.08),rgba(128,192,224,.08));--cue-border:rgba(64,184,224,.35);--vocab-color:#80d8f0;--vocab-underline:#50b0d8;--progress:linear-gradient(90deg,#40b8e0,#2090c0);--particle-color:rgba(64,184,224,0.3)}
+[data-theme="6"]{--bg:#161008;--bg2:#241a10;--surface:rgba(36,26,16,0.35);--accent:#f5a623;--accent2:#d4880f;--accent-glow:rgba(245,166,35,.25);--cyan:#f5c040;--purple:#d0a060;--gold:#f5b830;--tag-bg:rgba(245,166,35,0.12);--tag-color:#f5c040;--nav-border:rgba(245,166,35,.2);--btn-bg:rgba(245,166,35,.1);--btn-border:rgba(245,166,35,.4);--btn-color:#f5a623;--cue-bg:linear-gradient(135deg,rgba(245,166,35,.08),rgba(208,160,96,.08));--cue-border:rgba(245,166,35,.35);--vocab-color:#f5c860;--vocab-underline:#d4a030;--progress:linear-gradient(90deg,#f5a623,#d4880f);--particle-color:rgba(245,166,35,0.3)}
+[data-theme="7"]{--bg:#0b0b2a;--bg2:#121238;--surface:rgba(18,18,56,0.35);--accent:#818cf8;--accent2:#6366f1;--accent-glow:rgba(129,140,248,.3);--cyan:#a5b4fc;--purple:#8b9cf8;--gold:#c7d2fe;--tag-bg:rgba(129,140,248,.15);--tag-color:#a5b4fc;--nav-border:rgba(129,140,248,.3);--btn-bg:rgba(129,140,248,.12);--btn-border:rgba(129,140,248,.45);--btn-color:#818cf8;--cue-bg:linear-gradient(135deg,rgba(129,140,248,.1),rgba(139,156,248,.1));--cue-border:rgba(129,140,248,.4);--vocab-color:#a5b4fc;--vocab-underline:#818cf8;--progress:linear-gradient(90deg,#818cf8,#6366f1);--particle-color:rgba(129,140,248,0.35)}
+/* ── Base ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:clamp(1.1rem,2vw,1.5rem);line-height:1.75}
+/* ── Ambient Particles Canvas ── */
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5}
+#dots{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.15}
+#glow{position:fixed;inset:0;z-index:0;pointer-events:none}
+/* ── Glare Sweep ── */
+.glare{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 80% 20%,var(--accent-glow) 0%,transparent 60%);animation:glare-sweep 8s ease-in-out infinite;opacity:.4}
+@keyframes glare-sweep{0%,100%{transform:translate(0,0)}25%{transform:translate(-10%,5%)}50%{transform:translate(5%,-3%)}75%{transform:translate(-3%,-5%)}}
+
+.slide{position:fixed;inset:0;background-size:cover;background-position:center;opacity:0;pointer-events:none;transition:opacity .35s ease;display:flex;flex-direction:column;justify-content:flex-start;padding:3vh 4vw 14vh;overflow-y:auto}
+.slide::-webkit-scrollbar{width:0;background:transparent}
+.slide{scrollbar-width:none;-ms-overflow-style:none}
+.slide.active{opacity:1;pointer-events:auto}
+
+.content{position:relative;z-index:1;max-width:95vw;width:95vw;background:color-mix(in srgb,var(--bg) 58%,transparent);border:1px solid var(--accent-glow);box-shadow:0 0 25px var(--accent-glow),0 0 60px rgba(0,0,0,0.3);border-radius:16px;padding:2.5em 3em;backdrop-filter:blur(12px);margin:auto 0}
+.content.wide{max-width:95vw;width:95vw}
+h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(2rem,4.5vw,3.8rem);background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5em;line-height:1.15;filter:drop-shadow(0 2px 14px var(--accent-glow)) drop-shadow(0 1px 2px rgba(0,0,0,.6))}
+h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.5vw,1.8rem);color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.7em;text-shadow:0 0 14px var(--accent-glow),0 1px 3px rgba(0,0,0,.6);animation:popGlow 3.2s ease-in-out infinite}
+@keyframes popGlow{0%,100%{text-shadow:0 0 10px var(--accent-glow),0 1px 3px rgba(0,0,0,.6)}50%{text-shadow:0 0 22px var(--accent-glow),0 0 40px var(--accent-glow),0 1px 3px rgba(0,0,0,.6)}}
+/* ── Nav ── */
+.nav{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:1.2em;z-index:200;background:color-mix(in srgb,var(--bg2) 88%,transparent);border:1px solid var(--accent-glow);border-radius:40px;padding:10px 24px;backdrop-filter:blur(16px)}
+.nav button{background:var(--btn-bg);border:1px solid var(--btn-border);color:var(--btn-color);font-family:'Inter',sans-serif;font-size:1rem;padding:8px 18px;border-radius:24px;cursor:pointer;transition:all .2s;min-width:44px;min-height:44px}
+.nav button:hover{background:var(--accent-glow);box-shadow:0 0 15px var(--accent-glow);transform:scale(1.05)}
+.nav button:active{transform:scale(.94)}
+/* ── Cards ── */
+.card{background:color-mix(in srgb,var(--bg) 52%,transparent);border:1px solid var(--accent-glow);border-radius:14px;padding:1em 1.4em;margin:.7em 0;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 4px 16px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,.04)}
+.card .ctag{display:inline-block;font-size:.9rem;padding:3px 10px;border-radius:10px;background:var(--tag-bg);color:var(--tag-color);margin-bottom:.5em;font-weight:700;text-transform:uppercase;letter-spacing:.04em;box-shadow:0 0 10px var(--accent-glow)}
+.card p{font-size:1.35rem;line-height:1.7;text-shadow:0 1px 3px rgba(0,0,0,.55),0 0 12px rgba(0,0,0,.3)}
+/* ── Cue Card ── */
+.cue-box{background:color-mix(in srgb,var(--bg) 55%,transparent);border:2px solid var(--cue-border);box-shadow:0 0 30px var(--accent-glow);border-radius:14px;padding:1.4em 1.8em;margin:1em 0;text-align:center}
+.cue-box .cue-main{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--accent);font-size:2.2rem;margin-bottom:.6em;text-shadow:0 0 18px var(--accent-glow),0 2px 4px rgba(0,0,0,.6);animation:popGlow 3.2s ease-in-out infinite}
+.cue-box .cue-prompt{font-size:1.3rem;color:var(--text-dim);margin-bottom:.5em;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.cue-box ul.cue-bullets{list-style:disc;padding-left:1.5em;margin:.4em 0;text-align:left}
+.cue-box ul.cue-bullets li{font-size:1.6rem;color:var(--text);margin:.2em 0;line-height:1.6;text-shadow:0 1px 3px rgba(0,0,0,.55)}
+/* ── Timer Widgets ── */
+.timer-trigger{display:inline-flex;align-items:center;gap:5px;background:var(--btn-bg);border:1px solid var(--btn-border);color:var(--btn-color);font-family:'Inter',sans-serif;font-size:.95rem;padding:5px 12px;border-radius:14px;cursor:pointer;transition:all .15s;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.timer-trigger:hover{background:rgba(255,255,255,0.08);box-shadow:0 0 8px var(--accent-glow)}
+.timer-popup{display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:500;align-items:center;justify-content:center;padding:8px 0}
+.timer-popup.show{display:flex}
+.timer-popup-box{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--accent-glow);border-radius:0 0 16px 16px;padding:10px 24px;backdrop-filter:blur(16px);box-shadow:0 4px 24px var(--accent-glow)}
+.timer-popup-box .timer-display{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:700;color:var(--accent);min-width:60px;text-align:center}
+.timer-popup-box .timer-phase{font-size:.85rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
+.timer-btn{background:var(--btn-bg);border:1px solid var(--btn-border);color:var(--btn-color);font-family:'Inter',sans-serif;font-size:.95rem;padding:6px 14px;border-radius:18px;cursor:pointer;transition:all .15s;min-width:44px;min-height:34px;box-shadow:0 0 8px var(--accent-glow)}
+.timer-btn:hover{box-shadow:0 0 18px var(--accent-glow);transform:scale(1.05)}
+.timer-btn:active{transform:scale(.95)}
+.timer-btn.running{background:var(--accent-glow);border-color:var(--accent)}
+/* ── Vocab ── */
+.vocab-word{border-bottom:1.5px dotted var(--vocab-underline);cursor:pointer;transition:all .2s;color:var(--vocab-color);font-weight:600;text-shadow:0 0 10px var(--accent-glow),0 1px 2px rgba(0,0,0,.6)}
+.vocab-word:hover{background:rgba(255,255,255,0.08);text-shadow:0 0 16px var(--accent-glow),0 0 30px var(--accent-glow),0 1px 2px rgba(0,0,0,.6)}.vocab-word.active{background:rgba(255,255,255,0.12);border-radius:3px;text-shadow:0 0 16px var(--accent-glow),0 0 30px var(--accent-glow),0 1px 2px rgba(0,0,0,.6)}
+.vocab-tooltip{display:none;position:fixed;z-index:999;background:var(--bg2);border:1px solid var(--btn-border);border-radius:10px;padding:12px 16px;max-width:340px;font-size:1rem;line-height:1.5;color:var(--text);box-shadow:0 6px 24px rgba(0,0,0,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);pointer-events:none}
+.vocab-tooltip.show{display:block}
+.vocab-tooltip .tt-word{font-weight:700;color:var(--accent)}
+.vocab-tooltip .tt-pos{font-size:.85rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px}
+.vocab-tooltip .tt-def{margin-top:4px;font-size:.95rem}
+.vocab-tooltip .tt-langs{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px}
+.vocab-tooltip .tt-langs span{display:inline-block;background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:2px 8px;font-size:.85rem;color:var(--text-dim)}
+.vocab-tooltip .tt-langs b{color:var(--accent);font-weight:600}
+/* ── Theme Button ── */
+.theme-btn{position:fixed;top:1em;right:1em;z-index:300;width:44px;height:44px;border-radius:50%;background:var(--btn-bg);border:1px solid var(--btn-border);cursor:pointer;backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;transition:all .2s}
+.theme-btn:hover{transform:scale(1.1);background:rgba(255,255,255,0.08);box-shadow:0 0 12px var(--accent-glow)}
+.theme-btn:active{transform:scale(.93)}
+.theme-btn svg{width:22px;height:22px;fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s,filter .3s}
+/* ── Home Link ── */
+.home-link{position:fixed;top:1em;left:1em;z-index:300;color:var(--text-dim);text-decoration:none;font-size:.95rem;padding:6px 12px;border-radius:16px;background:color-mix(in srgb,var(--bg2) 85%,transparent);border:1px solid var(--accent-glow);transition:all .2s;backdrop-filter:blur(8px)}
+.home-link:hover{color:var(--accent);background:var(--accent-glow)}
+@media(max-width:768px){.content{max-width:92vw;padding:1.5em 1.8em}.content.wide{max-width:95vw}h1{font-size:1.8rem}h2{font-size:1.3rem}.nav{bottom:12px;padding:8px 16px;gap:.6em}.nav button{padding:6px 12px;font-size:.95rem}}
+
+/* ═══ SPECULAR BUTTON (React Bits SpecularButton, vanilla WebGL2 port) ═══ */
+.specular-button {
+  --sb-radius: 18px;
+  --sb-tint: #ffffff;
+  --sb-tint-opacity: 0;
+  --sb-blur: 0px;
+  --sb-text-color: var(--text, #f5f5f5);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  margin: 0;
+  font-family: inherit;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  color: var(--sb-text-color);
+  background: color-mix(in srgb, var(--sb-tint) calc(var(--sb-tint-opacity) * 100%), transparent);
+  border-radius: var(--sb-radius);
+  backdrop-filter: blur(var(--sb-blur));
+  -webkit-backdrop-filter: blur(var(--sb-blur));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.15s ease;
+}
+.specular-button:active { transform: scale(0.97); }
+.specular-button:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--sb-text-color) 60%, transparent);
+  outline-offset: 3px;
+}
+.specular-button__fx {
+  position: absolute;
+  inset: -20px;
+  pointer-events: none;
+  z-index: 1;
+}
+.specular-button__fx canvas { display: block; width: 100%; height: 100%; }
+.specular-button__label { position: relative; z-index: 2; }
+
+
+/* specular-fx: adds the shine to ANY button without fighting its own styles */
+.specular-fx { position: relative; }
+.specular-button__label { display: inline-flex; align-items: center; justify-content: center; }
+</style></head>
+<body>
+<canvas id="particles"></canvas>
+<canvas id="dots"></canvas>
+<canvas id="glow"></canvas>
+<div class="progress-bar" id="progressBar"></div>
+<a href="index.html" class="home-link">&larr; Portal</a>
+<button class="theme-btn specular-fx" id="themeBtn" title="Cycle theme" style="color:var(--accent)"><span class="specular-button__label">
+  <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18.176a3 3 0 1 1 -4.953 -2.449l-.025 .023a4.502 4.502 0 0 1 1.483 -8.75c1.414 0 2.675 .652 3.5 1.671a4.5 4.5 0 1 1 4.983 7.079a3 3 0 1 1 -4.983 2.25l-.005 .176"/><path d="M12 19v-10"/><path d="M9 3l3 2l3 -2"/></svg>
+</span></button>
+<section class="slide active" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=80')"><div class="content narrow" style="text-align:center;"><h1>Technology &amp; Society</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2</p><p style="font-size:1.05rem;color:var(--text-dim);margin-top:.5em;">6 Part 1 questions &middot; 1 Part 2 cue card &middot; 4 Part 3 discussion questions</p></div></div></section>
+
+<section class="slide" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=80')"><div class="content"><h2>How to Ace This</h2>
+<div class="card" style="border-left:3px solid var(--accent);"><span class="ctag">General</span><p style="font-size:1.1rem;">Only four things affect your score: <strong>Fluency, Vocabulary, Grammar, Pronunciation</strong>. Not body language. Not eye contact. Not smiling.</p></div>
+<div class="card" style="border-left:3px solid var(--cyan);"><span class="ctag">Part 1 Tip</span><p style="font-size:1.1rem;">Give <strong>2-3 sentence answers</strong>. Never just say yes or no. If you do not understand a word, ask: <em>What do you mean by...?</em></p></div>
+<div class="card" style="border-left:3px solid var(--purple);"><span class="ctag">Part 2 Tip</span><p style="font-size:1.1rem;">The bullet points are <strong>hints, not requirements</strong>. Focus on the main topic. If stuck, add: how you felt, what others thought, or compare to the past.</p></div>
+<div class="card" style="border-left:3px solid var(--accent);"><span class="ctag">Tech Topic</span><p style="font-size:1.1rem;">When describing technology, do not just list features. <strong>Explain how it changed your daily life.</strong> Personal impact impresses examiners more than technical specs.</p></div>
+</div></section>
+
+<section class="slide" style="background-image:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600&q=80')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for translations in 8 languages.</p><div style="background:var(--surface);border:1px solid var(--accent-glow);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="innovation">innovation</span></p>
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="digital">digital</span></p>
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="automation">automation</span></p>
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="influence">influence</span></p>
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="invention">invention</span></p>
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="mandatory">mandatory</span></p>
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="device">device</span></p>
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="breakthrough">breakthrough</span></p>
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="integrated">integrated</span></p>
+<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="sophisticated">sophisticated</span></p>
+</div></div></section>
+
+<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1682145181120-73cfdfc8a36d?w=1600&amp;q=80')"><div class="content"><div style="display:flex;align-items:center;gap:10px;margin-bottom:.7em"><h2 style="margin-bottom:0">Part 1 &middot; Questions 1&ndash;3</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span></div>
+<div class="card"><span class="ctag">Question 1 &middot; Internet</span><p>How <span class="vocab-word" data-word="essential">essential</span> is the Internet to your daily routine?</p></div>
+<div class="card"><span class="ctag">Question 2 &middot; Internet</span><p>Would you say you are <span class="vocab-word" data-word="reliant">reliant</span> on digital devices?</p></div>
+<div class="card"><span class="ctag">Question 3 &middot; Mobile Phones</span><p>What do you <span class="vocab-word" data-word="predominantly">predominantly</span> use your mobile phone for?</p></div>
+</div></section>
+
+<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1679177183572-a4056053b8a2?w=1600&amp;q=80')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
+<div class="card"><span class="ctag">Question 4 &middot; Computer</span><p>Do you think computers will eventually <span class="vocab-word" data-word="obsolete">obsolete</span> traditional forms of work?</p></div>
+<div class="card"><span class="ctag">Question 5 &middot; Email</span><p>Do you <span class="vocab-word" data-word="anticipate">anticipate</span> email replacing all other forms of <span class="vocab-word" data-word="correspondence">correspondence</span>?</p></div>
+<div class="card"><span class="ctag">Question 6 &middot; TV</span><p>Has the Internet <span class="vocab-word" data-word="significantly">significantly</span> altered your television viewing habits?</p></div>
+</div></section>
+
+<section class="slide" style="background-image:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600&q=80')"><div class="content wide"><div style="display:flex;align-items:center;gap:10px;margin-bottom:.7em"><h2 style="margin-bottom:0">Part 2 &middot; Cue Card</h2><span class="timer-trigger" onclick="openTimer('p2',120)">⏱ 2:00</span></div>
+<div class="cue-box">
+  <div class="cue-main">Describe a useful electronic device you would like to own.</div>
+  <div class="cue-prompt">You should say:</div>
+  <ul class="cue-bullets">
+      <li>what it is</li>
+      <li>how it would help your life</li>
+      <li>if it would be expensive to buy</li>
+      <li>whether it would be difficult to learn</li>
+      <li>and explain why you would like it</li>
+    </ul>
+</div>
+<p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p>
+</div></section>
+
+<section class="slide" style="background-image:url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1600&q=80')"><div class="content wide"><div style="display:flex;align-items:center;gap:10px;margin-bottom:.7em"><h2 style="margin-bottom:0">Part 3 &middot; Discussion</h2><span class="timer-trigger" onclick="openTimer('p3',270)">⏱ 4:30</span></div>
+<div class="card"><span class="ctag">Discussion 1</span><p>What is the best <span class="vocab-word" data-word="invention">invention</span> in the past hundred years?</p></div>
+<div class="card"><span class="ctag">Discussion 2</span><p>What <span class="vocab-word" data-word="influence">influence</span> does technology have on human life?</p></div>
+<div class="card"><span class="ctag">Discussion 3</span><p>What can individuals do for <span class="vocab-word" data-word="scientific">scientific</span> and <span class="vocab-word" data-word="technological">technological</span> research?</p></div>
+<div class="card"><span class="ctag">Discussion 4</span><p>Do you think it is <span class="vocab-word" data-word="mandatory">mandatory</span> to teach technology in schools?</p></div>
+</div></section>
+
+<div class="nav"><button id="prevBtn" class="specular-button"><span class="specular-button__label">&larr; Prev</span></button><span class="slide-counter" id="slideCounter">1 / 7</span><button id="nextBtn" class="specular-button"><span class="specular-button__label">Next &rarr;</span></button></div>
+<div class="vocab-tooltip" id="vocabTooltip">
+<span class="tt-pos" id="ttPos"></span> <span class="tt-word" id="ttWord"></span>
+<div class="tt-def" id="ttDef"></div>
+<div class="tt-langs" id="ttLangs"></div>
+</div>
+
+<script>
+var vocabDict = {
+  "innovation": {"pos": "?", "en": "innovation", "fr": "innovation", "de": "Innovation", "es": "innovación", "it": "innovazione", "pt": "inovação", "nl": "innovatie", "ja": "イノベーション"},
+  "digital": {"pos": "?", "en": "digital", "fr": "digital", "de": "digital", "es": "digital", "it": "digitale", "pt": "digital", "nl": "vinger-", "ja": "デジタル"},
+  "automation": {"pos": "?", "en": "automation", "fr": "automation", "de": "Automatisierung", "es": "automatización", "it": "automazione", "pt": "automação", "nl": "automatisering", "ja": "自動化"},
+  "influence": {"pos": "?", "en": "influence", "fr": "influence", "de": "Einfluss", "es": "influencia", "it": "influenza", "pt": "influência", "nl": "invloed", "ja": "影響力"},
+  "invention": {"pos": "?", "en": "invention", "fr": "invention", "de": "Erfindung", "es": "invención", "it": "invenzione", "pt": "invenção", "nl": "uitvinding", "ja": "発明"},
+  "mandatory": {"pos": "?", "en": "mandatory", "fr": "obligatoire", "de": "obligatorisch", "es": "obligatorio", "it": "obbligatorio", "pt": "mandatório", "nl": "verplicht", "ja": "強制的な"},
+  "device": {"pos": "?", "en": "device", "fr": "dispositif", "de": "Gerät", "es": "dispositivo", "it": "apparecchio", "pt": "aparelho", "nl": "toestel", "ja": "装置"},
+  "breakthrough": {"pos": "?", "en": "breakthrough", "fr": "percée", "de": "bahnbrechend", "es": "brecha", "it": "breccia", "pt": "brecha", "nl": "doorbraak", "ja": "突破"},
+  "integrated": {"pos": "?", "en": "integrated", "fr": "intégré", "de": "integriert", "es": "integrado", "it": "integrato", "pt": "integrado"},
+  "sophisticated": {"pos": "?", "en": "sophisticated", "fr": "sophistiqué", "de": "erfahren", "es": "sofisticado", "it": "sofisticato", "pt": "sofisticado", "nl": "wereldwijs"},
+  "scientific": {"pos": "?", "en": "scientific", "fr": "scientifique", "de": "wissenschaftlich", "es": "científico", "it": "scientifico", "pt": "científico", "nl": "wetenschappelijk", "ja": "科学的"},
+  "technological": {"pos": "?", "en": "technological", "fr": "technologique", "de": "technologisch", "es": "tecnológico", "it": "tecnologico", "pt": "tecnológico", "nl": "technologisch", "ja": "技術の"},
+  "essential": {"pos": "?", "en": "essential", "fr": "indispensable", "de": "essenziell", "es": "esencial", "it": "necessario", "pt": "essencial", "nl": "essentieel", "ja": "不可欠な"},
+  "reliant": {"pos": "?", "en": "reliant", "fr": "dépendant", "de": "abhängig", "es": "dependiente", "it": "dipendente", "pt": "dependente"},
+  "predominantly": {"pos": "?", "en": "predominantly", "fr": "principalement", "de": "vorwiegend", "es": "principalmente", "it": "prevalentemente", "pt": "principalmente"},
+  "obsolete": {"pos": "?", "en": "obsolete", "fr": "obsolète", "de": "veraltet", "es": "obsoleto", "it": "obsoleto", "pt": "obsoleto", "nl": "verouderd", "ja": "廃れた"},
+  "anticipate": {"pos": "?", "en": "anticipate", "fr": "anticiper", "de": "vorgreifen", "es": "anticiparse", "it": "anticipare", "pt": "antecipar-se", "ja": "予想する"},
+  "correspondence": {"pos": "?", "en": "correspondence", "fr": "correspondance", "de": "Briefwechsel", "es": "correspondencia", "it": "corrispondenza", "pt": "correspondência", "nl": "briefwisseling", "ja": "文通"},
+  "significantly": {"pos": "?", "en": "significantly", "fr": "considérablement", "de": "wesentlich", "es": "significativamente", "it": "significativamente", "pt": "significativamente", "nl": "voelbaar", "ja": "著しく"}
+};
+
+var tooltip = document.getElementById('vocabTooltip');
+var langLabels = {fr:"FR",de:"DE",es:"ES",it:"IT",pt:"PT",nl:"NL",ja:"JP",zh:"CN"};
+var activeWord = null;
+// Hover = English definition
+document.addEventListener('mouseover', function(e) {
+  var el = e.target.closest('.vocab-word');
+  if (!el) { tooltip.classList.remove('show'); return; }
+  var word = el.dataset.word;
+  var info = vocabDict[word];
+  if (!info) return;
+  document.getElementById('ttWord').textContent = word;
+  document.getElementById('ttPos').textContent = info.pos;
+  document.getElementById('ttDef').textContent = info.en;
+  document.getElementById('ttLangs').innerHTML = '';
+  tooltip.classList.add('show');
+  var rect = el.getBoundingClientRect();
+  var top = rect.top - tooltip.offsetHeight - 8;
+  if (top < 10) top = rect.bottom + 8;
+  tooltip.style.top = top + 'px';
+  tooltip.style.left = Math.min(rect.left, window.innerWidth - 270) + 'px';
+});
+document.addEventListener('mouseout', function(e) {
+  if (e.target.closest('.vocab-word') && !activeWord) tooltip.classList.remove('show');
+});
+// Click = show all 8 translations
+document.addEventListener('click', function(e) {
+  var el = e.target.closest('.vocab-word');
+  if (!el) { tooltip.classList.remove('show'); if (activeWord) { activeWord.classList.remove('active'); activeWord = null; } return; }
+  if (activeWord === el) { tooltip.classList.remove('show'); el.classList.remove('active'); activeWord = null; return; }
+  if (activeWord) activeWord.classList.remove('active');
+  activeWord = el; el.classList.add('active');
+  var word = el.dataset.word;
+  var info = vocabDict[word];
+  if (!info) return;
+  document.getElementById('ttWord').textContent = word;
+  document.getElementById('ttPos').textContent = info.pos;
+  document.getElementById('ttDef').textContent = info.en;
+  var langs = document.getElementById('ttLangs');
+  var lh = '';
+  for (var l in langLabels) { if (info[l]) lh += '<span>' + langLabels[l] + ' <b>' + info[l] + '</b></span>'; }
+  langs.innerHTML = lh;
+  tooltip.classList.add('show');
+  var rect = el.getBoundingClientRect();
+  var top = rect.top - tooltip.offsetHeight - 8;
+  if (top < 10) top = rect.bottom + 8;
+  tooltip.style.top = top + 'px';
+  tooltip.style.left = Math.min(rect.left, window.innerWidth - 340) + 'px';
+});
+
+// ── Mouse-reactive WebGL background ──
+(function(){
+  var c = document.getElementById('particles');
+  var gl = c.getContext('webgl',{alpha:true}) || c.getContext('experimental-webgl',{alpha:true});
+  if (!gl) { c.style.display='none'; return; }
+  var mx=0.5,my=0.5;
+  document.addEventListener('mousemove',function(e){mx=e.clientX/c.width;my=1-e.clientY/c.height;});
+  var vs=gl.createShader(gl.VERTEX_SHADER);
+  gl.shaderSource(vs,'attribute vec2 p;void main(){gl_Position=vec4(p,0,1);}');
+  gl.compileShader(vs);
+  var fs=gl.createShader(gl.FRAGMENT_SHADER);
+  gl.shaderSource(fs,'precision highp float;uniform vec2 r;uniform vec2 m;uniform float t;uniform vec3 tc;vec3 hsv(float h){vec3 c=mix(vec3(1),clamp(abs(fract(h+vec3(1,2,3)/3.)*6.-3.)-1.,0.,1.),.85);return c*mix(1.,.7,c);}void main(){vec2 uv=(gl_FragCoord.xy-r*.5)/r.y;float d=length(uv);float a=atan(uv.y,uv.x);float n=sin(a*5.+t*.3)*cos(d*3.-t*.2)+sin(d*4.+t*.4)*cos(a*3.);n+=sin(uv.x*6.+t*.5)*cos(uv.y*5.+t*.3)*.4;vec2 mp=(m-gl_FragCoord.xy/r)*vec2(1,-1);float g=.015/(length(mp)+.015);vec3 col=hsv(fract(n*.2+t*.05+.5));col+=hsv(fract(n*.15+t*.03+.8))*g*.3;col=mix(tc,col,.6);col+=vec3(g*.04);gl_FragColor=vec4(col,1.);}');
+  gl.compileShader(fs);
+  var p=gl.createProgram();
+  gl.attachShader(p,vs);gl.attachShader(p,fs);gl.linkProgram(p);gl.useProgram(p);
+  var b=gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER,b);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  var a=gl.getAttribLocation(p,'p');
+  gl.enableVertexAttribArray(a);gl.vertexAttribPointer(a,2,gl.FLOAT,false,0,0);
+  var ur=gl.getUniformLocation(p,'r'),um=gl.getUniformLocation(p,'m'),ut=gl.getUniformLocation(p,'t'),uc=gl.getUniformLocation(p,'tc');
+    function resize(){c.width=c.offsetWidth;c.height=c.offsetHeight;gl.viewport(0,0,c.width,c.height);}
+    resize();window.addEventListener('resize',resize);
+    function hexToRgb(h){var r=parseInt(h.slice(1,3),16)/255,g=parseInt(h.slice(3,5),16)/255,b=parseInt(h.slice(5,7),16)/255;return[r,g,b];}
+    var t0=performance.now();
+    function draw(ts){
+      var style=getComputedStyle(document.body);
+      var bg=style.getPropertyValue('--bg').trim()||'#0d0b1a';
+      var tc=hexToRgb(bg);
+      gl.uniform2f(ur,c.width,c.height);
+      gl.uniform2f(um,mx*c.width,my*c.height);
+      gl.uniform1f(ut,(ts-t0)*.001);
+      gl.uniform3f(uc,tc[0],tc[1],tc[2]);
+      gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+      requestAnimationFrame(draw);
+    }
+  requestAnimationFrame(draw);
+  })();
+
+  // ── Mouse Glow Trail ──
+  (function(){
+    var c = document.getElementById('glow');
+    var ctx = c.getContext('2d');
+    var mx = -100, my = -100, rx = -100, ry = -100;
+    function resize(){ c.width = window.innerWidth; c.height = window.innerHeight; }
+    resize(); window.addEventListener('resize', resize);
+    document.addEventListener('mousemove', function(e){ mx = e.clientX; my = e.clientY; });
+    var trail = [];
+    function draw(){
+      rx += (mx - rx) * 0.08; ry += (my - ry) * 0.08;
+      trail.push({x: rx, y: ry, a: 1});
+      if (trail.length > 30) trail.shift();
+      ctx.clearRect(0, 0, c.width, c.height);
+      var accent = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#f070a0';
+      for (var i = 0; i < trail.length; i++) {
+        var t = trail[i];
+        var r = 4 + (i / trail.length) * 12;
+        var alpha = (i / trail.length) * 0.12;
+        var grad = ctx.createRadialGradient(t.x, t.y, 0, t.x, t.y, r);
+        grad.addColorStop(0, accent + '40');
+        grad.addColorStop(1, 'transparent');
+        ctx.fillStyle = grad;
+        ctx.beginPath(); ctx.arc(t.x, t.y, r, 0, Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+  })();
+
+  // ── Dot Grid ──
+  (function(){
+    var c = document.getElementById('dots');
+    var ctx = c.getContext('2d');
+    var mx = 0, my = 0, gap = 28, dotR = 2, proximity = 120;
+    document.addEventListener('mousemove', function(e){ mx = e.clientX; my = e.clientY; });
+    function resize(){ c.width = window.innerWidth; c.height = window.innerHeight; }
+    resize(); window.addEventListener('resize', resize);
+    function draw(){
+      ctx.clearRect(0,0,c.width,c.height);
+      var accent = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#f070a0';
+      ctx.fillStyle = accent;
+      for (var x = gap; x < c.width; x += gap) {
+        for (var y = gap; y < c.height; y += gap) {
+          var dx = mx - x, dy = my - y, dist = Math.sqrt(dx*dx+dy*dy);
+          var r = dist < proximity ? dotR + (1 - dist/proximity) * 4 : dotR;
+          ctx.globalAlpha = dist < proximity ? 0.4 + (1 - dist/proximity) * 0.3 : 0.2;
+          ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.fill();
+        }
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+  })();
+
+var themes = ["Classic","Forest","Violet","Rose","Ocean","Warm","Indigo"];
+var currentTheme = parseInt(localStorage.getItem('ielts-b2-theme')) || 1;
+var themeIcons = {1: '<path d="M12 18.176a3 3 0 1 1 -4.953 -2.449l-.025 .023a4.502 4.502 0 0 1 1.483 -8.75c1.414 0 2.675 .652 3.5 1.671a4.5 4.5 0 1 1 4.983 7.079a3 3 0 1 1 -4.983 2.25l-.005 .176"/><path d="M12 19v-10"/><path d="M9 3l3 2l3 -2"/>', 2: '<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>', 3: '<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/>', 4: '<path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/>', 5: '<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>', 6: '<path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/>', 7: '<path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/><path d="M18 5h4"/><path d="M20 3v4"/>'};
+function applyTheme(n) {
+  currentTheme = n;
+  if (n === 1) document.body.removeAttribute('data-theme');
+  else document.body.setAttribute('data-theme', n);
+  localStorage.setItem('ielts-b2-theme', n);
+  var icon = document.getElementById('themeIcon');
+  if (icon && themeIcons[n]) icon.innerHTML = themeIcons[n];
+}
+document.getElementById('themeBtn').addEventListener('click', function() {
+  applyTheme(currentTheme === 7 ? 1 : currentTheme + 1);
+});
+applyTheme(currentTheme);
+
+// ── Popup Timer ──
+var tpInterval = null, tpSeconds = 0, tpLabel = '', tpMuted = false;
+function openTimer(label, secs) { tpLabel = label; tpSeconds = secs; document.getElementById('tpLabel').textContent = label === 'p1' ? 'Part 1' : label === 'p2' ? 'Part 2' : 'Part 3'; updateTPDisplay(); document.getElementById('tpStartBtn').querySelector('.specular-button__label').textContent = '▶ Play'; document.getElementById('tpStartBtn').classList.remove('running'); document.getElementById('timerPopup').classList.add('show'); }
+function closeTimer() { if (tpInterval) { clearInterval(tpInterval); tpInterval = null; } document.getElementById('timerPopup').classList.remove('show'); }
+function toggleTP() {
+  if (tpInterval) { clearInterval(tpInterval); tpInterval = null; document.getElementById('tpStartBtn').querySelector('.specular-button__label').textContent = '▶ Play'; document.getElementById('tpStartBtn').classList.remove('running'); return; }
+  document.getElementById('tpStartBtn').querySelector('.specular-button__label').textContent = '⏸ Pause'; document.getElementById('tpStartBtn').classList.add('running');
+  tpInterval = setInterval(function() {
+    tpSeconds--; updateTPDisplay();
+    if (tpSeconds <= 0) { clearInterval(tpInterval); tpInterval = null; document.getElementById('tpStartBtn').querySelector('.specular-button__label').textContent = '↻ Done'; document.getElementById('tpStartBtn').classList.remove('running'); beep(1320, 0.6); }
+  }, 1000);
+}
+function restartTP() { if (tpInterval) { clearInterval(tpInterval); tpInterval = null; } tpSeconds = tpLabel === 'p1' ? 270 : tpLabel === 'p2' ? 120 : 270; updateTPDisplay(); document.getElementById('tpStartBtn').querySelector('.specular-button__label').textContent = '▶ Play'; document.getElementById('tpStartBtn').classList.remove('running'); }
+function toggleMuteTP() { tpMuted = !tpMuted; document.getElementById('tpMuteBtn').querySelector('.specular-button__label').textContent = tpMuted ? '🔊' : '🔇'; }
+function updateTPDisplay() { var m = Math.floor(tpSeconds / 60), s = tpSeconds % 60; document.getElementById('tpDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s; }
+function beep(freq, dur) { if (tpMuted) return; try { var ctx = new (window.AudioContext||window.webkitAudioContext)(), o = ctx.createOscillator(), g = ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.frequency.value = freq; o.type = 'sine'; g.gain.setValueAtTime(0.15, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur); o.start(); o.stop(ctx.currentTime + dur); } catch(e) {} }
+
+var slides = document.querySelectorAll('.slide');
+var current = 0;
+document.getElementById('prevBtn').addEventListener('click', function() { if (current > 0) { current--; update(); } });
+document.getElementById('nextBtn').addEventListener('click', function() { if (current < slides.length - 1) { current++; update(); } });
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight' || e.key === ' ') { if (current < slides.length - 1) { current++; update(); } }
+  if (e.key === 'ArrowLeft') { if (current > 0) { current--; update(); } }
+});
+function update() {
+  slides.forEach(function(s, i) { s.classList.toggle('active', i === current); });
+  document.getElementById('slideCounter').textContent = (current + 1) + ' / ' + slides.length;
+  document.getElementById('progressBar').style.width = ((current + 1) / slides.length) * 100 + '%';
+}
+update();
+
+// ═══ SPECULAR BUTTON (React Bits SpecularButton -> vanilla WebGL2, theme-aware) ═══
+(function(){
+  var PAD = 20;
+  var VERT = '#version 300 es\nin vec2 position;\nvoid main() {\n  gl_Position = vec4(position, 0.0, 1.0);\n}\n';
+  var FRAG = [
+    '#version 300 es',
+    'precision highp float;',
+    'uniform vec2 uCenter;',
+    'uniform vec2 uHalfSize;',
+    'uniform float uRadius;',
+    'uniform float uAngle;',
+    'uniform float uPx;',
+    'uniform vec3 uLineColor;',
+    'uniform vec3 uBaseColor;',
+    'uniform float uIntensity;',
+    'uniform float uShineSize;',
+    'uniform float uShineFade;',
+    'uniform float uThickness;',
+    'uniform float uBaseWidth;',
+    'out vec4 fragColor;',
+    'float sdRoundedRect(vec2 p, vec2 b, float r) {',
+    '  vec2 q = abs(p) - b + r;',
+    '  return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r;',
+    '}',
+    'float shapeSDF(vec2 p) { return sdRoundedRect(p, uHalfSize, uRadius); }',
+    'float gaussianLine(float d, float sigma) {',
+    '  float x = d / (sigma + 1e-6);',
+    '  float k = mix(1.0, 1.6, smoothstep(0.0, 1.5, x));',
+    '  return exp(-k * x * x);',
+    '}',
+    'void main() {',
+    '  vec2 p = gl_FragCoord.xy - uCenter;',
+    '  float d = shapeSDF(p);',
+    '  vec2 L = vec2(cos(uAngle), sin(uAngle));',
+    '  float base = (1.0 - smoothstep(0.0, uBaseWidth, abs(d))) * 0.45;',
+    '  vec2 nEll = normalize(p / (uHalfSize * uHalfSize) + 1e-6);',
+    '  float phi = acos(clamp(abs(dot(nEll, L)), 0.0, 1.0));',
+    '  float rim = 1.0 - smoothstep(uShineSize - uShineFade, uShineSize + uShineFade + 1e-4, phi);',
+    '  float line = gaussianLine(d, uThickness);',
+    '  float edgeClamp = 1.0 - smoothstep(0.5 * uPx, 3.0 * uPx, abs(d));',
+    '  float hi = line * rim * edgeClamp * uIntensity;',
+    '  vec3 col = uBaseColor * base + uLineColor * hi;',
+    '  float a = clamp(base + hi, 0.0, 1.0);',
+    '  fragColor = vec4(col, a);',
+    '}'
+  ].join('\n');
+
+  function hexToRgb(hex) {
+    hex = (hex || '').trim().replace('#', '');
+    if (hex.length === 3) hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+    var n = parseInt(hex, 16);
+    if (isNaN(n)) return [1, 1, 1];
+    return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
+  }
+  function cssVar(name, fallback) {
+    var v = getComputedStyle(document.body).getPropertyValue(name).trim();
+    return v || fallback;
+  }
+  function accentRgb() {
+    var accent = cssVar('--accent', '#818cf8');
+    if (accent.indexOf('#') === 0) return hexToRgb(accent);
+    // rgba(...) fallback
+    var m = accent.match(/[\d.]+/g);
+    if (m && m.length >= 3) return [m[0]/255, m[1]/255, m[2]/255];
+    return [1, 1, 1];
+  }
+  function dim(rgb, f) { return [rgb[0]*f, rgb[1]*f, rgb[2]*f]; }
+
+  function initAll() {
+    var buttons = document.querySelectorAll('.specular-button, .specular-fx');
+    if (!buttons.length || !window.WebGL2RenderingContext) return;
+
+  Array.prototype.forEach.call(buttons, function(btn){
+    var fx = document.createElement('span');
+    fx.className = 'specular-button__fx';
+    fx.setAttribute('aria-hidden', 'true');
+    btn.appendChild(fx);
+
+    var canvas = document.createElement('canvas');
+    fx.appendChild(canvas);
+    var gl = canvas.getContext('webgl2', { alpha: true, premultipliedAlpha: true, antialias: true });
+    if (!gl) return;
+    gl.clearColor(0, 0, 0, 0);
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+
+    function compile(type, src) {
+      var s = gl.createShader(type);
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      return s;
+    }
+    var prog = gl.createProgram();
+    gl.attachShader(prog, compile(gl.VERTEX_SHADER, VERT));
+    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FRAG));
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+    gl.useProgram(prog);
+
+    // fullscreen triangle
+    var buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+    var posLoc = gl.getAttribLocation(prog, 'position');
+    gl.enableVertexAttribArray(posLoc);
+    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+    var U = {};
+    ['uCenter','uHalfSize','uRadius','uAngle','uPx','uLineColor','uBaseColor','uIntensity','uShineSize','uShineFade','uThickness','uBaseWidth'].forEach(function(n){
+      U[n] = gl.getUniformLocation(prog, n);
+    });
+
+    var dpr = window.devicePixelRatio || 1;
+    var sizeRef = { w: 1, h: 1 };
+    var radius = 18;
+    var lineColor = [1,1,1], baseColor = [0.32,0.32,0.32];
+
+    function readThemeColors() {
+      lineColor = accentRgb();
+      baseColor = dim(lineColor, 0.42);
+    }
+    readThemeColors();
+    if (window.MutationObserver) {
+      new MutationObserver(readThemeColors).observe(document.body, { attributes: true, attributeFilter: ['data-theme'] });
+    }
+
+    function resize() {
+      var rect = btn.getBoundingClientRect();
+      var w = rect.width, h = rect.height;
+      if (w < 1 || h < 1) return;  // hidden (timer popup) — wait for ResizeObserver when shown
+      sizeRef.w = w; sizeRef.h = h;
+      var cw = w + PAD * 2, ch = h + PAD * 2;
+      canvas.width = Math.max(2, Math.round(cw * dpr));
+      canvas.height = Math.max(2, Math.round(ch * dpr));
+      canvas.style.width = cw + 'px';
+      canvas.style.height = ch + 'px';
+      gl.viewport(0, 0, canvas.width, canvas.height);
+      gl.uniform2f(U.uCenter, (PAD + w/2) * dpr, (PAD + h/2) * dpr);
+      gl.uniform2f(U.uHalfSize, (w/2) * dpr, (h/2) * dpr);
+      gl.uniform1f(U.uRadius, Math.min(radius, Math.min(w, h)/2) * dpr);
+    }
+    var ro = new ResizeObserver(resize);
+    ro.observe(btn);
+    resize();
+
+    var pointerAngle = null;
+    var proximityT = 0;
+    function onPointerMove(e) {
+      var rect = btn.getBoundingClientRect();
+      var cx = rect.left + rect.width/2, cy = rect.top + rect.height/2;
+      var dx = Math.max(rect.left - e.clientX, 0, e.clientX - rect.right);
+      var dy = Math.max(rect.top - e.clientY, 0, e.clientY - rect.bottom);
+      var dist = Math.hypot(dx, dy);
+      if (dist === 0) {
+        var nx = (e.clientX - cx) / (rect.width/2);
+        var ny = (cy - e.clientY) / (rect.height/2);
+        pointerAngle = Math.atan2(2/rect.height, -2/rect.width) + nx*0.3 + ny*0.15;
+      } else {
+        pointerAngle = Math.atan2(cy - e.clientY, e.clientX - cx);
+      }
+      var t = Math.max(0, 1 - dist / Math.max(250, 1));
+      proximityT = t * t * (3 - 2 * t);
+    }
+    window.addEventListener('pointermove', onPointerMove);
+
+    var angle = 2.4, idleAngle = 2.4, bright = 0;
+    var last = performance.now();
+
+    function update(now) {
+      requestAnimationFrame(update);
+      var dt = Math.min((now - last) / 1000, 0.05);
+      last = now;
+      idleAngle += 0.35 * dt;
+      var steer = pointerAngle != null;
+      var target = steer ? pointerAngle : idleAngle;
+      var diff = ((target - angle + Math.PI*3) % (Math.PI*2)) - Math.PI;
+      angle += diff * (1 - Math.exp(-dt * 7));
+      bright += (proximityT - bright) * (1 - Math.exp(-dt * 8));
+
+      gl.uniform1f(U.uAngle, angle);
+      gl.uniform1f(U.uPx, dpr);
+      gl.uniform3fv(U.uLineColor, lineColor);
+      gl.uniform3fv(U.uBaseColor, baseColor);
+      gl.uniform1f(U.uIntensity, bright);
+      gl.uniform1f(U.uShineSize, (10 * Math.PI) / 180);
+      gl.uniform1f(U.uShineFade, (40 * Math.PI) / 180);
+      gl.uniform1f(U.uThickness, 1 * dpr);
+      gl.uniform1f(U.uBaseWidth, dpr);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    }
+    requestAnimationFrame(update);
+  });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAll);
+  else initAll();
+})();
+
+</script>
+<div class="timer-popup" id="timerPopup">
+  <div class="timer-popup-box">
+    <span class="timer-phase" id="tpLabel">Timer</span>
+    <span class="timer-display" id="tpDisplay">0:00</span>
+    <button class="timer-btn specular-fx" id="tpStartBtn" onclick="toggleTP()"><span class="specular-button__label">▶ Play</span></button>
+    <button class="timer-btn specular-fx" id="tpRestartBtn" onclick="restartTP()"><span class="specular-button__label">↺</span></button>
+    <button class="timer-btn specular-fx" id="tpMuteBtn" onclick="toggleMuteTP()"><span class="specular-button__label">🔇</span></button>
+    <button class="timer-btn specular-fx" onclick="closeTimer()"><span class="specular-button__label">✕</span></button>
+  </div>
+</div>
+</body></html>
