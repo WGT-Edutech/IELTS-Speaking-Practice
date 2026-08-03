@@ -135,6 +135,19 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 @keyframes sb-shine { to { --sb-angle: 360deg; } }
 @property --sb-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 .specular-button__label { display: inline-flex; align-items: center; justify-content: center; }
+
+/* ═══ Timer (matches deck-1) ═══ */
+.timer-trigger{display:inline-flex;align-items:center;gap:5px;background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:5px 12px;border-radius:14px;cursor:pointer;transition:all .15s;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.timer-trigger:hover{background:var(--accent-glow);box-shadow:0 0 8px var(--accent-glow)}
+.timer-popup{display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:500;align-items:center;justify-content:center;padding:8px 0}
+.timer-popup.show{display:flex}
+.timer-popup-box{display:flex;align-items:center;gap:14px;background:color-mix(in srgb,var(--bg) 92%,transparent);border:1px solid var(--accent-glow);border-radius:0 0 16px 16px;padding:10px 24px;backdrop-filter:blur(16px);box-shadow:0 4px 24px var(--accent-glow)}
+.timer-popup-box .timer-display{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:700;color:var(--accent);min-width:60px;text-align:center}
+.timer-popup-box .timer-phase{font-size:.85rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
+.timer-btn{background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:6px 14px;border-radius:18px;cursor:pointer;transition:all .15s;min-width:44px;min-height:34px;box-shadow:0 0 8px var(--accent-glow)}
+.timer-btn:hover{box-shadow:0 0 18px var(--accent-glow);transform:scale(1.05)}
+.timer-btn:active{transform:scale(.95)}
+.timer-btn.running{background:var(--accent-glow);border-color:var(--accent)}
 </style></head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
@@ -145,25 +158,25 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 
 <section class="slide active" style="background-image:url('https://pixabay.com/get/gdfedabc2ef757f431a63522c1675484af7d0970ff9a78b367fdd15774a83f7e689b31ed4d85b57e3dcdf00b613ddd9d7106d1036350236f7caa8067a6edb9489_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Food &amp; Cooking</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/ga79865634b6b2b6c1c720254ad3852fefab16d0b9eb7a2201e6f5e65e822143ebfaf0f3dc7f7e94f3923ebff70068fd0f300d70727b517f4d86f778f7acbc19a_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2><div class="card"><span class="ctag">Question 1 &middot; Cooking</span><p>Do you enjoy cooking?</p></div><div class="card"><span class="ctag">Question 2 &middot; Cooking</span><p>What types of things can you cook?</p></div><div class="card"><span class="ctag">Question 3 &middot; National Food</span><p>What kinds of food are popular in your country?</p></div></div></section>
+<section class="slide" style="background-image:url('https://pixabay.com/get/ga79865634b6b2b6c1c720254ad3852fefab16d0b9eb7a2201e6f5e65e822143ebfaf0f3dc7f7e94f3923ebff70068fd0f300d70727b517f4d86f778f7acbc19a_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 1&ndash;3</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span><div class="card"><span class="ctag">Question 1 &middot; Cooking</span><p>Do you enjoy cooking?</p></div><div class="card"><span class="ctag">Question 2 &middot; Cooking</span><p>What types of things can you cook?</p></div><div class="card"><span class="ctag">Question 3 &middot; National Food</span><p>What kinds of food are <span class="vocab-word" data-word="popular">popular</span> in your country?</p></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g92866d8af0ce09dc8690185a63076ea453b3c1cce6d4e15fd2fef3f6ce903dbf0685cbc99de9af5c45dde51d2c89b862856800a8722bf18be0463cd5cc3a2938_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2><div class="card"><span class="ctag">Question 4 &middot; Diet</span><p>Do you have a healthy diet?</p></div><div class="card"><span class="ctag">Question 5 &middot; Eating Habits</span><p>Do you prefer to eat with other people or on your own?</p></div><div class="card"><span class="ctag">Question 6 &middot; Culture</span><p>Is it an important part of your culture to have dinner parties?</p></div></div></section>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g92866d8af0ce09dc8690185a63076ea453b3c1cce6d4e15fd2fef3f6ce903dbf0685cbc99de9af5c45dde51d2c89b862856800a8722bf18be0463cd5cc3a2938_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 4&ndash;6</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span><div class="card"><span class="ctag">Question 4 &middot; Diet</span><p>Do you have a healthy diet?</p></div><div class="card"><span class="ctag">Question 5 &middot; Eating Habits</span><p>Do you prefer to eat with other people or on your own?</p></div><div class="card"><span class="ctag">Question 6 &middot; Culture</span><p>Is it an important part of your <span class="vocab-word" data-word="culture">culture</span> to have dinner <span class="vocab-word" data-word="parties">parties</span>?</p></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/gc1a9d229dde0a62bd2b3c3f2ece741677a5b02488605d974787295ed3a3483e359e070ee546e44dd3a8221791204b32b93108583432137a058ebeb24a1e7b1d8_1280.jpg')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe a traditional dish from your country.</div><ul class="cue-bullets">
+<section class="slide" style="background-image:url('https://pixabay.com/get/gc1a9d229dde0a62bd2b3c3f2ece741677a5b02488605d974787295ed3a3483e359e070ee546e44dd3a8221791204b32b93108583432137a058ebeb24a1e7b1d8_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 2 &middot; Cue Card</h2><span class="timer-trigger" onclick="openTimer('p2',120)">⏱ 2:00</span><div class="cue-box"><div class="cue-main">Describe a traditional dish from your country.</div><ul class="cue-bullets">
       <li>what it looks like</li>
       <li>what it tastes like</li>
       <li>when and how it is usually eaten</li>
-      <li>and explain why it is popular</li>
+      <li>and explain why it is <span class="vocab-word" data-word="popular">popular</span></li>
     </ul></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/gd4e52932a4d57102b7db4467380575323f7a069c94d7c19c2ee369c9ee09b6115ca555c035289a4e81560f7acaa8ce6c9d5a6f9d494a378411a966e597aaeb1a_1280.jpg')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2><div class="card"><span class="ctag">Discussion 1</span><p>In your country, is it important to have a meal together with your family?</p></div><div class="card"><span class="ctag">Discussion 2</span><p>What kinds of foreign food are popular in your country?</p></div><div class="card"><span class="ctag">Discussion 3</span><p>Is food now better than in the past?</p></div><div class="card"><span class="ctag">Discussion 4</span><p>Why are more and more people unwilling to cook nowadays?</p></div></div></section>
+<section class="slide" style="background-image:url('https://pixabay.com/get/gd4e52932a4d57102b7db4467380575323f7a069c94d7c19c2ee369c9ee09b6115ca555c035289a4e81560f7acaa8ce6c9d5a6f9d494a378411a966e597aaeb1a_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 3 &middot; Discussion</h2><span class="timer-trigger" onclick="openTimer('p3',270)">⏱ 4:30</span><div class="card"><span class="ctag">Discussion 1</span><p>In your country, is it important to have a meal together with your family?</p></div><div class="card"><span class="ctag">Discussion 2</span><p>What kinds of <span class="vocab-word" data-word="foreign">foreign</span> food are <span class="vocab-word" data-word="popular">popular</span> in your country?</p></div><div class="card"><span class="ctag">Discussion 3</span><p>Is food now better than in the past?</p></div><div class="card"><span class="ctag">Discussion 4</span><p>Why are more and more people <span class="vocab-word" data-word="unwilling">unwilling</span> to cook <span class="vocab-word" data-word="nowadays">nowadays</span>?</p></div></div></section>
 
 <section class="slide" style="background-image:url('https://pixabay.com/get/g8e2b9087b5f713820643b792724e401b9e55d9b82246f4f9fa9d22cb5ba8587737ec7f0d30cf76708c243ca853ce9efc796a3255a911197a58b70596ac4cdb25_1280.jpg')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);"><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="cuisine">cuisine</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="recipe">recipe</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="ingredient">ingredient</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="nutritious">nutritious</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="homemade">homemade</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="appetite">appetite</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="savoury">savoury</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="portion">portion</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="craving">craving</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="gourmet">gourmet</span></p></div></div></section><div class="nav"><button id="prevBtn" class="specular-button"><span class="specular-button__label">&larr; Prev</span></button><span class="slide-counter" id="slideCounter">1 / 6</span><button id="nextBtn" class="specular-button"><span class="specular-button__label">Next &rarr;</span></button></div>
 
 <div class="vocab-tooltip" id="vocabTooltip"><span class="tt-pos" id="ttPos"></span> <span class="tt-word" id="ttWord"></span><div class="tt-def" id="ttDef"></div></div>
 
 <script>
-var vocabDict = {"cuisine": {"pos": "noun", "def": "a style or method of cooking, especially from a particular country"}, "recipe": {"pos": "noun", "def": "a set of instructions for preparing a particular dish"}, "ingredient": {"pos": "noun", "def": "one of the foods used to make a particular dish"}, "nutritious": {"pos": "adj", "def": "containing substances your body needs to stay healthy"}, "homemade": {"pos": "adj", "def": "made at home rather than bought from a shop"}, "appetite": {"pos": "noun", "def": "the desire to eat food"}, "savoury": {"pos": "adj", "def": "salty or spicy rather than sweet"}, "portion": {"pos": "noun", "def": "an amount of food served to one person"}, "craving": {"pos": "noun", "def": "a strong desire for a particular food"}, "gourmet": {"pos": "adj", "def": "high-quality, refined food or cooking"}};
+var vocabDict = {"cuisine": {"pos": "noun", "def": "a style or method of cooking, especially from a particular country"}, "recipe": {"pos": "noun", "def": "a set of instructions for preparing a particular dish"}, "ingredient": {"pos": "noun", "def": "one of the foods used to make a particular dish"}, "nutritious": {"pos": "adj", "def": "containing substances your body needs to stay healthy"}, "homemade": {"pos": "adj", "def": "made at home rather than bought from a shop"}, "appetite": {"pos": "noun", "def": "the desire to eat food"}, "savoury": {"pos": "adj", "def": "salty or spicy rather than sweet"}, "portion": {"pos": "noun", "def": "an amount of food served to one person"}, "craving": {"pos": "noun", "def": "a strong desire for a particular food"}, "gourmet": {"pos": "adj", "def": "high-quality, refined food or cooking"}, "popular": {"pos": "adj", "def": "liked by many people"}, "culture": {"pos": "noun", "def": "the customs and way of life of a group"}, "nowadays": {"pos": "adv", "def": "in these modern times"}, "unwilling": {"pos": "adj", "def": "not wanting to do something"}, "foreign": {"pos": "adj", "def": "from another country"}, "parties": {"pos": "noun", "def": "social gatherings of people"}};
 
 var tooltip = document.getElementById('vocabTooltip');
 document.addEventListener('mouseover', function(e) {
@@ -443,5 +456,36 @@ update();
   else initAll();
 })();
 
+
+// ═══ Popup Timer ═══
+var tpInterval = null, tpSeconds = 0, tpLabel = '', tpMuted = false;
+function openTimer(label, secs) { tpLabel = label; tpSeconds = secs; document.getElementById('tpLabel').textContent = label === 'p1' ? 'Part 1' : label === 'p2' ? 'Part 2' : 'Part 3'; updateTPDisplay(); var b = document.getElementById('tpStartBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); document.getElementById('timerPopup').classList.add('show'); }
+function closeTimer() { if (tpInterval) { clearInterval(tpInterval); tpInterval = null; } document.getElementById('timerPopup').classList.remove('show'); }
+function toggleTP() {
+  var b = document.getElementById('tpStartBtn'), l = b ? b.querySelector('.specular-button__label') : null;
+  if (tpInterval) { clearInterval(tpInterval); tpInterval = null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); return; }
+  if (l) l.textContent = '⏸ Pause'; if (b) b.classList.add('running');
+  tpInterval = setInterval(function() {
+    tpSeconds--; updateTPDisplay();
+    if (tpSeconds <= 0) { clearInterval(tpInterval); tpInterval = null; if (l) l.textContent = '↻ Done'; if (b) b.classList.remove('running'); beep(1320, 0.6); }
+  }, 1000);
+}
+function restartTP() { if (tpInterval) { clearInterval(tpInterval); tpInterval = null; } tpSeconds = tpLabel === 'p1' ? 270 : tpLabel === 'p2' ? 120 : 270; updateTPDisplay(); var b = document.getElementById('tpStartBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); }
+function toggleMuteTP() { tpMuted = !tpMuted; var b = document.getElementById('tpMuteBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = tpMuted ? '🔊' : '🔇'; }
+function updateTPDisplay() { var m = Math.floor(tpSeconds / 60), s = tpSeconds % 60; document.getElementById('tpDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s; }
+function beep(freq, dur) { if (tpMuted) return; try { var ctx = new (window.AudioContext||window.webkitAudioContext)(), o = ctx.createOscillator(), g = ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.frequency.value = freq; o.type = 'sine'; g.gain.setValueAtTime(0.15, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur); o.start(); o.stop(ctx.currentTime + dur); } catch(e) {} }
+
 </script>
+
+<div class="timer-popup" id="timerPopup">
+  <div class="timer-popup-box">
+    <span class="timer-phase" id="tpLabel">Timer</span>
+    <span class="timer-display" id="tpDisplay">0:00</span>
+    <button class="timer-btn specular-fx" id="tpStartBtn" onclick="toggleTP()"><span class="specular-button__label">▶ Play</span></button>
+    <button class="timer-btn specular-fx" id="tpRestartBtn" onclick="restartTP()"><span class="specular-button__label">↺</span></button>
+    <button class="timer-btn specular-fx" id="tpMuteBtn" onclick="toggleMuteTP()"><span class="specular-button__label">🔇</span></button>
+    <button class="timer-btn specular-fx" onclick="closeTimer()"><span class="specular-button__label">✕</span></button>
+  </div>
+</div>
+
 </body></html>
