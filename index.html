@@ -317,8 +317,7 @@ function playSwish(dir){
   // ── Mouse click-and-drag through decks (swipe-like, only while held) ──
   var dragX = null, dragMoved = false, lastDragTime = 0;
   document.addEventListener('pointerdown', function(e){
-    if (e.pointerType !== 'mouse' || e.button !== 0) return;
-    dragX = e.clientX; dragMoved = false;
+    if (e.pointerType === 'mouse' && e.button === 0) { dragX = e.clientX; dragMoved = false; }
   });
   document.addEventListener('pointermove', function(e){
     if (dragX === null || e.pointerType !== 'mouse') return;
@@ -330,11 +329,13 @@ function playSwish(dir){
       dragX = e.clientX;
     }
   });
-  document.addEventListener('pointerup', function(e){
-    if (e.pointerType !== 'mouse') return;
-    if (dragMoved) lastDragTime = Date.now();
-    dragX = null; dragMoved = false;
-  });
+  function endDrag(e){
+    if (dragX !== null && dragMoved) lastDragTime = Date.now();
+    dragX = null; dragMoved = false;   // ALWAYS release — never stick
+  }
+  document.addEventListener('pointerup', endDrag);
+  document.addEventListener('pointercancel', endDrag);
+  document.addEventListener('mouseup', endDrag);   // fallback if pointer events are unreliable
 
 
   function frameLoop(){
