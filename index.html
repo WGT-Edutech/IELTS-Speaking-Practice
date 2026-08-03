@@ -254,7 +254,10 @@ function playSwish(dir){
       cd.textContent = d.p1 + ' Part 1 \u00b7 ' + d.p2 + ' Part 2 \u00b7 ' + d.p3 + ' Part 3';
       ci.classList.add('visible');
     });
-    el.addEventListener('mouseleave', function(){ ci.classList.remove('visible'); });
+    el.addEventListener('mouseleave', function(){
+      // revert to the focused card's title (visible when card is in focus, not just on hover)
+      showInfo(Math.round(smoothPos));
+    });
     el._spring = {tx:0,tz:-400,ry:0,sc:.5,op:0,vtx:0,vtz:0,vry:0,vsc:0,vop:0};
     if (i === 0) el._spring = {tx:0,tz:180,ry:0,sc:1,op:1,vtx:0,vtz:0,vry:0,vsc:0,vop:0};
     ring.appendChild(el);
