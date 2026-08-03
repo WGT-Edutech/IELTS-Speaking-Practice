@@ -33,7 +33,7 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 .card p{font-size:1.2rem;line-height:1.7;text-shadow:0 1px 3px rgba(0,0,0,.55),0 0 12px rgba(0,0,0,.3)}
 .cue-box{background:color-mix(in srgb,var(--bg) 58%,transparent);border:2px solid var(--accent-glow);box-shadow:0 0 30px var(--accent-glow);border-radius:14px;padding:1.4em 1.8em;margin:1em 0;text-align:center}
 .cue-box .cue-main{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--accent);font-size:1.8rem;margin-bottom:.6em;text-shadow:0 0 18px var(--accent-glow),0 2px 4px rgba(0,0,0,.6);animation:popGlow 3.2s ease-in-out infinite}
-.cue-box .cue-bullets{font-size:1.25rem;color:var(--text);text-shadow:0 1px 3px rgba(0,0,0,.55)}
+.cue-box ul.cue-bullets{list-style:disc;padding-left:1.6em;margin:.4em 0;text-align:left}.cue-box ul.cue-bullets li{font-size:1.2rem;color:var(--text);margin:.35em 0;line-height:1.6;text-shadow:0 1px 3px rgba(0,0,0,.55)}
 .mark-complete-btn{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.4);color:var(--green);font-family:'Inter',sans-serif;font-size:1.05rem;padding:10px 24px;border-radius:24px;cursor:pointer;transition:all .2s;font-weight:600;min-width:44px;min-height:44px}
 .mark-complete-btn:hover{background:rgba(52,211,153,.2);box-shadow:0 0 15px rgba(52,211,153,.3);transform:scale(1.05)}
 .mark-complete-btn.completed{background:rgba(52,211,153,.25);border-color:rgba(52,211,153,.7);box-shadow:0 0 20px rgba(52,211,153,.4)}
@@ -143,13 +143,18 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
   <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
 </span></button>
 
-<section class="slide active" style="background-image:url('https://pixabay.com/get/g630b056fbfa91152931052f997104a04ccb0e6f83629540d39f43a0e3dddafb9905caf8bc54cfaf0cfe1e3577a0cab432552fa843590dad50e4e1755ad4a6e91_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Shopping &amp; Consumer Habits</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2</p><p style="font-size:1.05rem;color:var(--text-dim);margin-top:.5em;">6 Part 1 questions &middot; 1 Part 2 cue card &middot; 4 Part 3 discussion questions</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
+<section class="slide active" style="background-image:url('https://pixabay.com/get/g630b056fbfa91152931052f997104a04ccb0e6f83629540d39f43a0e3dddafb9905caf8bc54cfaf0cfe1e3577a0cab432552fa843590dad50e4e1755ad4a6e91_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Shopping &amp; Consumer Habits</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1683141052679-942eb9e77760?w=1600&amp;q=80')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2><div class="card"><span class="ctag">Question 1 &middot; Shopping</span><p>What do you usually shop for?</p></div><div class="card"><span class="ctag">Question 2 &middot; Malls</span><p>Do you often go to malls?</p></div><div class="card"><span class="ctag">Question 3 &middot; Online</span><p>Do you shop online a lot?</p></div></div></section>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g77c5352c68b218cfe127a526dfd9f78a57f3b4774a3eb978837929c5b91394e29b3146eb7aa5ee5a4b7617d77c53c961953c1e96d4b017b5773648cd1935e3b2_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2><div class="card"><span class="ctag">Question 1 &middot; Shopping</span><p>What do you usually shop for?</p></div><div class="card"><span class="ctag">Question 2 &middot; Malls</span><p>Do you often go to malls?</p></div><div class="card"><span class="ctag">Question 3 &middot; Online</span><p>Do you shop online a lot?</p></div></div></section>
 
 <section class="slide" style="background-image:url('https://pixabay.com/get/g8f585ea9e3779033dd09e898e5dfd3f4377a8d65015ed894adac7222c68cba13bfeb8ba8f8e5d906be8f9cb6eed0db1ff0c49db1da4c09ec78a40e7f1d5db282_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2><div class="card"><span class="ctag">Question 4 &middot; Shopping Centres</span><p>How common are shopping centres in your country?</p></div><div class="card"><span class="ctag">Question 5 &middot; Advertising</span><p>Will you buy something because of an advertisement?</p></div><div class="card"><span class="ctag">Question 6 &middot; Advertising</span><p>What makes a good advertisement?</p></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g5cee2a1f580c01668402a427ff37b1766ca761213bdca284e90f347ee7e5c22e12edbce4d61c3e5f11f351aaaa4fc299c001877d8a231691b783def3eaedcea0_1280.jpg')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe a shop that you like to visit.</div><div class="cue-bullets">what things you can buy there &middot; what the most popular shops are &middot; what the advantages of shopping there are &middot; and explain why you enjoy going there</div></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g5cee2a1f580c01668402a427ff37b1766ca761213bdca284e90f347ee7e5c22e12edbce4d61c3e5f11f351aaaa4fc299c001877d8a231691b783def3eaedcea0_1280.jpg')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe a shop that you like to visit.</div><ul class="cue-bullets">
+      <li>what things you can buy there</li>
+      <li>what the most popular shops are</li>
+      <li>what the advantages of shopping there are</li>
+      <li>and explain why you enjoy going there</li>
+    </ul></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
 
 <section class="slide" style="background-image:url('https://pixabay.com/get/geb11640e613d24dc4df225376a074260f5bd1a7bea92da01025e1d8e198553053b66718ee457264f3f5f2818cfe591ca10fc6aeb46d90b89366cfda1ed4be4d0_1280.jpg')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2><div class="card"><span class="ctag">Discussion 1</span><p>Is shopping a popular activity in your country?</p></div><div class="card"><span class="ctag">Discussion 2</span><p>How have shopping habits changed over recent years?</p></div><div class="card"><span class="ctag">Discussion 3</span><p>To what extent do you think advertising affects the way people shop?</p></div><div class="card"><span class="ctag">Discussion 4</span><p>Do you think shopping habits are likely to change in the future?</p></div></div></section>
 
@@ -232,6 +237,10 @@ function update() {
   slides.forEach(function(s, i) { s.classList.toggle('active', i === current); });
   document.getElementById('slideCounter').textContent = (current + 1) + ' / ' + slides.length;
   document.getElementById('progressBar').style.width = ((current + 1) / slides.length) * 100 + '%';
+  // show prev only when not on first slide; next only when not on last
+  var pb = document.getElementById('prevBtn'), nb = document.getElementById('nextBtn');
+  if (pb) pb.style.visibility = current === 0 ? 'hidden' : 'visible';
+  if (nb) nb.style.visibility = current === slides.length - 1 ? 'hidden' : 'visible';
 }
 update();
 
