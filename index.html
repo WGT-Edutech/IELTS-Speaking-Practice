@@ -242,6 +242,8 @@ function playSwish(dir){
     el.innerHTML = '<div class="ring-card-inner"><span class="done-badge">&#10003; Done</span>'
       + '<img src="' + d.img + '" alt="' + d.title + '" onerror="this.style.display=\'none\'"></div>';
     el.addEventListener('click', function(){
+      // ignore the click that follows a drag (swipe) — within 300ms of release
+      if (Date.now() - lastDragTime < 300) return;
       // bring non-focused card into focus; only the focused card opens the deck
       if (Math.round(smoothPos) !== i) {
         go(i);
@@ -312,31 +314,27 @@ function playSwish(dir){
     }
   }, { passive: true });
 
-  // ── Mouse click-and-drag through decks ──
-  var dragX = null, dragMoved = false;
-  document.addEventListener('mousedown', function(e){
-    if (e.button !== 0) return;
+  // ── Mouse click-and-drag through decks (swipe-like, only while held) ──
+  var dragX = null, dragMoved = false, lastDragTime = 0;
+  document.addEventListener('pointerdown', function(e){
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
     dragX = e.clientX; dragMoved = false;
   });
-  document.addEventListener('mousemove', function(e){
-    if (dragX === null) return;
+  document.addEventListener('pointermove', function(e){
+    if (dragX === null || e.pointerType !== 'mouse') return;
     var dx = e.clientX - dragX;
-    if (Math.abs(dx) > 8) {
+    if (Math.abs(dx) > 6) {
       dragMoved = true;
       targetPos += dx > 0 ? -0.35 : 0.35;
       targetPos = Math.max(0, Math.min(cardEls.length - 1, targetPos));
       dragX = e.clientX;
     }
   });
-  document.addEventListener('mouseup', function(){
-    dragX = null;
-    // if the user dragged, suppress the click that follows (no accidental deck open)
-    if (dragMoved) {
-      dragMoved = false;
-      document.addEventListener('click', suppressOnce, true);
-    }
+  document.addEventListener('pointerup', function(e){
+    if (e.pointerType !== 'mouse') return;
+    if (dragMoved) lastDragTime = Date.now();
+    dragX = null; dragMoved = false;
   });
-  function suppressOnce(e){ e.stopPropagation(); e.preventDefault(); document.removeEventListener('click', suppressOnce, true); }
 
 
   function frameLoop(){
