@@ -33,7 +33,7 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 .card p{font-size:1.2rem;line-height:1.7;text-shadow:0 1px 3px rgba(0,0,0,.55),0 0 12px rgba(0,0,0,.3)}
 .cue-box{background:color-mix(in srgb,var(--bg) 58%,transparent);border:2px solid var(--accent-glow);box-shadow:0 0 30px var(--accent-glow);border-radius:14px;padding:1.4em 1.8em;margin:1em 0;text-align:center}
 .cue-box .cue-main{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--accent);font-size:1.8rem;margin-bottom:.6em;text-shadow:0 0 18px var(--accent-glow),0 2px 4px rgba(0,0,0,.6);animation:popGlow 3.2s ease-in-out infinite}
-.cue-box .cue-bullets{font-size:1.25rem;color:var(--text);text-shadow:0 1px 3px rgba(0,0,0,.55)}
+.cue-box ul.cue-bullets{list-style:disc;padding-left:1.6em;margin:.4em 0;text-align:left}.cue-box ul.cue-bullets li{font-size:1.2rem;color:var(--text);margin:.35em 0;line-height:1.6;text-shadow:0 1px 3px rgba(0,0,0,.55)}
 .mark-complete-btn{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.4);color:var(--green);font-family:'Inter',sans-serif;font-size:1.05rem;padding:10px 24px;border-radius:24px;cursor:pointer;transition:all .2s;font-weight:600;min-width:44px;min-height:44px}
 .mark-complete-btn:hover{background:rgba(52,211,153,.2);box-shadow:0 0 15px rgba(52,211,153,.3);transform:scale(1.05)}
 .mark-complete-btn.completed{background:rgba(52,211,153,.25);border-color:rgba(52,211,153,.7);box-shadow:0 0 20px rgba(52,211,153,.4)}
@@ -143,30 +143,35 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
   <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
 </span></button>
 
-<section class="slide active" style="background-image:url('https://plus.unsplash.com/premium_photo-1669927131902-a64115445f0f?w=1600&amp;q=80')"><div class="content narrow" style="text-align:center;"><h1>City &amp; Urban Life</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2</p><p style="font-size:1.05rem;color:var(--text-dim);margin-top:.5em;">6 Part 1 questions &middot; 1 Part 2 cue card &middot; 4 Part 3 discussion questions</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
+<section class="slide active" style="background-image:url('https://pixabay.com/get/g1e14f8283c7f5fb5ea8afa753d0de60d715a091517ee7e7de92cb2d557d3fe3f79bfb22456460745dfaa044298d715e6c5fb36c8bda55886ca8af1920b541e86_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>City &amp; Urban Life</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1672116452571-896980a801c8?w=1600&amp;q=80')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/gfce34aa784a87ee09ecb8fef6dbadc905b17560899a2eb280024b295ee92e7e3c61ba257fbfaccd4d21b09a94ef2854733638b2c1c1368c3d260a6108b91b232_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
 <div class="card"><span class="ctag">Question 1 &middot; Hometown</span><p>Where is your hometown?</p></div>
 <div class="card"><span class="ctag">Question 2 &middot; Home</span><p>Who do you live with?</p></div>
 <div class="card"><span class="ctag">Question 3 &middot; Accommodation</span><p>Do you live in a house or a flat?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1664302152991-d013ff125f3f?w=1600&amp;q=80')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g4521adba83719fffc759c95c1c45b31f9251bddfc365b0051f0f761f72212aca26343e27ae55673939db5fe37632e4c66b6dc328033ba4201b9850884697b22c_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
 <div class="card"><span class="ctag">Question 4 &middot; Transport</span><p>What kinds of public transport do you have in your country?</p></div>
 <div class="card"><span class="ctag">Question 5 &middot; Neighbours</span><p>Do you know the people who live next door to you?</p></div>
 <div class="card"><span class="ctag">Question 6 &middot; Hometown</span><p>Is there any way your hometown could be made better?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1685214899622-8e6a2f14cd7c?w=1600&amp;q=80')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe your favourite city or a city you have visited that you like very much.</div><div class="cue-bullets">what its name is and where it is &middot; when you visited it &middot; why you liked it &middot; and describe the major attractions in this city</div></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
+<section class="slide" style="background-image:url('https://pixabay.com/get/gfb8c05077f518076121a39264383339d17d56be5883fc5a69039973969c45c4e37adf033854036249dd5c467cf926cafdb13db358319ab3ac98f99d5bf970b7f_1280.jpg')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe your favourite city or a city you have visited that you like very much.</div><ul class="cue-bullets">
+      <li>what its name is and where it is</li>
+      <li>when you visited it</li>
+      <li>why you liked it</li>
+      <li>and describe the major attractions in this city</li>
+    </ul></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1683133462626-c3bb80a407db?w=1600&amp;q=80')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g2e0465e87cb231aa547b2ccb73171e1ba906746ce906b85890f937ac32f0f9e2afc1ef745a6de2c37d9694c9541b6c5b96ee1588448c41ed950e3fb6d91f1402_1280.jpg')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
 <div class="card"><span class="ctag">Discussion 1</span><p>In your opinion, what makes a city a good one to live in?</p></div>
 <div class="card"><span class="ctag">Discussion 2</span><p>What are the advantages of living in a city?</p></div>
 <div class="card"><span class="ctag">Discussion 3</span><p>What are the negative aspects of crowded cities?</p></div>
 <div class="card"><span class="ctag">Discussion 4</span><p>How can governments improve living standards in crowded cities?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1606152536277-5aa1fd33e150?w=1600&amp;q=80')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
+<section class="slide" style="background-image:url('https://pixabay.com/get/g38d9ec6cc9f9fe53b3741303acabbba65569e9827fa972bc8803a04a57b7ee2f7f01ec7c9b8bc1e2f1825edc19616134b32796e4e4aaeeeb2ed00fd9151fae0b_1280.jpg')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
 <p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="metropolitan">metropolitan</span></p>
 <p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="infrastructure">infrastructure</span></p>
 <p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="congestion">congestion</span></p>
@@ -269,6 +274,10 @@ function update() {
   slides.forEach(function(s, i) { s.classList.toggle('active', i === current); });
   document.getElementById('slideCounter').textContent = (current + 1) + ' / ' + slides.length;
   document.getElementById('progressBar').style.width = ((current + 1) / slides.length) * 100 + '%';
+  // show prev only when not on first slide; next only when not on last
+  var pb = document.getElementById('prevBtn'), nb = document.getElementById('nextBtn');
+  if (pb) pb.style.visibility = current === 0 ? 'hidden' : 'visible';
+  if (nb) nb.style.visibility = current === slides.length - 1 ? 'hidden' : 'visible';
 }
 update();
 
