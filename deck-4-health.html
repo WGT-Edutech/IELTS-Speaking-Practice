@@ -135,6 +135,19 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 @keyframes sb-shine { to { --sb-angle: 360deg; } }
 @property --sb-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 .specular-button__label { display: inline-flex; align-items: center; justify-content: center; }
+
+/* ═══ Timer (matches deck-1) ═══ */
+.timer-trigger{display:inline-flex;align-items:center;gap:5px;background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:5px 12px;border-radius:14px;cursor:pointer;transition:all .15s;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.timer-trigger:hover{background:var(--accent-glow);box-shadow:0 0 8px var(--accent-glow)}
+.timer-popup{display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:500;align-items:center;justify-content:center;padding:8px 0}
+.timer-popup.show{display:flex}
+.timer-popup-box{display:flex;align-items:center;gap:14px;background:color-mix(in srgb,var(--bg) 92%,transparent);border:1px solid var(--accent-glow);border-radius:0 0 16px 16px;padding:10px 24px;backdrop-filter:blur(16px);box-shadow:0 4px 24px var(--accent-glow)}
+.timer-popup-box .timer-display{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:700;color:var(--accent);min-width:60px;text-align:center}
+.timer-popup-box .timer-phase{font-size:.85rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
+.timer-btn{background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:6px 14px;border-radius:18px;cursor:pointer;transition:all .15s;min-width:44px;min-height:34px;box-shadow:0 0 8px var(--accent-glow)}
+.timer-btn:hover{box-shadow:0 0 18px var(--accent-glow);transform:scale(1.05)}
+.timer-btn:active{transform:scale(.95)}
+.timer-btn.running{background:var(--accent-glow);border-color:var(--accent)}
 </style></head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
@@ -145,30 +158,30 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 
 <section class="slide active" style="background-image:url('https://pixabay.com/get/gd27ce4323d2343e9163d3228655a39db2b9283d7294133a9c33c084584d80334c92c23cd00ec01785be3c48dc6d36d9360f2b087630376fa42188f20002a331f_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Health &amp; Wellbeing</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/gf4c1929ab927bed5a896d2d56407eb27c7d5eb16421cb3824830d75edfaa8597fc00e492667d094e7478a52220f38d99f0c917a9713dae0a8df15257783f4b27_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
-<div class="card"><span class="ctag">Question 1 &middot; Exercise</span><p>Do you do much exercise?</p></div>
-<div class="card"><span class="ctag">Question 2 &middot; Food</span><p>Do you have a healthy diet?</p></div>
+<section class="slide" style="background-image:url('https://pixabay.com/get/gf4c1929ab927bed5a896d2d56407eb27c7d5eb16421cb3824830d75edfaa8597fc00e492667d094e7478a52220f38d99f0c917a9713dae0a8df15257783f4b27_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 1&ndash;3</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span>
+<div class="card"><span class="ctag">Question 1 &middot; Exercise</span><p>Do you do much <span class="vocab-word" data-word="exercise">exercise</span>?</p></div>
+<div class="card"><span class="ctag">Question 2 &middot; Food</span><p>Do you have a <span class="vocab-word" data-word="healthy">healthy</span> diet?</p></div>
 <div class="card"><span class="ctag">Question 3 &middot; Lifestyle</span><p>Has your life changed much in the last year?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g9093738fcf6de69d8f77a674ea91008bdebdd5f3db8e00567d0d0e95ed254ded5c7e1e767ec90c94b053b5d2c22175c5839ad9daa661ba2635869137d9499e3e_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g9093738fcf6de69d8f77a674ea91008bdebdd5f3db8e00567d0d0e95ed254ded5c7e1e767ec90c94b053b5d2c22175c5839ad9daa661ba2635869137d9499e3e_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 4&ndash;6</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span>
 <div class="card"><span class="ctag">Question 4 &middot; Sports</span><p>Do you play any sports?</p></div>
-<div class="card"><span class="ctag">Question 5 &middot; Daily Routine</span><p>What would you like to change about your daily routine?</p></div>
+<div class="card"><span class="ctag">Question 5 &middot; Daily Routine</span><p>What would you like to change about your daily <span class="vocab-word" data-word="routine">routine</span>?</p></div>
 <div class="card"><span class="ctag">Question 6 &middot; Food</span><p>Do you prefer eating at home or eating out?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/gd2981ecfb62e70ab2280aa757a9f1b905bb2d7a75a16c69d6ae16e9dd04ea6e33d5cfae5d1a90e389bfc6451d795f892bd15e0387a0055522531f9131cfee9e7_1280.jpg')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe something healthy you enjoy doing.</div><ul class="cue-bullets">
+<section class="slide" style="background-image:url('https://pixabay.com/get/gd2981ecfb62e70ab2280aa757a9f1b905bb2d7a75a16c69d6ae16e9dd04ea6e33d5cfae5d1a90e389bfc6451d795f892bd15e0387a0055522531f9131cfee9e7_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 2 &middot; Cue Card</h2><span class="timer-trigger" onclick="openTimer('p2',120)">⏱ 2:00</span><div class="cue-box"><div class="cue-main">Describe something <span class="vocab-word" data-word="healthy">healthy</span> you enjoy doing.</div><ul class="cue-bullets">
       <li>what you do</li>
       <li>where you do it</li>
       <li>who you do it with</li>
-      <li>and explain why you think doing this is healthy</li>
+      <li>and explain why you think doing this is <span class="vocab-word" data-word="healthy">healthy</span></li>
     </ul></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g6b2cff1bc74d186e5af5ed8a79e4802990a8060697263c8d6d91abd848720dbf9afa9ccecf5e902c3be1c43521571209c0fbb69e4fee75d9477c6f7aa8df99fe_1280.jpg')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
-<div class="card"><span class="ctag">Discussion 1</span><p>How can people improve their health?</p></div>
-<div class="card"><span class="ctag">Discussion 2</span><p>Do elderly people exercise much in your country?</p></div>
-<div class="card"><span class="ctag">Discussion 3</span><p>Do you think all illnesses can be prevented?</p></div>
-<div class="card"><span class="ctag">Discussion 4</span><p>Do you think healthcare should be free?</p></div>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g6b2cff1bc74d186e5af5ed8a79e4802990a8060697263c8d6d91abd848720dbf9afa9ccecf5e902c3be1c43521571209c0fbb69e4fee75d9477c6f7aa8df99fe_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 3 &middot; Discussion</h2><span class="timer-trigger" onclick="openTimer('p3',270)">⏱ 4:30</span>
+<div class="card"><span class="ctag">Discussion 1</span><p>How can people <span class="vocab-word" data-word="improve">improve</span> their health?</p></div>
+<div class="card"><span class="ctag">Discussion 2</span><p>Do <span class="vocab-word" data-word="elderly">elderly</span> people <span class="vocab-word" data-word="exercise">exercise</span> much in your country?</p></div>
+<div class="card"><span class="ctag">Discussion 3</span><p>Do you think all <span class="vocab-word" data-word="illnesses">illnesses</span> can be <span class="vocab-word" data-word="prevented">prevented</span>?</p></div>
+<div class="card"><span class="ctag">Discussion 4</span><p>Do you think <span class="vocab-word" data-word="healthcare">healthcare</span> should be free?</p></div>
 </div></section>
 
 <section class="slide" style="background-image:url('https://pixabay.com/get/gac2eb150491f6431ee7d33cfec95cf599d61a5053cba0d18fa16b38bd9ae8e2f809510c825002cb21b61d25ca16bef71aaa139d855eba2e228e723dc7a57fea6_1280.jpg')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
@@ -189,18 +202,7 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 <div class="vocab-tooltip" id="vocabTooltip"><span class="tt-pos" id="ttPos"></span> <span class="tt-word" id="ttWord"></span><div class="tt-def" id="ttDef"></div></div>
 
 <script>
-var vocabDict = {
-  "nutrition": {"pos": "noun", "def": "the process of eating the right kinds of food for health"},
-  "wellbeing": {"pos": "noun", "def": "the state of being comfortable, healthy, and happy"},
-  "prevention": {"pos": "noun", "def": "the act of stopping something bad from happening"},
-  "chronic": {"pos": "adj", "def": "lasting for a long time, especially of an illness"},
-  "immunity": {"pos": "noun", "def": "the body's ability to resist infection or disease"},
-  "rehabilitation": {"pos": "noun", "def": "the process of restoring health through therapy"},
-  "sedentary": {"pos": "adj", "def": "involving little physical activity; sitting a lot"},
-  "diagnosis": {"pos": "noun", "def": "the identification of an illness by examining symptoms"},
-  "therapy": {"pos": "noun", "def": "treatment intended to relieve or heal a condition"},
-  "resilience": {"pos": "noun", "def": "the ability to recover quickly from difficulties"}
-};
+var vocabDict = {"nutrition": {"pos": "noun", "def": "the process of eating the right kinds of food for health"}, "wellbeing": {"pos": "noun", "def": "the state of being comfortable, healthy, and happy"}, "prevention": {"pos": "noun", "def": "the act of stopping something bad from happening"}, "chronic": {"pos": "adj", "def": "lasting for a long time, especially of an illness"}, "immunity": {"pos": "noun", "def": "the body's ability to resist infection or disease"}, "rehabilitation": {"pos": "noun", "def": "the process of restoring health through therapy"}, "sedentary": {"pos": "adj", "def": "involving little physical activity; sitting a lot"}, "diagnosis": {"pos": "noun", "def": "the identification of an illness by examining symptoms"}, "therapy": {"pos": "noun", "def": "treatment intended to relieve or heal a condition"}, "resilience": {"pos": "noun", "def": "the ability to recover quickly from difficulties"}, "exercise": {"pos": "noun", "def": "physical activity that keeps your body healthy"}, "healthy": {"pos": "adj", "def": "in good health, not ill"}, "routine": {"pos": "noun", "def": "the things you do regularly, in the same order"}, "improve": {"pos": "verb", "def": "to make something better"}, "elderly": {"pos": "adj", "def": "old, past middle age"}, "healthcare": {"pos": "noun", "def": "the system of caring for the health of people"}, "illnesses": {"pos": "noun", "def": "sicknesses, health problems"}, "prevented": {"pos": "verb", "def": "stopped something from happening"}};
 
 var tooltip = document.getElementById('vocabTooltip');
 document.addEventListener('mouseover', function(e) {
@@ -480,5 +482,36 @@ update();
   else initAll();
 })();
 
+
+// ═══ Popup Timer ═══
+var tpInterval = null, tpSeconds = 0, tpLabel = '', tpMuted = false;
+function openTimer(label, secs) { tpLabel = label; tpSeconds = secs; document.getElementById('tpLabel').textContent = label === 'p1' ? 'Part 1' : label === 'p2' ? 'Part 2' : 'Part 3'; updateTPDisplay(); var b = document.getElementById('tpStartBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); document.getElementById('timerPopup').classList.add('show'); }
+function closeTimer() { if (tpInterval) { clearInterval(tpInterval); tpInterval = null; } document.getElementById('timerPopup').classList.remove('show'); }
+function toggleTP() {
+  var b = document.getElementById('tpStartBtn'), l = b ? b.querySelector('.specular-button__label') : null;
+  if (tpInterval) { clearInterval(tpInterval); tpInterval = null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); return; }
+  if (l) l.textContent = '⏸ Pause'; if (b) b.classList.add('running');
+  tpInterval = setInterval(function() {
+    tpSeconds--; updateTPDisplay();
+    if (tpSeconds <= 0) { clearInterval(tpInterval); tpInterval = null; if (l) l.textContent = '↻ Done'; if (b) b.classList.remove('running'); beep(1320, 0.6); }
+  }, 1000);
+}
+function restartTP() { if (tpInterval) { clearInterval(tpInterval); tpInterval = null; } tpSeconds = tpLabel === 'p1' ? 270 : tpLabel === 'p2' ? 120 : 270; updateTPDisplay(); var b = document.getElementById('tpStartBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); }
+function toggleMuteTP() { tpMuted = !tpMuted; var b = document.getElementById('tpMuteBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = tpMuted ? '🔊' : '🔇'; }
+function updateTPDisplay() { var m = Math.floor(tpSeconds / 60), s = tpSeconds % 60; document.getElementById('tpDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s; }
+function beep(freq, dur) { if (tpMuted) return; try { var ctx = new (window.AudioContext||window.webkitAudioContext)(), o = ctx.createOscillator(), g = ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.frequency.value = freq; o.type = 'sine'; g.gain.setValueAtTime(0.15, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur); o.start(); o.stop(ctx.currentTime + dur); } catch(e) {} }
+
 </script>
+
+<div class="timer-popup" id="timerPopup">
+  <div class="timer-popup-box">
+    <span class="timer-phase" id="tpLabel">Timer</span>
+    <span class="timer-display" id="tpDisplay">0:00</span>
+    <button class="timer-btn specular-fx" id="tpStartBtn" onclick="toggleTP()"><span class="specular-button__label">▶ Play</span></button>
+    <button class="timer-btn specular-fx" id="tpRestartBtn" onclick="restartTP()"><span class="specular-button__label">↺</span></button>
+    <button class="timer-btn specular-fx" id="tpMuteBtn" onclick="toggleMuteTP()"><span class="specular-button__label">🔇</span></button>
+    <button class="timer-btn specular-fx" onclick="closeTimer()"><span class="specular-button__label">✕</span></button>
+  </div>
+</div>
+
 </body></html>
