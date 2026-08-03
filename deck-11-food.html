@@ -33,7 +33,7 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 .card p{font-size:1.2rem;line-height:1.7;text-shadow:0 1px 3px rgba(0,0,0,.55),0 0 12px rgba(0,0,0,.3)}
 .cue-box{background:color-mix(in srgb,var(--bg) 58%,transparent);border:2px solid var(--accent-glow);box-shadow:0 0 30px var(--accent-glow);border-radius:14px;padding:1.4em 1.8em;margin:1em 0;text-align:center}
 .cue-box .cue-main{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--accent);font-size:1.8rem;margin-bottom:.6em;text-shadow:0 0 18px var(--accent-glow),0 2px 4px rgba(0,0,0,.6);animation:popGlow 3.2s ease-in-out infinite}
-.cue-box .cue-bullets{font-size:1.25rem;color:var(--text);text-shadow:0 1px 3px rgba(0,0,0,.55)}
+.cue-box ul.cue-bullets{list-style:disc;padding-left:1.6em;margin:.4em 0;text-align:left}.cue-box ul.cue-bullets li{font-size:1.2rem;color:var(--text);margin:.35em 0;line-height:1.6;text-shadow:0 1px 3px rgba(0,0,0,.55)}
 .mark-complete-btn{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.4);color:var(--green);font-family:'Inter',sans-serif;font-size:1.05rem;padding:10px 24px;border-radius:24px;cursor:pointer;transition:all .2s;font-weight:600;min-width:44px;min-height:44px}
 .mark-complete-btn:hover{background:rgba(52,211,153,.2);box-shadow:0 0 15px rgba(52,211,153,.3);transform:scale(1.05)}
 .mark-complete-btn.completed{background:rgba(52,211,153,.25);border-color:rgba(52,211,153,.7);box-shadow:0 0 20px rgba(52,211,153,.4)}
@@ -143,13 +143,18 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
   <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
 </span></button>
 
-<section class="slide active" style="background-image:url('https://pixabay.com/get/gdfedabc2ef757f431a63522c1675484af7d0970ff9a78b367fdd15774a83f7e689b31ed4d85b57e3dcdf00b613ddd9d7106d1036350236f7caa8067a6edb9489_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Food &amp; Cooking</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2</p><p style="font-size:1.05rem;color:var(--text-dim);margin-top:.5em;">6 Part 1 questions &middot; 1 Part 2 cue card &middot; 4 Part 3 discussion questions</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
+<section class="slide active" style="background-image:url('https://pixabay.com/get/gdfedabc2ef757f431a63522c1675484af7d0970ff9a78b367fdd15774a83f7e689b31ed4d85b57e3dcdf00b613ddd9d7106d1036350236f7caa8067a6edb9489_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Food &amp; Cooking</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
 
 <section class="slide" style="background-image:url('https://pixabay.com/get/ga79865634b6b2b6c1c720254ad3852fefab16d0b9eb7a2201e6f5e65e822143ebfaf0f3dc7f7e94f3923ebff70068fd0f300d70727b517f4d86f778f7acbc19a_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2><div class="card"><span class="ctag">Question 1 &middot; Cooking</span><p>Do you enjoy cooking?</p></div><div class="card"><span class="ctag">Question 2 &middot; Cooking</span><p>What types of things can you cook?</p></div><div class="card"><span class="ctag">Question 3 &middot; National Food</span><p>What kinds of food are popular in your country?</p></div></div></section>
 
 <section class="slide" style="background-image:url('https://pixabay.com/get/g92866d8af0ce09dc8690185a63076ea453b3c1cce6d4e15fd2fef3f6ce903dbf0685cbc99de9af5c45dde51d2c89b862856800a8722bf18be0463cd5cc3a2938_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2><div class="card"><span class="ctag">Question 4 &middot; Diet</span><p>Do you have a healthy diet?</p></div><div class="card"><span class="ctag">Question 5 &middot; Eating Habits</span><p>Do you prefer to eat with other people or on your own?</p></div><div class="card"><span class="ctag">Question 6 &middot; Culture</span><p>Is it an important part of your culture to have dinner parties?</p></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/gc1a9d229dde0a62bd2b3c3f2ece741677a5b02488605d974787295ed3a3483e359e070ee546e44dd3a8221791204b32b93108583432137a058ebeb24a1e7b1d8_1280.jpg')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe a traditional dish from your country.</div><div class="cue-bullets">what it looks like &middot; what it tastes like &middot; when and how it is usually eaten &middot; and explain why it is popular</div></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
+<section class="slide" style="background-image:url('https://pixabay.com/get/gc1a9d229dde0a62bd2b3c3f2ece741677a5b02488605d974787295ed3a3483e359e070ee546e44dd3a8221791204b32b93108583432137a058ebeb24a1e7b1d8_1280.jpg')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe a traditional dish from your country.</div><ul class="cue-bullets">
+      <li>what it looks like</li>
+      <li>what it tastes like</li>
+      <li>when and how it is usually eaten</li>
+      <li>and explain why it is popular</li>
+    </ul></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
 
 <section class="slide" style="background-image:url('https://pixabay.com/get/gd4e52932a4d57102b7db4467380575323f7a069c94d7c19c2ee369c9ee09b6115ca555c035289a4e81560f7acaa8ce6c9d5a6f9d494a378411a966e597aaeb1a_1280.jpg')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2><div class="card"><span class="ctag">Discussion 1</span><p>In your country, is it important to have a meal together with your family?</p></div><div class="card"><span class="ctag">Discussion 2</span><p>What kinds of foreign food are popular in your country?</p></div><div class="card"><span class="ctag">Discussion 3</span><p>Is food now better than in the past?</p></div><div class="card"><span class="ctag">Discussion 4</span><p>Why are more and more people unwilling to cook nowadays?</p></div></div></section>
 
@@ -232,6 +237,10 @@ function update() {
   slides.forEach(function(s, i) { s.classList.toggle('active', i === current); });
   document.getElementById('slideCounter').textContent = (current + 1) + ' / ' + slides.length;
   document.getElementById('progressBar').style.width = ((current + 1) / slides.length) * 100 + '%';
+  // show prev only when not on first slide; next only when not on last
+  var pb = document.getElementById('prevBtn'), nb = document.getElementById('nextBtn');
+  if (pb) pb.style.visibility = current === 0 ? 'hidden' : 'visible';
+  if (nb) nb.style.visibility = current === slides.length - 1 ? 'hidden' : 'visible';
 }
 update();
 
