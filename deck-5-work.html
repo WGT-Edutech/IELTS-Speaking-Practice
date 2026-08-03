@@ -135,6 +135,19 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 @keyframes sb-shine { to { --sb-angle: 360deg; } }
 @property --sb-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 .specular-button__label { display: inline-flex; align-items: center; justify-content: center; }
+
+/* ═══ Timer (matches deck-1) ═══ */
+.timer-trigger{display:inline-flex;align-items:center;gap:5px;background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:5px 12px;border-radius:14px;cursor:pointer;transition:all .15s;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.timer-trigger:hover{background:var(--accent-glow);box-shadow:0 0 8px var(--accent-glow)}
+.timer-popup{display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:500;align-items:center;justify-content:center;padding:8px 0}
+.timer-popup.show{display:flex}
+.timer-popup-box{display:flex;align-items:center;gap:14px;background:color-mix(in srgb,var(--bg) 92%,transparent);border:1px solid var(--accent-glow);border-radius:0 0 16px 16px;padding:10px 24px;backdrop-filter:blur(16px);box-shadow:0 4px 24px var(--accent-glow)}
+.timer-popup-box .timer-display{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:700;color:var(--accent);min-width:60px;text-align:center}
+.timer-popup-box .timer-phase{font-size:.85rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
+.timer-btn{background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:6px 14px;border-radius:18px;cursor:pointer;transition:all .15s;min-width:44px;min-height:34px;box-shadow:0 0 8px var(--accent-glow)}
+.timer-btn:hover{box-shadow:0 0 18px var(--accent-glow);transform:scale(1.05)}
+.timer-btn:active{transform:scale(.95)}
+.timer-btn.running{background:var(--accent-glow);border-color:var(--accent)}
 </style></head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
@@ -145,30 +158,30 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 
 <section class="slide active" style="background-image:url('https://pixabay.com/get/g5bb3b78d66ffb46dfce5f52f5b80237c2b58f403a36eb5c9c7a05651a2a2f2cf7d4979b872da4ea45a1ff2f7d76c178cb444dea99b3a1f1e94f685791b4e8ad3_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Work &amp; Employment</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g913cc693158025d14cbc43f23994d8bc47da29eabadeb153091a8dbad50b7f03751420745a7867138ed0f94872197719ab627928afdd2bf4881ecd2a067f7da3_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g913cc693158025d14cbc43f23994d8bc47da29eabadeb153091a8dbad50b7f03751420745a7867138ed0f94872197719ab627928afdd2bf4881ecd2a067f7da3_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 1&ndash;3</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span>
 <div class="card"><span class="ctag">Question 1 &middot; Work</span><p>Do you work or are you a student?</p></div>
 <div class="card"><span class="ctag">Question 2 &middot; Daily Routine</span><p>Is your daily routine different at the weekend?</p></div>
-<div class="card"><span class="ctag">Question 3 &middot; Work</span><p>Are there good work opportunities in your home country?</p></div>
+<div class="card"><span class="ctag">Question 3 &middot; Work</span><p>Are there good work <span class="vocab-word" data-word="opportunities">opportunities</span> in your home country?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/ga145ad57dc6bb9e19bba678a8c791f67c3cf7869d9ca076394a0abe7f6e07ca712ca899904fd7949bc65b4fa8119f77f719ec4efd5a97a2d031cf606297c42a3_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/ga145ad57dc6bb9e19bba678a8c791f67c3cf7869d9ca076394a0abe7f6e07ca712ca899904fd7949bc65b4fa8119f77f719ec4efd5a97a2d031cf606297c42a3_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 4&ndash;6</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span>
 <div class="card"><span class="ctag">Question 4 &middot; Major</span><p>Do you plan to use what you studied in your future career?</p></div>
-<div class="card"><span class="ctag">Question 5 &middot; Timing</span><p>Is being late acceptable in your culture?</p></div>
-<div class="card"><span class="ctag">Question 6 &middot; Business</span><p>Would you prefer to work for a company or be self-employed?</p></div>
+<div class="card"><span class="ctag">Question 5 &middot; Timing</span><p>Is being late <span class="vocab-word" data-word="acceptable">acceptable</span> in your culture?</p></div>
+<div class="card"><span class="ctag">Question 6 &middot; Business</span><p>Would you prefer to work for a company or be self-<span class="vocab-word" data-word="employed">employed</span>?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g6323f7b6b3ee2cd5668010f71259fa97f7e730a452fdcc3b7e62f4b31581cf97cb385f8678393ad89dd50356bea92c4007ed1537c248f3c82b93ab9b945060cc_1280.jpg')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe your dream job.</div><ul class="cue-bullets">
+<section class="slide" style="background-image:url('https://pixabay.com/get/g6323f7b6b3ee2cd5668010f71259fa97f7e730a452fdcc3b7e62f4b31581cf97cb385f8678393ad89dd50356bea92c4007ed1537c248f3c82b93ab9b945060cc_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 2 &middot; Cue Card</h2><span class="timer-trigger" onclick="openTimer('p2',120)">⏱ 2:00</span><div class="cue-box"><div class="cue-main">Describe your dream job.</div><ul class="cue-bullets">
       <li>what kind of work you would do</li>
       <li>what the working conditions would be like</li>
       <li>what kind of workplace you would work in</li>
       <li>and explain if you think you will be able to get a job like that</li>
     </ul></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/ge113d1fcfcc090ec7c3450203d332b3b2e32651458da1c46dfab5a37dbfd3ffd65140cb175e5b2c5a30f808aa17109615ab1a07a6017aa8b0a23bdcb209e3648_1280.jpg')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
-<div class="card"><span class="ctag">Discussion 1</span><p>Do you think job satisfaction is more important than salary?</p></div>
+<section class="slide" style="background-image:url('https://pixabay.com/get/ge113d1fcfcc090ec7c3450203d332b3b2e32651458da1c46dfab5a37dbfd3ffd65140cb175e5b2c5a30f808aa17109615ab1a07a6017aa8b0a23bdcb209e3648_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 3 &middot; Discussion</h2><span class="timer-trigger" onclick="openTimer('p3',270)">⏱ 4:30</span>
+<div class="card"><span class="ctag">Discussion 1</span><p>Do you think job <span class="vocab-word" data-word="satisfaction">satisfaction</span> is more important than salary?</p></div>
 <div class="card"><span class="ctag">Discussion 2</span><p>What skills are needed to get a good job these days?</p></div>
 <div class="card"><span class="ctag">Discussion 3</span><p>What is the difference between white-collar and blue-collar jobs?</p></div>
-<div class="card"><span class="ctag">Discussion 4</span><p>What jobs do you think are most valuable to society?</p></div>
+<div class="card"><span class="ctag">Discussion 4</span><p>What jobs do you think are most <span class="vocab-word" data-word="valuable">valuable</span> to <span class="vocab-word" data-word="society">society</span>?</p></div>
 </div></section>
 
 <section class="slide" style="background-image:url('https://pixabay.com/get/gd9029a274ecdd18e14cd60ec12defa787964080c3af9f3204d2ea9661271ccff3bdd43471988098235dad9123715747d781b32d4d79cc16267081397b4efbcd4_1280.jpg')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
@@ -189,18 +202,7 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 <div class="vocab-tooltip" id="vocabTooltip"><span class="tt-pos" id="ttPos"></span> <span class="tt-word" id="ttWord"></span><div class="tt-def" id="ttDef"></div></div>
 
 <script>
-var vocabDict = {
-  "employment": {"pos": "noun", "def": "the state of having paid work"},
-  "promotion": {"pos": "noun", "def": "moving to a higher position or more important job"},
-  "remuneration": {"pos": "noun", "def": "payment or compensation for work done"},
-  "colleague": {"pos": "noun", "def": "a person you work with"},
-  "productivity": {"pos": "noun", "def": "the rate at which goods are produced or work is completed"},
-  "apprenticeship": {"pos": "noun", "def": "learning a trade from a skilled employer"},
-  "freelance": {"pos": "adj", "def": "working for different companies rather than one permanently"},
-  "negotiation": {"pos": "noun", "def": "discussion aimed at reaching an agreement"},
-  "qualification": {"pos": "noun", "def": "an official record showing you have completed a course"},
-  "hierarchy": {"pos": "noun", "def": "a system ranking people according to status or authority"}
-};
+var vocabDict = {"employment": {"pos": "noun", "def": "the state of having paid work"}, "promotion": {"pos": "noun", "def": "moving to a higher position or more important job"}, "remuneration": {"pos": "noun", "def": "payment or compensation for work done"}, "colleague": {"pos": "noun", "def": "a person you work with"}, "productivity": {"pos": "noun", "def": "the rate at which goods are produced or work is completed"}, "apprenticeship": {"pos": "noun", "def": "learning a trade from a skilled employer"}, "freelance": {"pos": "adj", "def": "working for different companies rather than one permanently"}, "negotiation": {"pos": "noun", "def": "discussion aimed at reaching an agreement"}, "qualification": {"pos": "noun", "def": "an official record showing you have completed a course"}, "hierarchy": {"pos": "noun", "def": "a system ranking people according to status or authority"}, "opportunities": {"pos": "noun", "def": "chances to do something good"}, "satisfaction": {"pos": "noun", "def": "the good feeling you get from doing something well"}, "employed": {"pos": "adj", "def": "having a paid job"}, "acceptable": {"pos": "adj", "def": "good enough, allowed"}, "valuable": {"pos": "adj", "def": "worth a lot, very useful"}, "society": {"pos": "noun", "def": "people living together in a community"}};
 
 var tooltip = document.getElementById('vocabTooltip');
 document.addEventListener('mouseover', function(e) {
@@ -480,5 +482,36 @@ update();
   else initAll();
 })();
 
+
+// ═══ Popup Timer ═══
+var tpInterval = null, tpSeconds = 0, tpLabel = '', tpMuted = false;
+function openTimer(label, secs) { tpLabel = label; tpSeconds = secs; document.getElementById('tpLabel').textContent = label === 'p1' ? 'Part 1' : label === 'p2' ? 'Part 2' : 'Part 3'; updateTPDisplay(); var b = document.getElementById('tpStartBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); document.getElementById('timerPopup').classList.add('show'); }
+function closeTimer() { if (tpInterval) { clearInterval(tpInterval); tpInterval = null; } document.getElementById('timerPopup').classList.remove('show'); }
+function toggleTP() {
+  var b = document.getElementById('tpStartBtn'), l = b ? b.querySelector('.specular-button__label') : null;
+  if (tpInterval) { clearInterval(tpInterval); tpInterval = null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); return; }
+  if (l) l.textContent = '⏸ Pause'; if (b) b.classList.add('running');
+  tpInterval = setInterval(function() {
+    tpSeconds--; updateTPDisplay();
+    if (tpSeconds <= 0) { clearInterval(tpInterval); tpInterval = null; if (l) l.textContent = '↻ Done'; if (b) b.classList.remove('running'); beep(1320, 0.6); }
+  }, 1000);
+}
+function restartTP() { if (tpInterval) { clearInterval(tpInterval); tpInterval = null; } tpSeconds = tpLabel === 'p1' ? 270 : tpLabel === 'p2' ? 120 : 270; updateTPDisplay(); var b = document.getElementById('tpStartBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); }
+function toggleMuteTP() { tpMuted = !tpMuted; var b = document.getElementById('tpMuteBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = tpMuted ? '🔊' : '🔇'; }
+function updateTPDisplay() { var m = Math.floor(tpSeconds / 60), s = tpSeconds % 60; document.getElementById('tpDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s; }
+function beep(freq, dur) { if (tpMuted) return; try { var ctx = new (window.AudioContext||window.webkitAudioContext)(), o = ctx.createOscillator(), g = ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.frequency.value = freq; o.type = 'sine'; g.gain.setValueAtTime(0.15, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur); o.start(); o.stop(ctx.currentTime + dur); } catch(e) {} }
+
 </script>
+
+<div class="timer-popup" id="timerPopup">
+  <div class="timer-popup-box">
+    <span class="timer-phase" id="tpLabel">Timer</span>
+    <span class="timer-display" id="tpDisplay">0:00</span>
+    <button class="timer-btn specular-fx" id="tpStartBtn" onclick="toggleTP()"><span class="specular-button__label">▶ Play</span></button>
+    <button class="timer-btn specular-fx" id="tpRestartBtn" onclick="restartTP()"><span class="specular-button__label">↺</span></button>
+    <button class="timer-btn specular-fx" id="tpMuteBtn" onclick="toggleMuteTP()"><span class="specular-button__label">🔇</span></button>
+    <button class="timer-btn specular-fx" onclick="closeTimer()"><span class="specular-button__label">✕</span></button>
+  </div>
+</div>
+
 </body></html>
