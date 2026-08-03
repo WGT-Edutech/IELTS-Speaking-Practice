@@ -33,7 +33,7 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 .card p{font-size:1.2rem;line-height:1.7;text-shadow:0 1px 3px rgba(0,0,0,.55),0 0 12px rgba(0,0,0,.3)}
 .cue-box{background:color-mix(in srgb,var(--bg) 58%,transparent);border:2px solid var(--accent-glow);box-shadow:0 0 30px var(--accent-glow);border-radius:14px;padding:1.4em 1.8em;margin:1em 0;text-align:center}
 .cue-box .cue-main{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--accent);font-size:1.8rem;margin-bottom:.6em;text-shadow:0 0 18px var(--accent-glow),0 2px 4px rgba(0,0,0,.6);animation:popGlow 3.2s ease-in-out infinite}
-.cue-box .cue-bullets{font-size:1.25rem;color:var(--text);text-shadow:0 1px 3px rgba(0,0,0,.55)}
+.cue-box ul.cue-bullets{list-style:disc;padding-left:1.6em;margin:.4em 0;text-align:left}.cue-box ul.cue-bullets li{font-size:1.2rem;color:var(--text);margin:.35em 0;line-height:1.6;text-shadow:0 1px 3px rgba(0,0,0,.55)}
 .mark-complete-btn{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.4);color:var(--green);font-family:'Inter',sans-serif;font-size:1.05rem;padding:10px 24px;border-radius:24px;cursor:pointer;transition:all .2s;font-weight:600;min-width:44px;min-height:44px}
 .mark-complete-btn:hover{background:rgba(52,211,153,.2);box-shadow:0 0 15px rgba(52,211,153,.3);transform:scale(1.05)}
 .mark-complete-btn.completed{background:rgba(52,211,153,.25);border-color:rgba(52,211,153,.7);box-shadow:0 0 20px rgba(52,211,153,.4)}
@@ -143,30 +143,35 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
   <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
 </span></button>
 
-<section class="slide active" style="background-image:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1600&amp;q=80')"><div class="content narrow" style="text-align:center;"><h1>Globalization</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2</p><p style="font-size:1.05rem;color:var(--text-dim);margin-top:.5em;">6 Part 1 questions &middot; 1 Part 2 cue card &middot; 4 Part 3 discussion questions</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
+<section class="slide active" style="background-image:url('https://pixabay.com/get/g49b40affac4061be226a6359a55099a35cdd93e458f46b5225521b195b2b36912f97ffd0a02944eb4f6ba01f901e089f8cb73839e656451fd4b780cb660efc58_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Globalization</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
 
-<section class="slide" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&amp;q=80')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/geca10415872bcaeeb2907fad5eff7c51ed85431cabd4a34712cd09e92dc0d770c4e17bd62f3981d369f389c1335bd0ed3abd65efdbda5f4aa833b75c7833b82f_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
 <div class="card"><span class="ctag">Question 1 &middot; Travel</span><p>Where was the last place you visited on holiday?</p></div>
 <div class="card"><span class="ctag">Question 2 &middot; Internet</span><p>How important is the Internet to you?</p></div>
 <div class="card"><span class="ctag">Question 3 &middot; Language</span><p>Do you speak any foreign languages?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&amp;q=80')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g2016380fcc72a9d7c523e9c3d01f58b19b25638efd631aca47846dfb9a7bba6a06515b82b549f007dffab9392eb64a57f15105082b1e3a656981fb4adff94d6a_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
 <div class="card"><span class="ctag">Question 4 &middot; Food</span><p>Do you enjoy cooking food from other countries?</p></div>
 <div class="card"><span class="ctag">Question 5 &middot; Clothes</span><p>Have you ever bought clothes online from another country?</p></div>
 <div class="card"><span class="ctag">Question 6 &middot; Travel</span><p>Would you like to go back there again?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600&amp;q=80')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe a small business you want to start.</div><div class="cue-bullets">what business it would be &middot; when you want to start it &middot; why you have not started it yet &middot; and explain why you want to start this business</div></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g59adbd2b85bfbbcbc91a10ab85b4aedf953d142e15c5a963ecb95722f332225adb05536f06533eeb70cf79f729d70ddfa24f38daab7956a0e8469e7e16d22715_1280.jpg')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe a small business you want to start.</div><ul class="cue-bullets">
+      <li>what business it would be</li>
+      <li>when you want to start it</li>
+      <li>why you have not started it yet</li>
+      <li>and explain why you want to start this business</li>
+    </ul></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1664474600248-065ef82829a7?w=1600&amp;q=80')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g118608784ddf8cf26bda09e9e2a38a1f250b49f08eece6c39f887036481c56dfc535d85087d85a194611eb0972c66e979e2e4fef27415007c0d04991f21915e2_1280.jpg')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
 <div class="card"><span class="ctag">Discussion 1</span><p>In your opinion, do business people have to work long hours?</p></div>
 <div class="card"><span class="ctag">Discussion 2</span><p>How can a small business grow big?</p></div>
 <div class="card"><span class="ctag">Discussion 3</span><p>What are the impacts of globalisation on small and large businesses?</p></div>
 <div class="card"><span class="ctag">Discussion 4</span><p>What skills are required to start a small business?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&amp;q=80')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
+<section class="slide" style="background-image:url('https://pixabay.com/get/gb6da365544ba92d7d9a19ebd4106ca30638c49a174538e39eac1e83d92d656f151ffb58d2ffb3cc500d8f2644a332aec003d898e0274d8ec8219cc7278ba06c5_1280.jpg')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
 <p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="globalisation">globalisation</span></p>
 <p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="interconnected">interconnected</span></p>
 <p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="multinational">multinational</span></p>
@@ -269,6 +274,10 @@ function update() {
   slides.forEach(function(s, i) { s.classList.toggle('active', i === current); });
   document.getElementById('slideCounter').textContent = (current + 1) + ' / ' + slides.length;
   document.getElementById('progressBar').style.width = ((current + 1) / slides.length) * 100 + '%';
+  // show prev only when not on first slide; next only when not on last
+  var pb = document.getElementById('prevBtn'), nb = document.getElementById('nextBtn');
+  if (pb) pb.style.visibility = current === 0 ? 'hidden' : 'visible';
+  if (nb) nb.style.visibility = current === slides.length - 1 ? 'hidden' : 'visible';
 }
 update();
 
