@@ -33,7 +33,7 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 .card p{font-size:1.2rem;line-height:1.7;text-shadow:0 1px 3px rgba(0,0,0,.55),0 0 12px rgba(0,0,0,.3)}
 .cue-box{background:color-mix(in srgb,var(--bg) 58%,transparent);border:2px solid var(--accent-glow);box-shadow:0 0 30px var(--accent-glow);border-radius:14px;padding:1.4em 1.8em;margin:1em 0;text-align:center}
 .cue-box .cue-main{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--accent);font-size:1.8rem;margin-bottom:.6em;text-shadow:0 0 18px var(--accent-glow),0 2px 4px rgba(0,0,0,.6);animation:popGlow 3.2s ease-in-out infinite}
-.cue-box .cue-bullets{font-size:1.25rem;color:var(--text);text-shadow:0 1px 3px rgba(0,0,0,.55)}
+.cue-box ul.cue-bullets{list-style:disc;padding-left:1.6em;margin:.4em 0;text-align:left}.cue-box ul.cue-bullets li{font-size:1.2rem;color:var(--text);margin:.35em 0;line-height:1.6;text-shadow:0 1px 3px rgba(0,0,0,.55)}
 .mark-complete-btn{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.4);color:var(--green);font-family:'Inter',sans-serif;font-size:1.05rem;padding:10px 24px;border-radius:24px;cursor:pointer;transition:all .2s;font-weight:600;min-width:44px;min-height:44px}
 .mark-complete-btn:hover{background:rgba(52,211,153,.2);box-shadow:0 0 15px rgba(52,211,153,.3);transform:scale(1.05)}
 .mark-complete-btn.completed{background:rgba(52,211,153,.25);border-color:rgba(52,211,153,.7);box-shadow:0 0 20px rgba(52,211,153,.4)}
@@ -143,30 +143,35 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
   <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
 </span></button>
 
-<section class="slide active" style="background-image:url('https://plus.unsplash.com/premium_photo-1674605365723-15e6749630f4?w=1600&amp;q=80')"><div class="content narrow" style="text-align:center;"><h1>Health &amp; Wellbeing</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2</p><p style="font-size:1.05rem;color:var(--text-dim);margin-top:.5em;">6 Part 1 questions &middot; 1 Part 2 cue card &middot; 4 Part 3 discussion questions</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
+<section class="slide active" style="background-image:url('https://pixabay.com/get/gd27ce4323d2343e9163d3228655a39db2b9283d7294133a9c33c084584d80334c92c23cd00ec01785be3c48dc6d36d9360f2b087630376fa42188f20002a331f_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Health &amp; Wellbeing</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
 
-<section class="slide" style="background-image:url('https://images.unsplash.com/photo-1759674861540-afed9f86f94a?w=1600&amp;q=80')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/gf4c1929ab927bed5a896d2d56407eb27c7d5eb16421cb3824830d75edfaa8597fc00e492667d094e7478a52220f38d99f0c917a9713dae0a8df15257783f4b27_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
 <div class="card"><span class="ctag">Question 1 &middot; Exercise</span><p>Do you do much exercise?</p></div>
 <div class="card"><span class="ctag">Question 2 &middot; Food</span><p>Do you have a healthy diet?</p></div>
 <div class="card"><span class="ctag">Question 3 &middot; Lifestyle</span><p>Has your life changed much in the last year?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1685303469251-4ee0ea014bb3?w=1600&amp;q=80')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g9093738fcf6de69d8f77a674ea91008bdebdd5f3db8e00567d0d0e95ed254ded5c7e1e767ec90c94b053b5d2c22175c5839ad9daa661ba2635869137d9499e3e_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
 <div class="card"><span class="ctag">Question 4 &middot; Sports</span><p>Do you play any sports?</p></div>
 <div class="card"><span class="ctag">Question 5 &middot; Daily Routine</span><p>What would you like to change about your daily routine?</p></div>
 <div class="card"><span class="ctag">Question 6 &middot; Food</span><p>Do you prefer eating at home or eating out?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1661777196224-bfda51e61cfd?w=1600&amp;q=80')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe something healthy you enjoy doing.</div><div class="cue-bullets">what you do &middot; where you do it &middot; who you do it with &middot; and explain why you think doing this is healthy</div></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
+<section class="slide" style="background-image:url('https://pixabay.com/get/gd2981ecfb62e70ab2280aa757a9f1b905bb2d7a75a16c69d6ae16e9dd04ea6e33d5cfae5d1a90e389bfc6451d795f892bd15e0387a0055522531f9131cfee9e7_1280.jpg')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe something healthy you enjoy doing.</div><ul class="cue-bullets">
+      <li>what you do</li>
+      <li>where you do it</li>
+      <li>who you do it with</li>
+      <li>and explain why you think doing this is healthy</li>
+    </ul></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1673953510197-0950d951c6d9?w=1600&amp;q=80')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g6b2cff1bc74d186e5af5ed8a79e4802990a8060697263c8d6d91abd848720dbf9afa9ccecf5e902c3be1c43521571209c0fbb69e4fee75d9477c6f7aa8df99fe_1280.jpg')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
 <div class="card"><span class="ctag">Discussion 1</span><p>How can people improve their health?</p></div>
 <div class="card"><span class="ctag">Discussion 2</span><p>Do elderly people exercise much in your country?</p></div>
 <div class="card"><span class="ctag">Discussion 3</span><p>Do you think all illnesses can be prevented?</p></div>
 <div class="card"><span class="ctag">Discussion 4</span><p>Do you think healthcare should be free?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1675798983878-604c09f6d154?w=1600&amp;q=80')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
+<section class="slide" style="background-image:url('https://pixabay.com/get/gac2eb150491f6431ee7d33cfec95cf599d61a5053cba0d18fa16b38bd9ae8e2f809510c825002cb21b61d25ca16bef71aaa139d855eba2e228e723dc7a57fea6_1280.jpg')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
 <p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="nutrition">nutrition</span></p>
 <p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="wellbeing">wellbeing</span></p>
 <p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="prevention">prevention</span></p>
@@ -269,6 +274,10 @@ function update() {
   slides.forEach(function(s, i) { s.classList.toggle('active', i === current); });
   document.getElementById('slideCounter').textContent = (current + 1) + ' / ' + slides.length;
   document.getElementById('progressBar').style.width = ((current + 1) / slides.length) * 100 + '%';
+  // show prev only when not on first slide; next only when not on last
+  var pb = document.getElementById('prevBtn'), nb = document.getElementById('nextBtn');
+  if (pb) pb.style.visibility = current === 0 ? 'hidden' : 'visible';
+  if (nb) nb.style.visibility = current === slides.length - 1 ? 'hidden' : 'visible';
 }
 update();
 
