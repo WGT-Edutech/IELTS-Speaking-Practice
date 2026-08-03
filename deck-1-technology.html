@@ -241,27 +241,25 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 </div>
 
 <script>
-var vocabDict = {
-  "innovation": {"pos": "?", "en": "innovation", "fr": "innovation", "de": "Innovation", "es": "innovación", "it": "innovazione", "pt": "inovação", "nl": "innovatie", "ja": "イノベーション"},
-  "digital": {"pos": "?", "en": "digital", "fr": "digital", "de": "digital", "es": "digital", "it": "digitale", "pt": "digital", "nl": "vinger-", "ja": "デジタル"},
-  "automation": {"pos": "?", "en": "automation", "fr": "automation", "de": "Automatisierung", "es": "automatización", "it": "automazione", "pt": "automação", "nl": "automatisering", "ja": "自動化"},
-  "influence": {"pos": "?", "en": "influence", "fr": "influence", "de": "Einfluss", "es": "influencia", "it": "influenza", "pt": "influência", "nl": "invloed", "ja": "影響力"},
-  "invention": {"pos": "?", "en": "invention", "fr": "invention", "de": "Erfindung", "es": "invención", "it": "invenzione", "pt": "invenção", "nl": "uitvinding", "ja": "発明"},
-  "mandatory": {"pos": "?", "en": "mandatory", "fr": "obligatoire", "de": "obligatorisch", "es": "obligatorio", "it": "obbligatorio", "pt": "mandatório", "nl": "verplicht", "ja": "強制的な"},
-  "device": {"pos": "?", "en": "device", "fr": "dispositif", "de": "Gerät", "es": "dispositivo", "it": "apparecchio", "pt": "aparelho", "nl": "toestel", "ja": "装置"},
-  "breakthrough": {"pos": "?", "en": "breakthrough", "fr": "percée", "de": "bahnbrechend", "es": "brecha", "it": "breccia", "pt": "brecha", "nl": "doorbraak", "ja": "突破"},
-  "integrated": {"pos": "?", "en": "integrated", "fr": "intégré", "de": "integriert", "es": "integrado", "it": "integrato", "pt": "integrado"},
-  "sophisticated": {"pos": "?", "en": "sophisticated", "fr": "sophistiqué", "de": "erfahren", "es": "sofisticado", "it": "sofisticato", "pt": "sofisticado", "nl": "wereldwijs"},
-  "scientific": {"pos": "?", "en": "scientific", "fr": "scientifique", "de": "wissenschaftlich", "es": "científico", "it": "scientifico", "pt": "científico", "nl": "wetenschappelijk", "ja": "科学的"},
-  "technological": {"pos": "?", "en": "technological", "fr": "technologique", "de": "technologisch", "es": "tecnológico", "it": "tecnologico", "pt": "tecnológico", "nl": "technologisch", "ja": "技術の"},
-  "essential": {"pos": "?", "en": "essential", "fr": "indispensable", "de": "essenziell", "es": "esencial", "it": "necessario", "pt": "essencial", "nl": "essentieel", "ja": "不可欠な"},
-  "reliant": {"pos": "?", "en": "reliant", "fr": "dépendant", "de": "abhängig", "es": "dependiente", "it": "dipendente", "pt": "dependente"},
-  "predominantly": {"pos": "?", "en": "predominantly", "fr": "principalement", "de": "vorwiegend", "es": "principalmente", "it": "prevalentemente", "pt": "principalmente"},
-  "obsolete": {"pos": "?", "en": "obsolete", "fr": "obsolète", "de": "veraltet", "es": "obsoleto", "it": "obsoleto", "pt": "obsoleto", "nl": "verouderd", "ja": "廃れた"},
-  "anticipate": {"pos": "?", "en": "anticipate", "fr": "anticiper", "de": "vorgreifen", "es": "anticiparse", "it": "anticipare", "pt": "antecipar-se", "ja": "予想する"},
-  "correspondence": {"pos": "?", "en": "correspondence", "fr": "correspondance", "de": "Briefwechsel", "es": "correspondencia", "it": "corrispondenza", "pt": "correspondência", "nl": "briefwisseling", "ja": "文通"},
-  "significantly": {"pos": "?", "en": "significantly", "fr": "considérablement", "de": "wesentlich", "es": "significativamente", "it": "significativamente", "pt": "significativamente", "nl": "voelbaar", "ja": "著しく"}
-};
+var vocabDict = {"innovation": {"pos": "?", "en": "a new idea, method, or product that is introduced", "fr": "innovation", "de": "Innovation", "es": "innovación", "it": "innovazione", "pt": "inovação", "nl": "innovatie", "ja": "イノベーション"},
+  "digital": {"pos": "?", "en": "using or relating to computer technology, especially the internet", "fr": "digital", "de": "digital", "es": "digital", "it": "digitale", "pt": "digital", "nl": "vinger-", "ja": "デジタル"},
+  "automation": {"pos": "?", "en": "the use of machines or computers to do work without people", "fr": "automation", "de": "Automatisierung", "es": "automatización", "it": "automazione", "pt": "automação", "nl": "automatisering", "ja": "自動化"},
+  "influence": {"pos": "?", "en": "the power to affect how someone thinks or behaves", "fr": "influence", "de": "Einfluss", "es": "influencia", "it": "influenza", "pt": "influência", "nl": "invloed", "ja": "影響力"},
+  "invention": {"pos": "?", "en": "a new device or process that someone has created", "fr": "invention", "de": "Erfindung", "es": "invención", "it": "invenzione", "pt": "invenção", "nl": "uitvinding", "ja": "発明"},
+  "mandatory": {"pos": "?", "en": "required by law or rules; compulsory", "fr": "obligatoire", "de": "obligatorisch", "es": "obligatorio", "it": "obbligatorio", "pt": "mandatório", "nl": "verplicht", "ja": "強制的な"},
+  "device": {"pos": "?", "en": "a piece of electronic equipment, such as a phone or computer", "fr": "dispositif", "de": "Gerät", "es": "dispositivo", "it": "apparecchio", "pt": "aparelho", "nl": "toestel", "ja": "装置"},
+  "breakthrough": {"pos": "?", "en": "an important discovery that helps solve a problem", "fr": "percée", "de": "bahnbrechend", "es": "brecha", "it": "breccia", "pt": "brecha", "nl": "doorbraak", "ja": "突破"},
+  "integrated": {"pos": "?", "en": "combined together so that parts work as a single system", "fr": "intégré", "de": "integriert", "es": "integrado", "it": "integrato", "pt": "integrado"},
+  "sophisticated": {"pos": "?", "en": "advanced, complex, and highly developed", "fr": "sophistiqué", "de": "erfahren", "es": "sofisticado", "it": "sofisticato", "pt": "sofisticado", "nl": "wereldwijs"},
+  "scientific": {"pos": "?", "en": "related to science or based on careful testing", "fr": "scientifique", "de": "wissenschaftlich", "es": "científico", "it": "scientifico", "pt": "científico", "nl": "wetenschappelijk", "ja": "科学的"},
+  "technological": {"pos": "?", "en": "related to technology or modern machines", "fr": "technologique", "de": "technologisch", "es": "tecnológico", "it": "tecnologico", "pt": "tecnológico", "nl": "technologisch", "ja": "技術の"},
+  "essential": {"pos": "?", "en": "absolutely necessary; extremely important", "fr": "indispensable", "de": "essenziell", "es": "esencial", "it": "necessario", "pt": "essencial", "nl": "essentieel", "ja": "不可欠な"},
+  "reliant": {"pos": "?", "en": "depending on someone or something for support", "fr": "dépendant", "de": "abhängig", "es": "dependiente", "it": "dipendente", "pt": "dependente"},
+  "predominantly": {"pos": "?", "en": "mostly; mainly", "fr": "principalement", "de": "vorwiegend", "es": "principalmente", "it": "prevalentemente", "pt": "principalmente"},
+  "obsolete": {"pos": "?", "en": "no longer used because something newer has replaced it", "fr": "obsolète", "de": "veraltet", "es": "obsoleto", "it": "obsoleto", "pt": "obsoleto", "nl": "verouderd", "ja": "廃れた"},
+  "anticipate": {"pos": "?", "en": "to expect or predict that something will happen", "fr": "anticiper", "de": "vorgreifen", "es": "anticiparse", "it": "anticipare", "pt": "antecipar-se", "ja": "予想する"},
+  "correspondence": {"pos": "?", "en": "written communication, especially letters or emails", "fr": "correspondance", "de": "Briefwechsel", "es": "correspondencia", "it": "corrispondenza", "pt": "correspondência", "nl": "briefwisseling", "ja": "文通"},
+  "significantly": {"pos": "?", "en": "in an important or noticeable way", "fr": "considérablement", "de": "wesentlich", "es": "significativamente", "it": "significativamente", "pt": "significativamente", "nl": "voelbaar", "ja": "著しく"}};
 
 var tooltip = document.getElementById('vocabTooltip');
 var langLabels = {fr:"FR",de:"DE",es:"ES",it:"IT",pt:"PT",nl:"NL",ja:"JP",zh:"CN"};
