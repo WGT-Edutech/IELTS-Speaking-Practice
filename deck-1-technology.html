@@ -33,9 +33,6 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:clamp(1.1rem,2vw,1.5rem);line-height:1.75}
 /* ── Ambient Particles Canvas ── */
-#particles{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5}
-#dots{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.15}
-#glow{position:fixed;inset:0;z-index:0;pointer-events:none}
 /* ── Glare Sweep ── */
 .glare{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 80% 20%,var(--accent-glow) 0%,transparent 60%);animation:glare-sweep 8s ease-in-out infinite;opacity:.4}
 @keyframes glare-sweep{0%,100%{transform:translate(0,0)}25%{transform:translate(-10%,5%)}50%{transform:translate(5%,-3%)}75%{transform:translate(-3%,-5%)}}
@@ -144,12 +141,37 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 
 /* specular-fx: adds the shine to ANY button without fighting its own styles */
 .specular-fx { position: relative; }
+/* keep fixed-position controls anchored despite specular-fx */
+.theme-btn.specular-fx, .home-link.specular-fx { position: fixed; }
+
+/* Specular fallback for browsers without WebGL2: rotating edge shine */
+.specular-fallback::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(from var(--sb-angle, 0deg),
+    transparent 0deg,
+    var(--accent) 60deg,
+    #ffffff 90deg,
+    var(--accent) 120deg,
+    transparent 180deg,
+    transparent 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: sb-shine 2.6s linear infinite;
+  pointer-events: none;
+  z-index: 3;
+  opacity: .85;
+}
+@keyframes sb-shine { to { --sb-angle: 360deg; } }
+@property --sb-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 .specular-button__label { display: inline-flex; align-items: center; justify-content: center; }
 </style></head>
 <body>
-<canvas id="particles"></canvas>
-<canvas id="dots"></canvas>
-<canvas id="glow"></canvas>
 <div class="progress-bar" id="progressBar"></div>
 <a href="index.html" class="home-link">&larr; Portal</a>
 <button class="theme-btn specular-fx" id="themeBtn" title="Cycle theme" style="color:var(--accent)"><span class="specular-button__label">
@@ -290,101 +312,6 @@ document.addEventListener('click', function(e) {
   tooltip.style.left = Math.min(rect.left, window.innerWidth - 340) + 'px';
 });
 
-// ── Mouse-reactive WebGL background ──
-(function(){
-  var c = document.getElementById('particles');
-  var gl = c.getContext('webgl',{alpha:true}) || c.getContext('experimental-webgl',{alpha:true});
-  if (!gl) { c.style.display='none'; return; }
-  var mx=0.5,my=0.5;
-  document.addEventListener('mousemove',function(e){mx=e.clientX/c.width;my=1-e.clientY/c.height;});
-  var vs=gl.createShader(gl.VERTEX_SHADER);
-  gl.shaderSource(vs,'attribute vec2 p;void main(){gl_Position=vec4(p,0,1);}');
-  gl.compileShader(vs);
-  var fs=gl.createShader(gl.FRAGMENT_SHADER);
-  gl.shaderSource(fs,'precision highp float;uniform vec2 r;uniform vec2 m;uniform float t;uniform vec3 tc;vec3 hsv(float h){vec3 c=mix(vec3(1),clamp(abs(fract(h+vec3(1,2,3)/3.)*6.-3.)-1.,0.,1.),.85);return c*mix(1.,.7,c);}void main(){vec2 uv=(gl_FragCoord.xy-r*.5)/r.y;float d=length(uv);float a=atan(uv.y,uv.x);float n=sin(a*5.+t*.3)*cos(d*3.-t*.2)+sin(d*4.+t*.4)*cos(a*3.);n+=sin(uv.x*6.+t*.5)*cos(uv.y*5.+t*.3)*.4;vec2 mp=(m-gl_FragCoord.xy/r)*vec2(1,-1);float g=.015/(length(mp)+.015);vec3 col=hsv(fract(n*.2+t*.05+.5));col+=hsv(fract(n*.15+t*.03+.8))*g*.3;col=mix(tc,col,.6);col+=vec3(g*.04);gl_FragColor=vec4(col,1.);}');
-  gl.compileShader(fs);
-  var p=gl.createProgram();
-  gl.attachShader(p,vs);gl.attachShader(p,fs);gl.linkProgram(p);gl.useProgram(p);
-  var b=gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER,b);
-  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
-  var a=gl.getAttribLocation(p,'p');
-  gl.enableVertexAttribArray(a);gl.vertexAttribPointer(a,2,gl.FLOAT,false,0,0);
-  var ur=gl.getUniformLocation(p,'r'),um=gl.getUniformLocation(p,'m'),ut=gl.getUniformLocation(p,'t'),uc=gl.getUniformLocation(p,'tc');
-    function resize(){c.width=c.offsetWidth;c.height=c.offsetHeight;gl.viewport(0,0,c.width,c.height);}
-    resize();window.addEventListener('resize',resize);
-    function hexToRgb(h){var r=parseInt(h.slice(1,3),16)/255,g=parseInt(h.slice(3,5),16)/255,b=parseInt(h.slice(5,7),16)/255;return[r,g,b];}
-    var t0=performance.now();
-    function draw(ts){
-      var style=getComputedStyle(document.body);
-      var bg=style.getPropertyValue('--bg').trim()||'#0d0b1a';
-      var tc=hexToRgb(bg);
-      gl.uniform2f(ur,c.width,c.height);
-      gl.uniform2f(um,mx*c.width,my*c.height);
-      gl.uniform1f(ut,(ts-t0)*.001);
-      gl.uniform3f(uc,tc[0],tc[1],tc[2]);
-      gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
-      requestAnimationFrame(draw);
-    }
-  requestAnimationFrame(draw);
-  })();
-
-  // ── Mouse Glow Trail ──
-  (function(){
-    var c = document.getElementById('glow');
-    var ctx = c.getContext('2d');
-    var mx = -100, my = -100, rx = -100, ry = -100;
-    function resize(){ c.width = window.innerWidth; c.height = window.innerHeight; }
-    resize(); window.addEventListener('resize', resize);
-    document.addEventListener('mousemove', function(e){ mx = e.clientX; my = e.clientY; });
-    var trail = [];
-    function draw(){
-      rx += (mx - rx) * 0.08; ry += (my - ry) * 0.08;
-      trail.push({x: rx, y: ry, a: 1});
-      if (trail.length > 30) trail.shift();
-      ctx.clearRect(0, 0, c.width, c.height);
-      var accent = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#f070a0';
-      for (var i = 0; i < trail.length; i++) {
-        var t = trail[i];
-        var r = 4 + (i / trail.length) * 12;
-        var alpha = (i / trail.length) * 0.12;
-        var grad = ctx.createRadialGradient(t.x, t.y, 0, t.x, t.y, r);
-        grad.addColorStop(0, accent + '40');
-        grad.addColorStop(1, 'transparent');
-        ctx.fillStyle = grad;
-        ctx.beginPath(); ctx.arc(t.x, t.y, r, 0, Math.PI*2); ctx.fill();
-      }
-      requestAnimationFrame(draw);
-    }
-    requestAnimationFrame(draw);
-  })();
-
-  // ── Dot Grid ──
-  (function(){
-    var c = document.getElementById('dots');
-    var ctx = c.getContext('2d');
-    var mx = 0, my = 0, gap = 28, dotR = 2, proximity = 120;
-    document.addEventListener('mousemove', function(e){ mx = e.clientX; my = e.clientY; });
-    function resize(){ c.width = window.innerWidth; c.height = window.innerHeight; }
-    resize(); window.addEventListener('resize', resize);
-    function draw(){
-      ctx.clearRect(0,0,c.width,c.height);
-      var accent = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#f070a0';
-      ctx.fillStyle = accent;
-      for (var x = gap; x < c.width; x += gap) {
-        for (var y = gap; y < c.height; y += gap) {
-          var dx = mx - x, dy = my - y, dist = Math.sqrt(dx*dx+dy*dy);
-          var r = dist < proximity ? dotR + (1 - dist/proximity) * 4 : dotR;
-          ctx.globalAlpha = dist < proximity ? 0.4 + (1 - dist/proximity) * 0.3 : 0.2;
-          ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.fill();
-        }
-      }
-      ctx.globalAlpha = 1;
-      requestAnimationFrame(draw);
-    }
-    requestAnimationFrame(draw);
-  })();
-
 var themes = ["Classic","Forest","Violet","Rose","Ocean","Warm","Indigo"];
 var currentTheme = parseInt(localStorage.getItem('ielts-b2-theme')) || 1;
 var themeIcons = {1: '<path d="M12 18.176a3 3 0 1 1 -4.953 -2.449l-.025 .023a4.502 4.502 0 0 1 1.483 -8.75c1.414 0 2.675 .652 3.5 1.671a4.5 4.5 0 1 1 4.983 7.079a3 3 0 1 1 -4.983 2.25l-.005 .176"/><path d="M12 19v-10"/><path d="M9 3l3 2l3 -2"/>', 2: '<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>', 3: '<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/>', 4: '<path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/>', 5: '<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>', 6: '<path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/>', 7: '<path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/><path d="M18 5h4"/><path d="M20 3v4"/>'};
@@ -514,7 +441,7 @@ update();
     var canvas = document.createElement('canvas');
     fx.appendChild(canvas);
     var gl = canvas.getContext('webgl2', { alpha: true, premultipliedAlpha: true, antialias: true });
-    if (!gl) return;
+    if (!gl) { btn.classList.add('specular-fallback'); return; }
     gl.clearColor(0, 0, 0, 0);
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
@@ -610,7 +537,7 @@ update();
       var target = steer ? pointerAngle : idleAngle;
       var diff = ((target - angle + Math.PI*3) % (Math.PI*2)) - Math.PI;
       angle += diff * (1 - Math.exp(-dt * 7));
-      var brightTarget = 0.75 + proximityT * 0.25;  // always-on shine, brighter on hover
+      var brightTarget = 0.9 + proximityT * 0.1;  // always-on shine, brighter on hover
       bright += (brightTarget - bright) * (1 - Math.exp(-dt * 8));
 
       gl.uniform1f(U.uAngle, angle);
@@ -620,7 +547,7 @@ update();
       gl.uniform1f(U.uIntensity, bright);
       gl.uniform1f(U.uShineSize, (10 * Math.PI) / 180);
       gl.uniform1f(U.uShineFade, (40 * Math.PI) / 180);
-      gl.uniform1f(U.uThickness, 1 * dpr);
+      gl.uniform1f(U.uThickness, 2.5 * dpr);
       gl.uniform1f(U.uBaseWidth, dpr);
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
