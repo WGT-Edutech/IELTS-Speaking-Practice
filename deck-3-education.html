@@ -33,7 +33,7 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 .card p{font-size:1.2rem;line-height:1.7;text-shadow:0 1px 3px rgba(0,0,0,.55),0 0 12px rgba(0,0,0,.3)}
 .cue-box{background:color-mix(in srgb,var(--bg) 58%,transparent);border:2px solid var(--accent-glow);box-shadow:0 0 30px var(--accent-glow);border-radius:14px;padding:1.4em 1.8em;margin:1em 0;text-align:center}
 .cue-box .cue-main{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--accent);font-size:1.8rem;margin-bottom:.6em;text-shadow:0 0 18px var(--accent-glow),0 2px 4px rgba(0,0,0,.6);animation:popGlow 3.2s ease-in-out infinite}
-.cue-box .cue-bullets{font-size:1.25rem;color:var(--text);text-shadow:0 1px 3px rgba(0,0,0,.55)}
+.cue-box ul.cue-bullets{list-style:disc;padding-left:1.6em;margin:.4em 0;text-align:left}.cue-box ul.cue-bullets li{font-size:1.2rem;color:var(--text);margin:.35em 0;line-height:1.6;text-shadow:0 1px 3px rgba(0,0,0,.55)}
 .mark-complete-btn{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.4);color:var(--green);font-family:'Inter',sans-serif;font-size:1.05rem;padding:10px 24px;border-radius:24px;cursor:pointer;transition:all .2s;font-weight:600;min-width:44px;min-height:44px}
 .mark-complete-btn:hover{background:rgba(52,211,153,.2);box-shadow:0 0 15px rgba(52,211,153,.3);transform:scale(1.05)}
 .mark-complete-btn.completed{background:rgba(52,211,153,.25);border-color:rgba(52,211,153,.7);box-shadow:0 0 20px rgba(52,211,153,.4)}
@@ -143,30 +143,35 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
   <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
 </span></button>
 
-<section class="slide active" style="background-image:url('https://plus.unsplash.com/premium_photo-1671070687944-30bbb45f40bd?w=1600&amp;q=80')"><div class="content narrow" style="text-align:center;"><h1>Education &amp; Learning</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2</p><p style="font-size:1.05rem;color:var(--text-dim);margin-top:.5em;">6 Part 1 questions &middot; 1 Part 2 cue card &middot; 4 Part 3 discussion questions</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
+<section class="slide active" style="background-image:url('https://pixabay.com/get/g344bfb6251606c73a76a785084db3e49d3e816f0479b66f56646a94a30af08ac803a2239669938ac12454dff4f25c7c32cce9a5e31373e226726c3cb108dd468_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Education &amp; Learning</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1681681082165-fd333bbc037a?w=1600&amp;q=80')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g7e025ecd438ec6c0e3f9fc8911eccac805aec0a491298f8c6a14130f198d83bb51aeb43872be67771b9cfd82fcdb9f67597f6c65563c9acadca361e5528376a1_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
 <div class="card"><span class="ctag">Question 1 &middot; Major</span><p>Why did you choose your major or field of study?</p></div>
 <div class="card"><span class="ctag">Question 2 &middot; Books</span><p>What kind of books do you like to read?</p></div>
 <div class="card"><span class="ctag">Question 3 &middot; High School</span><p>Do you still keep in touch with friends from high school?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1661942126259-fb08e7cce1e2?w=1600&amp;q=80')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g2382b8117095cc1ac7e01896d6208de39075d1e2fe895fafea15ccc1a6028ba03297beb01d19c19f2c5365889ae512075ce5c7675f25ad68d629c05b594e3879_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
 <div class="card"><span class="ctag">Question 4 &middot; Teachers</span><p>Who was your favourite teacher in high school?</p></div>
 <div class="card"><span class="ctag">Question 5 &middot; Study</span><p>Do you work or are you a student?</p></div>
 <div class="card"><span class="ctag">Question 6 &middot; Books</span><p>Do you think electronic books are better than paper books?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/photo-1721814055224-d7165bf5238b?w=1600&amp;q=80')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe a school you attended or are attending.</div><div class="cue-bullets">what it looks like from the outside &middot; what it looks like inside &middot; what facilities it has &middot; and explain whether it is a good school building</div></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g500c889f81e6464784c41e6f61852761c8fd683207bade225b241b2f9aca3bb709708694e0df6f4269803c427cd170859d3261de1a1fed9d2cdfd7a7bb6f15f3_1280.jpg')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe a school you attended or are attending.</div><ul class="cue-bullets">
+      <li>what it looks like from the outside</li>
+      <li>what it looks like inside</li>
+      <li>what facilities it has</li>
+      <li>and explain whether it is a good school building</li>
+    </ul></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1669652639337-c513cc42ead6?w=1600&amp;q=80')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g91cd139618aca980e77d94abac98f8ac33619f577672e8c991f1cd35b457798ba1a1e02265749af469acb2f45d20a24546cd934c459ea7a0000c5ef4780c3edb_1280.jpg')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
 <div class="card"><span class="ctag">Discussion 1</span><p>How are education priorities today different from those in the past?</p></div>
 <div class="card"><span class="ctag">Discussion 2</span><p>What is your opinion on the way languages are taught in schools?</p></div>
 <div class="card"><span class="ctag">Discussion 3</span><p>How can the type of school you attend affect career success?</p></div>
 <div class="card"><span class="ctag">Discussion 4</span><p>What changes do you think will happen in classrooms in the near future?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1664372145591-f7cc308ff5da?w=1600&amp;q=80')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
+<section class="slide" style="background-image:url('https://pixabay.com/get/g75923fc2bbfe2cfff2c1b9c16ad8fc1e42524a30c3ce7ed79bd71923a432326e4f1cd8727d69b675ab36abcdc56212593ca9deb133f0b73890786fab12f4ed10_1280.jpg')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
 <p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="curriculum">curriculum</span></p>
 <p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="academic">academic</span></p>
 <p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="scholarship">scholarship</span></p>
@@ -269,6 +274,10 @@ function update() {
   slides.forEach(function(s, i) { s.classList.toggle('active', i === current); });
   document.getElementById('slideCounter').textContent = (current + 1) + ' / ' + slides.length;
   document.getElementById('progressBar').style.width = ((current + 1) / slides.length) * 100 + '%';
+  // show prev only when not on first slide; next only when not on last
+  var pb = document.getElementById('prevBtn'), nb = document.getElementById('nextBtn');
+  if (pb) pb.style.visibility = current === 0 ? 'hidden' : 'visible';
+  if (nb) nb.style.visibility = current === slides.length - 1 ? 'hidden' : 'visible';
 }
 update();
 
