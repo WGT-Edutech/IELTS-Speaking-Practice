@@ -135,6 +135,19 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 @keyframes sb-shine { to { --sb-angle: 360deg; } }
 @property --sb-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 .specular-button__label { display: inline-flex; align-items: center; justify-content: center; }
+
+/* ═══ Timer (matches deck-1) ═══ */
+.timer-trigger{display:inline-flex;align-items:center;gap:5px;background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:5px 12px;border-radius:14px;cursor:pointer;transition:all .15s;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.timer-trigger:hover{background:var(--accent-glow);box-shadow:0 0 8px var(--accent-glow)}
+.timer-popup{display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:500;align-items:center;justify-content:center;padding:8px 0}
+.timer-popup.show{display:flex}
+.timer-popup-box{display:flex;align-items:center;gap:14px;background:color-mix(in srgb,var(--bg) 92%,transparent);border:1px solid var(--accent-glow);border-radius:0 0 16px 16px;padding:10px 24px;backdrop-filter:blur(16px);box-shadow:0 4px 24px var(--accent-glow)}
+.timer-popup-box .timer-display{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:700;color:var(--accent);min-width:60px;text-align:center}
+.timer-popup-box .timer-phase{font-size:.85rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
+.timer-btn{background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:6px 14px;border-radius:18px;cursor:pointer;transition:all .15s;min-width:44px;min-height:34px;box-shadow:0 0 8px var(--accent-glow)}
+.timer-btn:hover{box-shadow:0 0 18px var(--accent-glow);transform:scale(1.05)}
+.timer-btn:active{transform:scale(.95)}
+.timer-btn.running{background:var(--accent-glow);border-color:var(--accent)}
 </style></head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
@@ -145,30 +158,30 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 
 <section class="slide active" style="background-image:url('https://pixabay.com/get/g49b40affac4061be226a6359a55099a35cdd93e458f46b5225521b195b2b36912f97ffd0a02944eb4f6ba01f901e089f8cb73839e656451fd4b780cb660efc58_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Globalization</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/geca10415872bcaeeb2907fad5eff7c51ed85431cabd4a34712cd09e92dc0d770c4e17bd62f3981d369f389c1335bd0ed3abd65efdbda5f4aa833b75c7833b82f_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/geca10415872bcaeeb2907fad5eff7c51ed85431cabd4a34712cd09e92dc0d770c4e17bd62f3981d369f389c1335bd0ed3abd65efdbda5f4aa833b75c7833b82f_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 1&ndash;3</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span>
 <div class="card"><span class="ctag">Question 1 &middot; Travel</span><p>Where was the last place you visited on holiday?</p></div>
-<div class="card"><span class="ctag">Question 2 &middot; Internet</span><p>How important is the Internet to you?</p></div>
-<div class="card"><span class="ctag">Question 3 &middot; Language</span><p>Do you speak any foreign languages?</p></div>
+<div class="card"><span class="ctag">Question 2 &middot; Internet</span><p>How important is the <span class="vocab-word" data-word="internet">Internet</span> to you?</p></div>
+<div class="card"><span class="ctag">Question 3 &middot; Language</span><p>Do you speak any <span class="vocab-word" data-word="foreign">foreign</span> languages?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g2016380fcc72a9d7c523e9c3d01f58b19b25638efd631aca47846dfb9a7bba6a06515b82b549f007dffab9392eb64a57f15105082b1e3a656981fb4adff94d6a_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
-<div class="card"><span class="ctag">Question 4 &middot; Food</span><p>Do you enjoy cooking food from other countries?</p></div>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g2016380fcc72a9d7c523e9c3d01f58b19b25638efd631aca47846dfb9a7bba6a06515b82b549f007dffab9392eb64a57f15105082b1e3a656981fb4adff94d6a_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 4&ndash;6</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span>
+<div class="card"><span class="ctag">Question 4 &middot; Food</span><p>Do you enjoy cooking food from other <span class="vocab-word" data-word="countries">countries</span>?</p></div>
 <div class="card"><span class="ctag">Question 5 &middot; Clothes</span><p>Have you ever bought clothes online from another country?</p></div>
 <div class="card"><span class="ctag">Question 6 &middot; Travel</span><p>Would you like to go back there again?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g59adbd2b85bfbbcbc91a10ab85b4aedf953d142e15c5a963ecb95722f332225adb05536f06533eeb70cf79f729d70ddfa24f38daab7956a0e8469e7e16d22715_1280.jpg')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe a small business you want to start.</div><ul class="cue-bullets">
-      <li>what business it would be</li>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g59adbd2b85bfbbcbc91a10ab85b4aedf953d142e15c5a963ecb95722f332225adb05536f06533eeb70cf79f729d70ddfa24f38daab7956a0e8469e7e16d22715_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 2 &middot; Cue Card</h2><span class="timer-trigger" onclick="openTimer('p2',120)">⏱ 2:00</span><div class="cue-box"><div class="cue-main">Describe a small <span class="vocab-word" data-word="business">business</span> you want to start.</div><ul class="cue-bullets">
+      <li>what <span class="vocab-word" data-word="business">business</span> it would be</li>
       <li>when you want to start it</li>
       <li>why you have not started it yet</li>
-      <li>and explain why you want to start this business</li>
+      <li>and explain why you want to start this <span class="vocab-word" data-word="business">business</span></li>
     </ul></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g118608784ddf8cf26bda09e9e2a38a1f250b49f08eece6c39f887036481c56dfc535d85087d85a194611eb0972c66e979e2e4fef27415007c0d04991f21915e2_1280.jpg')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
-<div class="card"><span class="ctag">Discussion 1</span><p>In your opinion, do business people have to work long hours?</p></div>
-<div class="card"><span class="ctag">Discussion 2</span><p>How can a small business grow big?</p></div>
-<div class="card"><span class="ctag">Discussion 3</span><p>What are the impacts of globalisation on small and large businesses?</p></div>
-<div class="card"><span class="ctag">Discussion 4</span><p>What skills are required to start a small business?</p></div>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g118608784ddf8cf26bda09e9e2a38a1f250b49f08eece6c39f887036481c56dfc535d85087d85a194611eb0972c66e979e2e4fef27415007c0d04991f21915e2_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 3 &middot; Discussion</h2><span class="timer-trigger" onclick="openTimer('p3',270)">⏱ 4:30</span>
+<div class="card"><span class="ctag">Discussion 1</span><p>In your <span class="vocab-word" data-word="opinion">opinion</span>, do <span class="vocab-word" data-word="business">business</span> people have to work long hours?</p></div>
+<div class="card"><span class="ctag">Discussion 2</span><p>How can a small <span class="vocab-word" data-word="business">business</span> grow big?</p></div>
+<div class="card"><span class="ctag">Discussion 3</span><p>What are the <span class="vocab-word" data-word="impacts">impacts</span> of <span class="vocab-word" data-word="globalisation">globalisation</span> on small and large businesses?</p></div>
+<div class="card"><span class="ctag">Discussion 4</span><p>What skills are required to start a small <span class="vocab-word" data-word="business">business</span>?</p></div>
 </div></section>
 
 <section class="slide" style="background-image:url('https://pixabay.com/get/gb6da365544ba92d7d9a19ebd4106ca30638c49a174538e39eac1e83d92d656f151ffb58d2ffb3cc500d8f2644a332aec003d898e0274d8ec8219cc7278ba06c5_1280.jpg')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
@@ -189,18 +202,7 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 <div class="vocab-tooltip" id="vocabTooltip"><span class="tt-pos" id="ttPos"></span> <span class="tt-word" id="ttWord"></span><div class="tt-def" id="ttDef"></div></div>
 
 <script>
-var vocabDict = {
-  "globalisation": {"pos": "noun", "def": "the process by which businesses develop international influence"},
-  "interconnected": {"pos": "adj", "def": "connected with each other in many different ways"},
-  "multinational": {"pos": "adj", "def": "operating in several countries"},
-  "outsourcing": {"pos": "noun", "def": "obtaining goods or services from an outside foreign supplier"},
-  "homogenisation": {"pos": "noun", "def": "the process of making things similar or uniform"},
-  "migration": {"pos": "noun", "def": "movement of people from one place to another"},
-  "diplomacy": {"pos": "noun", "def": "the management of relationships between countries"},
-  "trade": {"pos": "noun", "def": "the activity of buying and selling goods and services"},
-  "integration": {"pos": "noun", "def": "combining or bringing together different groups or systems"},
-  "cosmopolitan": {"pos": "adj", "def": "familiar with and at ease in many different countries and cultures"}
-};
+var vocabDict = {"globalisation": {"pos": "noun", "def": "the process by which businesses develop international influence"}, "interconnected": {"pos": "adj", "def": "connected with each other in many different ways"}, "multinational": {"pos": "adj", "def": "operating in several countries"}, "outsourcing": {"pos": "noun", "def": "obtaining goods or services from an outside foreign supplier"}, "homogenisation": {"pos": "noun", "def": "the process of making things similar or uniform"}, "migration": {"pos": "noun", "def": "movement of people from one place to another"}, "diplomacy": {"pos": "noun", "def": "the management of relationships between countries"}, "trade": {"pos": "noun", "def": "the activity of buying and selling goods and services"}, "integration": {"pos": "noun", "def": "combining or bringing together different groups or systems"}, "cosmopolitan": {"pos": "adj", "def": "familiar with and at ease in many different countries and cultures"}, "business": {"pos": "noun", "def": "the activity of buying and selling goods and services"}, "foreign": {"pos": "adj", "def": "from another country"}, "internet": {"pos": "noun", "def": "the global computer network"}, "impacts": {"pos": "noun", "def": "the effects something has"}, "countries": {"pos": "noun", "def": "nations, lands with their own government"}, "opinion": {"pos": "noun", "def": "what you think about something"}};
 
 var tooltip = document.getElementById('vocabTooltip');
 document.addEventListener('mouseover', function(e) {
@@ -480,5 +482,36 @@ update();
   else initAll();
 })();
 
+
+// ═══ Popup Timer ═══
+var tpInterval = null, tpSeconds = 0, tpLabel = '', tpMuted = false;
+function openTimer(label, secs) { tpLabel = label; tpSeconds = secs; document.getElementById('tpLabel').textContent = label === 'p1' ? 'Part 1' : label === 'p2' ? 'Part 2' : 'Part 3'; updateTPDisplay(); var b = document.getElementById('tpStartBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); document.getElementById('timerPopup').classList.add('show'); }
+function closeTimer() { if (tpInterval) { clearInterval(tpInterval); tpInterval = null; } document.getElementById('timerPopup').classList.remove('show'); }
+function toggleTP() {
+  var b = document.getElementById('tpStartBtn'), l = b ? b.querySelector('.specular-button__label') : null;
+  if (tpInterval) { clearInterval(tpInterval); tpInterval = null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); return; }
+  if (l) l.textContent = '⏸ Pause'; if (b) b.classList.add('running');
+  tpInterval = setInterval(function() {
+    tpSeconds--; updateTPDisplay();
+    if (tpSeconds <= 0) { clearInterval(tpInterval); tpInterval = null; if (l) l.textContent = '↻ Done'; if (b) b.classList.remove('running'); beep(1320, 0.6); }
+  }, 1000);
+}
+function restartTP() { if (tpInterval) { clearInterval(tpInterval); tpInterval = null; } tpSeconds = tpLabel === 'p1' ? 270 : tpLabel === 'p2' ? 120 : 270; updateTPDisplay(); var b = document.getElementById('tpStartBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); }
+function toggleMuteTP() { tpMuted = !tpMuted; var b = document.getElementById('tpMuteBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = tpMuted ? '🔊' : '🔇'; }
+function updateTPDisplay() { var m = Math.floor(tpSeconds / 60), s = tpSeconds % 60; document.getElementById('tpDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s; }
+function beep(freq, dur) { if (tpMuted) return; try { var ctx = new (window.AudioContext||window.webkitAudioContext)(), o = ctx.createOscillator(), g = ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.frequency.value = freq; o.type = 'sine'; g.gain.setValueAtTime(0.15, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur); o.start(); o.stop(ctx.currentTime + dur); } catch(e) {} }
+
 </script>
+
+<div class="timer-popup" id="timerPopup">
+  <div class="timer-popup-box">
+    <span class="timer-phase" id="tpLabel">Timer</span>
+    <span class="timer-display" id="tpDisplay">0:00</span>
+    <button class="timer-btn specular-fx" id="tpStartBtn" onclick="toggleTP()"><span class="specular-button__label">▶ Play</span></button>
+    <button class="timer-btn specular-fx" id="tpRestartBtn" onclick="restartTP()"><span class="specular-button__label">↺</span></button>
+    <button class="timer-btn specular-fx" id="tpMuteBtn" onclick="toggleMuteTP()"><span class="specular-button__label">🔇</span></button>
+    <button class="timer-btn specular-fx" onclick="closeTimer()"><span class="specular-button__label">✕</span></button>
+  </div>
+</div>
+
 </body></html>
