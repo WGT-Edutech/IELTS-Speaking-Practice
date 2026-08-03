@@ -312,6 +312,33 @@ function playSwish(dir){
     }
   }, { passive: true });
 
+  // ── Mouse click-and-drag through decks ──
+  var dragX = null, dragMoved = false;
+  document.addEventListener('mousedown', function(e){
+    if (e.button !== 0) return;
+    dragX = e.clientX; dragMoved = false;
+  });
+  document.addEventListener('mousemove', function(e){
+    if (dragX === null) return;
+    var dx = e.clientX - dragX;
+    if (Math.abs(dx) > 8) {
+      dragMoved = true;
+      targetPos += dx > 0 ? -0.35 : 0.35;
+      targetPos = Math.max(0, Math.min(cardEls.length - 1, targetPos));
+      dragX = e.clientX;
+    }
+  });
+  document.addEventListener('mouseup', function(){
+    dragX = null;
+    // if the user dragged, suppress the click that follows (no accidental deck open)
+    if (dragMoved) {
+      dragMoved = false;
+      document.addEventListener('click', suppressOnce, true);
+    }
+  });
+  function suppressOnce(e){ e.stopPropagation(); e.preventDefault(); document.removeEventListener('click', suppressOnce, true); }
+
+
   function frameLoop(){
     requestAnimationFrame(frameLoop);
     var total = cardEls.length;
