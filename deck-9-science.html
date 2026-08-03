@@ -33,7 +33,7 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 .card p{font-size:1.2rem;line-height:1.7;text-shadow:0 1px 3px rgba(0,0,0,.55),0 0 12px rgba(0,0,0,.3)}
 .cue-box{background:color-mix(in srgb,var(--bg) 58%,transparent);border:2px solid var(--accent-glow);box-shadow:0 0 30px var(--accent-glow);border-radius:14px;padding:1.4em 1.8em;margin:1em 0;text-align:center}
 .cue-box .cue-main{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--accent);font-size:1.8rem;margin-bottom:.6em;text-shadow:0 0 18px var(--accent-glow),0 2px 4px rgba(0,0,0,.6);animation:popGlow 3.2s ease-in-out infinite}
-.cue-box .cue-bullets{font-size:1.25rem;color:var(--text);text-shadow:0 1px 3px rgba(0,0,0,.55)}
+.cue-box ul.cue-bullets{list-style:disc;padding-left:1.6em;margin:.4em 0;text-align:left}.cue-box ul.cue-bullets li{font-size:1.2rem;color:var(--text);margin:.35em 0;line-height:1.6;text-shadow:0 1px 3px rgba(0,0,0,.55)}
 .mark-complete-btn{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.4);color:var(--green);font-family:'Inter',sans-serif;font-size:1.05rem;padding:10px 24px;border-radius:24px;cursor:pointer;transition:all .2s;font-weight:600;min-width:44px;min-height:44px}
 .mark-complete-btn:hover{background:rgba(52,211,153,.2);box-shadow:0 0 15px rgba(52,211,153,.3);transform:scale(1.05)}
 .mark-complete-btn.completed{background:rgba(52,211,153,.25);border-color:rgba(52,211,153,.7);box-shadow:0 0 20px rgba(52,211,153,.4)}
@@ -143,30 +143,35 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
   <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
 </span></button>
 
-<section class="slide active" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&amp;q=80')"><div class="content narrow" style="text-align:center;"><h1>Science &amp; Innovation</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2</p><p style="font-size:1.05rem;color:var(--text-dim);margin-top:.5em;">6 Part 1 questions &middot; 1 Part 2 cue card &middot; 4 Part 3 discussion questions</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
+<section class="slide active" style="background-image:url('https://pixabay.com/get/gf0996f7c7590ccf44be8c88099c9ac6607775f62cab67dbed2609cd85bea6f53dc25368b7a2947d5f635910dd1a328f2d39e21a0b8677139e2fe321ac131f449_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Science &amp; Innovation</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1661877737564-3dfd7282efcb?w=1600&amp;q=80')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g696dac90a87986e2dc467afc2dd7c319962d82fbe5e919147abcd2e54d69aecead6acb4f5a4bbc0834549ef59d3f69cf5f7780d491d538df27db6232a9ac84c9_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
 <div class="card"><span class="ctag">Question 1 &middot; Computer</span><p>Do you use computers?</p></div>
 <div class="card"><span class="ctag">Question 2 &middot; Internet</span><p>What are your favourite websites?</p></div>
 <div class="card"><span class="ctag">Question 3 &middot; Mobile Phones</span><p>What do you most use your mobile phone for?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1600&amp;q=80')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g25b919048c448e1e26c68d0bbe775b80b905fd58a84e22986c82541a2abc7972c10afd8962d128694a8561ac9d8e0583_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
 <div class="card"><span class="ctag">Question 4 &middot; Books</span><p>Do you think electronic books are better than real books?</p></div>
 <div class="card"><span class="ctag">Question 5 &middot; Science</span><p>Did you enjoy science classes at school?</p></div>
 <div class="card"><span class="ctag">Question 6 &middot; Internet</span><p>How will the Internet develop in the future?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1661432571518-975c430f529e?w=1600&amp;q=80')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe an area of science that you are interested in.</div><div class="cue-bullets">what it is &middot; what you can learn from it &middot; when you started becoming interested in it &middot; and explain why you find it interesting</div></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
+<section class="slide" style="background-image:url('https://pixabay.com/get/gc197ed098eca90be4ac5d14311d58961103d3c3c6671b34fed8f3eadd225e4e648dfa924fac0c670f09101cf219656eb558d463e3a170b5d753da70fae487551_1280.jpg')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe an area of science that you are interested in.</div><ul class="cue-bullets">
+      <li>what it is</li>
+      <li>what you can learn from it</li>
+      <li>when you started becoming interested in it</li>
+      <li>and explain why you find it interesting</li>
+    </ul></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
 
-<section class="slide" style="background-image:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600&amp;q=80')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g8f7d9161180bf4a33e53a2edb28ea12862f3aed6b68693f206d16e31f0795eac7d3e773b801b4bb96da9ea7c2fcea4393653612171094b562209540d6dbeab48_1280.jpg')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
 <div class="card"><span class="ctag">Discussion 1</span><p>Do you think science is important?</p></div>
 <div class="card"><span class="ctag">Discussion 2</span><p>Which area of science has been the most important in the last hundred years?</p></div>
 <div class="card"><span class="ctag">Discussion 3</span><p>Why do you think some inventions have not been successful?</p></div>
 <div class="card"><span class="ctag">Discussion 4</span><p>Do you think there will be any negative effects from future technology?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1600&amp;q=80')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
+<section class="slide" style="background-image:url('https://pixabay.com/get/g614772f1de155e466d7f51c378e4a94fb491d833b22a868388ea378f263897c9d393f1c85589b47cef69df9d9af081343f7a79ee584253b62372359806385107_1280.jpg')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
 <p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="artificial">artificial</span></p>
 <p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="hypothesis">hypothesis</span></p>
 <p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="empirical">empirical</span></p>
@@ -269,6 +274,10 @@ function update() {
   slides.forEach(function(s, i) { s.classList.toggle('active', i === current); });
   document.getElementById('slideCounter').textContent = (current + 1) + ' / ' + slides.length;
   document.getElementById('progressBar').style.width = ((current + 1) / slides.length) * 100 + '%';
+  // show prev only when not on first slide; next only when not on last
+  var pb = document.getElementById('prevBtn'), nb = document.getElementById('nextBtn');
+  if (pb) pb.style.visibility = current === 0 ? 'hidden' : 'visible';
+  if (nb) nb.style.visibility = current === slides.length - 1 ? 'hidden' : 'visible';
 }
 update();
 
