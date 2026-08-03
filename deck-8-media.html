@@ -33,7 +33,7 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 .card p{font-size:1.2rem;line-height:1.7;text-shadow:0 1px 3px rgba(0,0,0,.55),0 0 12px rgba(0,0,0,.3)}
 .cue-box{background:color-mix(in srgb,var(--bg) 58%,transparent);border:2px solid var(--accent-glow);box-shadow:0 0 30px var(--accent-glow);border-radius:14px;padding:1.4em 1.8em;margin:1em 0;text-align:center}
 .cue-box .cue-main{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--accent);font-size:1.8rem;margin-bottom:.6em;text-shadow:0 0 18px var(--accent-glow),0 2px 4px rgba(0,0,0,.6);animation:popGlow 3.2s ease-in-out infinite}
-.cue-box .cue-bullets{font-size:1.25rem;color:var(--text);text-shadow:0 1px 3px rgba(0,0,0,.55)}
+.cue-box ul.cue-bullets{list-style:disc;padding-left:1.6em;margin:.4em 0;text-align:left}.cue-box ul.cue-bullets li{font-size:1.2rem;color:var(--text);margin:.35em 0;line-height:1.6;text-shadow:0 1px 3px rgba(0,0,0,.55)}
 .mark-complete-btn{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.4);color:var(--green);font-family:'Inter',sans-serif;font-size:1.05rem;padding:10px 24px;border-radius:24px;cursor:pointer;transition:all .2s;font-weight:600;min-width:44px;min-height:44px}
 .mark-complete-btn:hover{background:rgba(52,211,153,.2);box-shadow:0 0 15px rgba(52,211,153,.3);transform:scale(1.05)}
 .mark-complete-btn.completed{background:rgba(52,211,153,.25);border-color:rgba(52,211,153,.7);box-shadow:0 0 20px rgba(52,211,153,.4)}
@@ -143,30 +143,35 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
   <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
 </span></button>
 
-<section class="slide active" style="background-image:url('https://plus.unsplash.com/premium_photo-1682126367699-e925894017b5?w=1600&amp;q=80')"><div class="content narrow" style="text-align:center;"><h1>Media &amp; Communication</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2</p><p style="font-size:1.05rem;color:var(--text-dim);margin-top:.5em;">6 Part 1 questions &middot; 1 Part 2 cue card &middot; 4 Part 3 discussion questions</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
+<section class="slide active" style="background-image:url('https://pixabay.com/get/gdf86d4d5b9ec85b867fbc4f8e26cc8c6574e19c3a0ceffef88e798897d333676d06852ef245432205be3fc73d92c12a8166bc9e856eb9ff7047fb74b6c59a9f5_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Media &amp; Communication</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
 
-<section class="slide" style="background-image:url('https://images.unsplash.com/photo-1692188071339-2825a8a997f1?w=1600&amp;q=80')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/ge5a1e80c77fcfef6a99d310b9b1421ba34c362b40ef331c0d0be74167bd7b4fbbb2aa3c12d44f7ecdb92b364a6ad4dadaec6828ff6c67576e20c8ead3138641e_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
 <div class="card"><span class="ctag">Question 1 &middot; TV</span><p>How often do you watch TV?</p></div>
 <div class="card"><span class="ctag">Question 2 &middot; Newspapers</span><p>Do you prefer to read local news or international news?</p></div>
 <div class="card"><span class="ctag">Question 3 &middot; Mobile Phones</span><p>At what age did you first get a mobile phone?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1666298863696-8e8da5d85f2b?w=1600&amp;q=80')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g10985f2c564b56e58471c8212cf3a7d7494f054f0ccbedad67950e7dcf6df045222323a9105626e1bdd889e0f23abed0810cef49fa2dabee6a244ddd30640788_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
 <div class="card"><span class="ctag">Question 4 &middot; Email</span><p>Do you prefer to email, phone, or text your friends?</p></div>
 <div class="card"><span class="ctag">Question 5 &middot; Advertisements</span><p>Do you like watching advertisements?</p></div>
 <div class="card"><span class="ctag">Question 6 &middot; TV</span><p>What kind of TV programmes do you like to watch?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1691223733678-095fee90a0a7?w=1600&amp;q=80')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe an interesting piece of news that you have recently read or heard about.</div><div class="cue-bullets">what the story was &middot; who was involved in the story &middot; where you read or heard about the story &middot; and explain why this news story was interesting to you</div></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g5bf40882787a1184648219befc739b16ed60d9fa85991a434a7d40112d778b719b153ff22ed6ca1faf680d87f4e6fff89c4c3f04f63ba72b803348d1dfbdf6cb_1280.jpg')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe an interesting piece of news that you have recently read or heard about.</div><ul class="cue-bullets">
+      <li>what the story was</li>
+      <li>who was involved in the story</li>
+      <li>where you read or heard about the story</li>
+      <li>and explain why this news story was interesting to you</li>
+    </ul></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1664195074951-fe91ec456eed?w=1600&amp;q=80')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/ge3f24d2977caf60b7fa1adc7d050de413de55caf255acdacb7eb266ad9cb8e27021c64ab2a838d2ab922bce4d053611d4aad33298c4d9feb9f8c1db80e3296e9_1280.jpg')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
 <div class="card"><span class="ctag">Discussion 1</span><p>How do people get their news in today's society?</p></div>
 <div class="card"><span class="ctag">Discussion 2</span><p>How has social media changed how we consume news?</p></div>
 <div class="card"><span class="ctag">Discussion 3</span><p>Do you believe everything you read in the newspaper?</p></div>
 <div class="card"><span class="ctag">Discussion 4</span><p>What is the difference between new media and old media?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1679513691474-73102089c117?w=1600&amp;q=80')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
+<section class="slide" style="background-image:url('https://pixabay.com/get/gb920735104327fbe8811436d8f35c990ae01ebaf84d067fe39141739e1192785dbac8c9b9a65e33b4cea7680c062924d7e1b6fad547a7111d7ff6bc67a721dad_1280.jpg')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
 <p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="journalism">journalism</span></p>
 <p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="broadcast">broadcast</span></p>
 <p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="censorship">censorship</span></p>
@@ -269,6 +274,10 @@ function update() {
   slides.forEach(function(s, i) { s.classList.toggle('active', i === current); });
   document.getElementById('slideCounter').textContent = (current + 1) + ' / ' + slides.length;
   document.getElementById('progressBar').style.width = ((current + 1) / slides.length) * 100 + '%';
+  // show prev only when not on first slide; next only when not on last
+  var pb = document.getElementById('prevBtn'), nb = document.getElementById('nextBtn');
+  if (pb) pb.style.visibility = current === 0 ? 'hidden' : 'visible';
+  if (nb) nb.style.visibility = current === slides.length - 1 ? 'hidden' : 'visible';
 }
 update();
 
