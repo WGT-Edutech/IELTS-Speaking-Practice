@@ -106,6 +106,34 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 
 /* specular-fx: adds the shine to ANY button without fighting its own styles */
 .specular-fx { position: relative; }
+/* keep fixed-position controls anchored despite specular-fx */
+.theme-btn.specular-fx, .home-link.specular-fx { position: fixed; }
+
+/* Specular fallback for browsers without WebGL2: rotating edge shine */
+.specular-fallback::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(from var(--sb-angle, 0deg),
+    transparent 0deg,
+    var(--accent) 60deg,
+    #ffffff 90deg,
+    var(--accent) 120deg,
+    transparent 180deg,
+    transparent 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: sb-shine 2.6s linear infinite;
+  pointer-events: none;
+  z-index: 3;
+  opacity: .85;
+}
+@keyframes sb-shine { to { --sb-angle: 360deg; } }
+@property --sb-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 .specular-button__label { display: inline-flex; align-items: center; justify-content: center; }
 </style></head>
 <body>
@@ -157,6 +185,7 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 
 <script>
 var vocabDict = {
+  "artificial": {"pos": "adj", "def": "made by people rather than occurring naturally"},
   "breakthrough": {"pos": "noun", "def": "an important discovery that helps solve a problem"},
   "hypothesis": {"pos": "noun", "def": "an idea that is suggested as a possible explanation"},
   "empirical": {"pos": "adj", "def": "based on observation or experience rather than theory"},
@@ -164,7 +193,6 @@ var vocabDict = {
   "patent": {"pos": "noun", "def": "an official right to be the only person to make or sell an invention"},
   "algorithm": {"pos": "noun", "def": "a set of rules to be followed in calculations by a computer"},
   "biotechnology": {"pos": "noun", "def": "the use of living systems to develop products"},
-  "breakthrough": {"pos": "noun", "def": "an important discovery that helps solve a problem"},
   "theoretical": {"pos": "adj", "def": "based on theory rather than practical application"},
   "nanotechnology": {"pos": "noun", "def": "technology on an atomic or molecular scale"}
 };
@@ -325,7 +353,7 @@ update();
     var canvas = document.createElement('canvas');
     fx.appendChild(canvas);
     var gl = canvas.getContext('webgl2', { alpha: true, premultipliedAlpha: true, antialias: true });
-    if (!gl) return;
+    if (!gl) { btn.classList.add('specular-fallback'); return; }
     gl.clearColor(0, 0, 0, 0);
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
@@ -421,7 +449,7 @@ update();
       var target = steer ? pointerAngle : idleAngle;
       var diff = ((target - angle + Math.PI*3) % (Math.PI*2)) - Math.PI;
       angle += diff * (1 - Math.exp(-dt * 7));
-      var brightTarget = 0.75 + proximityT * 0.25;  // always-on shine, brighter on hover
+      var brightTarget = 0.9 + proximityT * 0.1;  // always-on shine, brighter on hover
       bright += (brightTarget - bright) * (1 - Math.exp(-dt * 8));
 
       gl.uniform1f(U.uAngle, angle);
@@ -431,7 +459,7 @@ update();
       gl.uniform1f(U.uIntensity, bright);
       gl.uniform1f(U.uShineSize, (10 * Math.PI) / 180);
       gl.uniform1f(U.uShineFade, (40 * Math.PI) / 180);
-      gl.uniform1f(U.uThickness, 1 * dpr);
+      gl.uniform1f(U.uThickness, 2.5 * dpr);
       gl.uniform1f(U.uBaseWidth, dpr);
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
