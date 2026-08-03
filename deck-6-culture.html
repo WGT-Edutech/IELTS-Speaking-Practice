@@ -135,6 +135,19 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 @keyframes sb-shine { to { --sb-angle: 360deg; } }
 @property --sb-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 .specular-button__label { display: inline-flex; align-items: center; justify-content: center; }
+
+/* ═══ Timer (matches deck-1) ═══ */
+.timer-trigger{display:inline-flex;align-items:center;gap:5px;background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:5px 12px;border-radius:14px;cursor:pointer;transition:all .15s;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.timer-trigger:hover{background:var(--accent-glow);box-shadow:0 0 8px var(--accent-glow)}
+.timer-popup{display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:500;align-items:center;justify-content:center;padding:8px 0}
+.timer-popup.show{display:flex}
+.timer-popup-box{display:flex;align-items:center;gap:14px;background:color-mix(in srgb,var(--bg) 92%,transparent);border:1px solid var(--accent-glow);border-radius:0 0 16px 16px;padding:10px 24px;backdrop-filter:blur(16px);box-shadow:0 4px 24px var(--accent-glow)}
+.timer-popup-box .timer-display{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:700;color:var(--accent);min-width:60px;text-align:center}
+.timer-popup-box .timer-phase{font-size:.85rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
+.timer-btn{background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:6px 14px;border-radius:18px;cursor:pointer;transition:all .15s;min-width:44px;min-height:34px;box-shadow:0 0 8px var(--accent-glow)}
+.timer-btn:hover{box-shadow:0 0 18px var(--accent-glow);transform:scale(1.05)}
+.timer-btn:active{transform:scale(.95)}
+.timer-btn.running{background:var(--accent-glow);border-color:var(--accent)}
 </style></head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
@@ -145,30 +158,30 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 
 <section class="slide active" style="background-image:url('https://pixabay.com/get/g82d1ac754db7058b145719626e23ad14e004e2d8b81429c31df127279448047f8dcb73db0c4ea8b570b651e59f790de9fea9ed90d7f4421b4e009b38cbe57e9a_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Culture &amp; Tradition</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g9baa13efb027f014c6c4d9fb1a13e0ba85aea0e3772d22fbdf1a5cf1b1505277f796e78708d48d4ffe2c776e907c66e21c220d77226f1b7cea4fa4ba74539914_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g9baa13efb027f014c6c4d9fb1a13e0ba85aea0e3772d22fbdf1a5cf1b1505277f796e78708d48d4ffe2c776e907c66e21c220d77226f1b7cea4fa4ba74539914_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 1&ndash;3</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span>
 <div class="card"><span class="ctag">Question 1 &middot; Art</span><p>Do you like art?</p></div>
-<div class="card"><span class="ctag">Question 2 &middot; Food</span><p>What kinds of food are popular in your country?</p></div>
-<div class="card"><span class="ctag">Question 3 &middot; Museums</span><p>Are museums popular in your country?</p></div>
+<div class="card"><span class="ctag">Question 2 &middot; Food</span><p>What kinds of food are <span class="vocab-word" data-word="popular">popular</span> in your country?</p></div>
+<div class="card"><span class="ctag">Question 3 &middot; Museums</span><p>Are museums <span class="vocab-word" data-word="popular">popular</span> in your country?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/gf93637e66e19efe189c46807546daf07ed353918b995eba5e96ddb3fae80afe0b559c50f4f72c5db85144972f46d869881166e5adfe457c65f6d8d29fbb240d6_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
-<div class="card"><span class="ctag">Question 4 &middot; Flowers</span><p>Is it popular to give flowers to people in your country?</p></div>
+<section class="slide" style="background-image:url('https://pixabay.com/get/gf93637e66e19efe189c46807546daf07ed353918b995eba5e96ddb3fae80afe0b559c50f4f72c5db85144972f46d869881166e5adfe457c65f6d8d29fbb240d6_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 4&ndash;6</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span>
+<div class="card"><span class="ctag">Question 4 &middot; Flowers</span><p>Is it <span class="vocab-word" data-word="popular">popular</span> to give flowers to people in your country?</p></div>
 <div class="card"><span class="ctag">Question 5 &middot; Festival</span><p>What is the most important festival in your country?</p></div>
-<div class="card"><span class="ctag">Question 6 &middot; Clothes</span><p>Are there any traditional clothes in your country?</p></div>
+<div class="card"><span class="ctag">Question 6 &middot; Clothes</span><p>Are there any <span class="vocab-word" data-word="traditional">traditional</span> clothes in your country?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g7845e05562a98e2ea185dafbccd2d2363b2f410957c091ffbf14ce3877d6a0cbcd0351ed6dff2afa35b82b78a2ee39e7d7634a0cebe5833ccace5c0052d216a7_1280.jpg')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Talk about a traditional product which is very popular in your country.</div><ul class="cue-bullets">
+<section class="slide" style="background-image:url('https://pixabay.com/get/g7845e05562a98e2ea185dafbccd2d2363b2f410957c091ffbf14ce3877d6a0cbcd0351ed6dff2afa35b82b78a2ee39e7d7634a0cebe5833ccace5c0052d216a7_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 2 &middot; Cue Card</h2><span class="timer-trigger" onclick="openTimer('p2',120)">⏱ 2:00</span><div class="cue-box"><div class="cue-main">Talk about a <span class="vocab-word" data-word="traditional">traditional</span> product which is very <span class="vocab-word" data-word="popular">popular</span> in your country.</div><ul class="cue-bullets">
       <li>what the product is</li>
       <li>how it is made</li>
-      <li>why it is popular</li>
-      <li>and say if it is popular in other countries</li>
+      <li>why it is <span class="vocab-word" data-word="popular">popular</span></li>
+      <li>and say if it is <span class="vocab-word" data-word="popular">popular</span> in other countries</li>
     </ul></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g549f0642276c82dcde92a6905cf9f0bfb015cd8049ab4fee1f81b37c6a1e6f97455deb45b0685dcfbe90bad599153cc6bb9c5378ae4a52cd0b9b723e35f9bc72_1280.jpg')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
-<div class="card"><span class="ctag">Discussion 1</span><p>What different types of traditional products are produced in your country?</p></div>
-<div class="card"><span class="ctag">Discussion 2</span><p>Why do traditional products attract tourists?</p></div>
-<div class="card"><span class="ctag">Discussion 3</span><p>Do you think the government should help promote traditional products?</p></div>
-<div class="card"><span class="ctag">Discussion 4</span><p>Do you think it is necessary to protect traditions?</p></div>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g549f0642276c82dcde92a6905cf9f0bfb015cd8049ab4fee1f81b37c6a1e6f97455deb45b0685dcfbe90bad599153cc6bb9c5378ae4a52cd0b9b723e35f9bc72_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 3 &middot; Discussion</h2><span class="timer-trigger" onclick="openTimer('p3',270)">⏱ 4:30</span>
+<div class="card"><span class="ctag">Discussion 1</span><p>What different types of <span class="vocab-word" data-word="traditional">traditional</span> products are produced in your country?</p></div>
+<div class="card"><span class="ctag">Discussion 2</span><p>Why do <span class="vocab-word" data-word="traditional">traditional</span> products <span class="vocab-word" data-word="attract">attract</span> <span class="vocab-word" data-word="tourists">tourists</span>?</p></div>
+<div class="card"><span class="ctag">Discussion 3</span><p>Do you think the government should help <span class="vocab-word" data-word="promote">promote</span> <span class="vocab-word" data-word="traditional">traditional</span> products?</p></div>
+<div class="card"><span class="ctag">Discussion 4</span><p>Do you think it is necessary to protect <span class="vocab-word" data-word="traditions">traditions</span>?</p></div>
 </div></section>
 
 <section class="slide" style="background-image:url('https://pixabay.com/get/g0782bb1e9f221ed3954215826fc00256ef82c7f5cd45d6c263942a724a717af1e88ee1f0f30f2234eb012fffd9e91bce13d743cf3432845256d3fccecffb3821_1280.jpg')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
@@ -189,18 +202,7 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 <div class="vocab-tooltip" id="vocabTooltip"><span class="tt-pos" id="ttPos"></span> <span class="tt-word" id="ttWord"></span><div class="tt-def" id="ttDef"></div></div>
 
 <script>
-var vocabDict = {
-  "heritage": {"pos": "noun", "def": "the traditions, achievements, and beliefs that are part of a country's history"},
-  "custom": {"pos": "noun", "def": "a traditional way of behaving or doing something in a particular society"},
-  "ritual": {"pos": "noun", "def": "a set of fixed actions performed regularly, especially as part of a ceremony"},
-  "preservation": {"pos": "noun", "def": "the act of keeping something in its original state or in good condition"},
-  "indigenous": {"pos": "adj", "def": "originating naturally in a particular place; native"},
-  "ancestral": {"pos": "adj", "def": "relating to family members from past generations"},
-  "folklore": {"pos": "noun", "def": "the traditional stories, customs, and beliefs of a community"},
-  "ceremony": {"pos": "noun", "def": "a formal event performed on a special occasion"},
-  "artefact": {"pos": "noun", "def": "an object made by a human being, typically of historical interest"},
-  "generational": {"pos": "adj", "def": "relating to or affecting multiple generations"}
-};
+var vocabDict = {"heritage": {"pos": "noun", "def": "the traditions, achievements, and beliefs that are part of a country's history"}, "custom": {"pos": "noun", "def": "a traditional way of behaving or doing something in a particular society"}, "ritual": {"pos": "noun", "def": "a set of fixed actions performed regularly, especially as part of a ceremony"}, "preservation": {"pos": "noun", "def": "the act of keeping something in its original state or in good condition"}, "indigenous": {"pos": "adj", "def": "originating naturally in a particular place; native"}, "ancestral": {"pos": "adj", "def": "relating to family members from past generations"}, "folklore": {"pos": "noun", "def": "the traditional stories, customs, and beliefs of a community"}, "ceremony": {"pos": "noun", "def": "a formal event performed on a special occasion"}, "artefact": {"pos": "noun", "def": "an object made by a human being, typically of historical interest"}, "generational": {"pos": "adj", "def": "relating to or affecting multiple generations"}, "traditional": {"pos": "adj", "def": "following old customs and ways"}, "popular": {"pos": "adj", "def": "liked by many people"}, "attract": {"pos": "verb", "def": "to make people come to a place"}, "tourists": {"pos": "noun", "def": "people who visit a place for pleasure"}, "promote": {"pos": "verb", "def": "to support something publicly"}, "traditions": {"pos": "noun", "def": "customs and beliefs passed through generations"}};
 
 var tooltip = document.getElementById('vocabTooltip');
 document.addEventListener('mouseover', function(e) {
@@ -480,5 +482,36 @@ update();
   else initAll();
 })();
 
+
+// ═══ Popup Timer ═══
+var tpInterval = null, tpSeconds = 0, tpLabel = '', tpMuted = false;
+function openTimer(label, secs) { tpLabel = label; tpSeconds = secs; document.getElementById('tpLabel').textContent = label === 'p1' ? 'Part 1' : label === 'p2' ? 'Part 2' : 'Part 3'; updateTPDisplay(); var b = document.getElementById('tpStartBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); document.getElementById('timerPopup').classList.add('show'); }
+function closeTimer() { if (tpInterval) { clearInterval(tpInterval); tpInterval = null; } document.getElementById('timerPopup').classList.remove('show'); }
+function toggleTP() {
+  var b = document.getElementById('tpStartBtn'), l = b ? b.querySelector('.specular-button__label') : null;
+  if (tpInterval) { clearInterval(tpInterval); tpInterval = null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); return; }
+  if (l) l.textContent = '⏸ Pause'; if (b) b.classList.add('running');
+  tpInterval = setInterval(function() {
+    tpSeconds--; updateTPDisplay();
+    if (tpSeconds <= 0) { clearInterval(tpInterval); tpInterval = null; if (l) l.textContent = '↻ Done'; if (b) b.classList.remove('running'); beep(1320, 0.6); }
+  }, 1000);
+}
+function restartTP() { if (tpInterval) { clearInterval(tpInterval); tpInterval = null; } tpSeconds = tpLabel === 'p1' ? 270 : tpLabel === 'p2' ? 120 : 270; updateTPDisplay(); var b = document.getElementById('tpStartBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); }
+function toggleMuteTP() { tpMuted = !tpMuted; var b = document.getElementById('tpMuteBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = tpMuted ? '🔊' : '🔇'; }
+function updateTPDisplay() { var m = Math.floor(tpSeconds / 60), s = tpSeconds % 60; document.getElementById('tpDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s; }
+function beep(freq, dur) { if (tpMuted) return; try { var ctx = new (window.AudioContext||window.webkitAudioContext)(), o = ctx.createOscillator(), g = ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.frequency.value = freq; o.type = 'sine'; g.gain.setValueAtTime(0.15, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur); o.start(); o.stop(ctx.currentTime + dur); } catch(e) {} }
+
 </script>
+
+<div class="timer-popup" id="timerPopup">
+  <div class="timer-popup-box">
+    <span class="timer-phase" id="tpLabel">Timer</span>
+    <span class="timer-display" id="tpDisplay">0:00</span>
+    <button class="timer-btn specular-fx" id="tpStartBtn" onclick="toggleTP()"><span class="specular-button__label">▶ Play</span></button>
+    <button class="timer-btn specular-fx" id="tpRestartBtn" onclick="restartTP()"><span class="specular-button__label">↺</span></button>
+    <button class="timer-btn specular-fx" id="tpMuteBtn" onclick="toggleMuteTP()"><span class="specular-button__label">🔇</span></button>
+    <button class="timer-btn specular-fx" onclick="closeTimer()"><span class="specular-button__label">✕</span></button>
+  </div>
+</div>
+
 </body></html>
