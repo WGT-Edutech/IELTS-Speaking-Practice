@@ -135,6 +135,19 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 @keyframes sb-shine { to { --sb-angle: 360deg; } }
 @property --sb-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 .specular-button__label { display: inline-flex; align-items: center; justify-content: center; }
+
+/* ═══ Timer (matches deck-1) ═══ */
+.timer-trigger{display:inline-flex;align-items:center;gap:5px;background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:5px 12px;border-radius:14px;cursor:pointer;transition:all .15s;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.timer-trigger:hover{background:var(--accent-glow);box-shadow:0 0 8px var(--accent-glow)}
+.timer-popup{display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:500;align-items:center;justify-content:center;padding:8px 0}
+.timer-popup.show{display:flex}
+.timer-popup-box{display:flex;align-items:center;gap:14px;background:color-mix(in srgb,var(--bg) 92%,transparent);border:1px solid var(--accent-glow);border-radius:0 0 16px 16px;padding:10px 24px;backdrop-filter:blur(16px);box-shadow:0 4px 24px var(--accent-glow)}
+.timer-popup-box .timer-display{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:700;color:var(--accent);min-width:60px;text-align:center}
+.timer-popup-box .timer-phase{font-size:.85rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
+.timer-btn{background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:6px 14px;border-radius:18px;cursor:pointer;transition:all .15s;min-width:44px;min-height:34px;box-shadow:0 0 8px var(--accent-glow)}
+.timer-btn:hover{box-shadow:0 0 18px var(--accent-glow);transform:scale(1.05)}
+.timer-btn:active{transform:scale(.95)}
+.timer-btn.running{background:var(--accent-glow);border-color:var(--accent)}
 </style></head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
@@ -145,29 +158,29 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 
 <section class="slide active" style="background-image:url('https://pixabay.com/get/gdf86d4d5b9ec85b867fbc4f8e26cc8c6574e19c3a0ceffef88e798897d333676d06852ef245432205be3fc73d92c12a8166bc9e856eb9ff7047fb74b6c59a9f5_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Media &amp; Communication</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/ge5a1e80c77fcfef6a99d310b9b1421ba34c362b40ef331c0d0be74167bd7b4fbbb2aa3c12d44f7ecdb92b364a6ad4dadaec6828ff6c67576e20c8ead3138641e_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/ge5a1e80c77fcfef6a99d310b9b1421ba34c362b40ef331c0d0be74167bd7b4fbbb2aa3c12d44f7ecdb92b364a6ad4dadaec6828ff6c67576e20c8ead3138641e_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 1&ndash;3</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span>
 <div class="card"><span class="ctag">Question 1 &middot; TV</span><p>How often do you watch TV?</p></div>
-<div class="card"><span class="ctag">Question 2 &middot; Newspapers</span><p>Do you prefer to read local news or international news?</p></div>
+<div class="card"><span class="ctag">Question 2 &middot; Newspapers</span><p>Do you <span class="vocab-word" data-word="prefer">prefer</span> to read local news or <span class="vocab-word" data-word="international">international</span> news?</p></div>
 <div class="card"><span class="ctag">Question 3 &middot; Mobile Phones</span><p>At what age did you first get a mobile phone?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g10985f2c564b56e58471c8212cf3a7d7494f054f0ccbedad67950e7dcf6df045222323a9105626e1bdd889e0f23abed0810cef49fa2dabee6a244ddd30640788_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
-<div class="card"><span class="ctag">Question 4 &middot; Email</span><p>Do you prefer to email, phone, or text your friends?</p></div>
-<div class="card"><span class="ctag">Question 5 &middot; Advertisements</span><p>Do you like watching advertisements?</p></div>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g10985f2c564b56e58471c8212cf3a7d7494f054f0ccbedad67950e7dcf6df045222323a9105626e1bdd889e0f23abed0810cef49fa2dabee6a244ddd30640788_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 4&ndash;6</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span>
+<div class="card"><span class="ctag">Question 4 &middot; Email</span><p>Do you <span class="vocab-word" data-word="prefer">prefer</span> to email, phone, or text your friends?</p></div>
+<div class="card"><span class="ctag">Question 5 &middot; Advertisements</span><p>Do you like watching <span class="vocab-word" data-word="advertisements">advertisements</span>?</p></div>
 <div class="card"><span class="ctag">Question 6 &middot; TV</span><p>What kind of TV programmes do you like to watch?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g5bf40882787a1184648219befc739b16ed60d9fa85991a434a7d40112d778b719b153ff22ed6ca1faf680d87f4e6fff89c4c3f04f63ba72b803348d1dfbdf6cb_1280.jpg')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe an interesting piece of news that you have recently read or heard about.</div><ul class="cue-bullets">
+<section class="slide" style="background-image:url('https://pixabay.com/get/g5bf40882787a1184648219befc739b16ed60d9fa85991a434a7d40112d778b719b153ff22ed6ca1faf680d87f4e6fff89c4c3f04f63ba72b803348d1dfbdf6cb_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 2 &middot; Cue Card</h2><span class="timer-trigger" onclick="openTimer('p2',120)">⏱ 2:00</span><div class="cue-box"><div class="cue-main">Describe an interesting piece of news that you have recently read or heard about.</div><ul class="cue-bullets">
       <li>what the story was</li>
       <li>who was involved in the story</li>
       <li>where you read or heard about the story</li>
       <li>and explain why this news story was interesting to you</li>
     </ul></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/ge3f24d2977caf60b7fa1adc7d050de413de55caf255acdacb7eb266ad9cb8e27021c64ab2a838d2ab922bce4d053611d4aad33298c4d9feb9f8c1db80e3296e9_1280.jpg')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
-<div class="card"><span class="ctag">Discussion 1</span><p>How do people get their news in today's society?</p></div>
-<div class="card"><span class="ctag">Discussion 2</span><p>How has social media changed how we consume news?</p></div>
-<div class="card"><span class="ctag">Discussion 3</span><p>Do you believe everything you read in the newspaper?</p></div>
+<section class="slide" style="background-image:url('https://pixabay.com/get/ge3f24d2977caf60b7fa1adc7d050de413de55caf255acdacb7eb266ad9cb8e27021c64ab2a838d2ab922bce4d053611d4aad33298c4d9feb9f8c1db80e3296e9_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 3 &middot; Discussion</h2><span class="timer-trigger" onclick="openTimer('p3',270)">⏱ 4:30</span>
+<div class="card"><span class="ctag">Discussion 1</span><p>How do people get their news in today's <span class="vocab-word" data-word="society">society</span>?</p></div>
+<div class="card"><span class="ctag">Discussion 2</span><p>How has social media changed how we <span class="vocab-word" data-word="consume">consume</span> news?</p></div>
+<div class="card"><span class="ctag">Discussion 3</span><p>Do you believe everything you read in the <span class="vocab-word" data-word="newspaper">newspaper</span>?</p></div>
 <div class="card"><span class="ctag">Discussion 4</span><p>What is the difference between new media and old media?</p></div>
 </div></section>
 
@@ -189,18 +202,7 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 <div class="vocab-tooltip" id="vocabTooltip"><span class="tt-pos" id="ttPos"></span> <span class="tt-word" id="ttWord"></span><div class="tt-def" id="ttDef"></div></div>
 
 <script>
-var vocabDict = {
-  "journalism": {"pos": "noun", "def": "the activity of gathering, assessing, and presenting news"},
-  "broadcast": {"pos": "noun", "def": "a radio or television programme transmitted to the public"},
-  "censorship": {"pos": "noun", "def": "the suppression of speech or information deemed unacceptable"},
-  "propaganda": {"pos": "noun", "def": "information used to promote a political cause or point of view"},
-  "sensationalism": {"pos": "noun", "def": "the use of exciting and shocking stories to provoke public interest"},
-  "circulation": {"pos": "noun", "def": "the number of copies a newspaper or magazine sells"},
-  "editorial": {"pos": "adj", "def": "relating to the part of a newspaper that gives opinions rather than news"},
-  "mainstream": {"pos": "adj", "def": "belonging to ideas accepted by most people"},
-  "bias": {"pos": "noun", "def": "preference for one thing over another, especially in an unfair way"},
-  "coverage": {"pos": "noun", "def": "the reporting of a particular event or subject"}
-};
+var vocabDict = {"journalism": {"pos": "noun", "def": "the activity of gathering, assessing, and presenting news"}, "broadcast": {"pos": "noun", "def": "a radio or television programme transmitted to the public"}, "censorship": {"pos": "noun", "def": "the suppression of speech or information deemed unacceptable"}, "propaganda": {"pos": "noun", "def": "information used to promote a political cause or point of view"}, "sensationalism": {"pos": "noun", "def": "the use of exciting and shocking stories to provoke public interest"}, "circulation": {"pos": "noun", "def": "the number of copies a newspaper or magazine sells"}, "editorial": {"pos": "adj", "def": "relating to the part of a newspaper that gives opinions rather than news"}, "mainstream": {"pos": "adj", "def": "belonging to ideas accepted by most people"}, "bias": {"pos": "noun", "def": "preference for one thing over another, especially in an unfair way"}, "coverage": {"pos": "noun", "def": "the reporting of a particular event or subject"}, "international": {"pos": "adj", "def": "involving two or more countries"}, "prefer": {"pos": "verb", "def": "to like one thing more than another"}, "consume": {"pos": "verb", "def": "to use or absorb information or goods"}, "society": {"pos": "noun", "def": "people living together in a community"}, "advertisements": {"pos": "noun", "def": "public notices that try to sell something"}, "newspaper": {"pos": "noun", "def": "printed daily or weekly news publication"}};
 
 var tooltip = document.getElementById('vocabTooltip');
 document.addEventListener('mouseover', function(e) {
@@ -480,5 +482,36 @@ update();
   else initAll();
 })();
 
+
+// ═══ Popup Timer ═══
+var tpInterval = null, tpSeconds = 0, tpLabel = '', tpMuted = false;
+function openTimer(label, secs) { tpLabel = label; tpSeconds = secs; document.getElementById('tpLabel').textContent = label === 'p1' ? 'Part 1' : label === 'p2' ? 'Part 2' : 'Part 3'; updateTPDisplay(); var b = document.getElementById('tpStartBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); document.getElementById('timerPopup').classList.add('show'); }
+function closeTimer() { if (tpInterval) { clearInterval(tpInterval); tpInterval = null; } document.getElementById('timerPopup').classList.remove('show'); }
+function toggleTP() {
+  var b = document.getElementById('tpStartBtn'), l = b ? b.querySelector('.specular-button__label') : null;
+  if (tpInterval) { clearInterval(tpInterval); tpInterval = null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); return; }
+  if (l) l.textContent = '⏸ Pause'; if (b) b.classList.add('running');
+  tpInterval = setInterval(function() {
+    tpSeconds--; updateTPDisplay();
+    if (tpSeconds <= 0) { clearInterval(tpInterval); tpInterval = null; if (l) l.textContent = '↻ Done'; if (b) b.classList.remove('running'); beep(1320, 0.6); }
+  }, 1000);
+}
+function restartTP() { if (tpInterval) { clearInterval(tpInterval); tpInterval = null; } tpSeconds = tpLabel === 'p1' ? 270 : tpLabel === 'p2' ? 120 : 270; updateTPDisplay(); var b = document.getElementById('tpStartBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); }
+function toggleMuteTP() { tpMuted = !tpMuted; var b = document.getElementById('tpMuteBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = tpMuted ? '🔊' : '🔇'; }
+function updateTPDisplay() { var m = Math.floor(tpSeconds / 60), s = tpSeconds % 60; document.getElementById('tpDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s; }
+function beep(freq, dur) { if (tpMuted) return; try { var ctx = new (window.AudioContext||window.webkitAudioContext)(), o = ctx.createOscillator(), g = ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.frequency.value = freq; o.type = 'sine'; g.gain.setValueAtTime(0.15, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur); o.start(); o.stop(ctx.currentTime + dur); } catch(e) {} }
+
 </script>
+
+<div class="timer-popup" id="timerPopup">
+  <div class="timer-popup-box">
+    <span class="timer-phase" id="tpLabel">Timer</span>
+    <span class="timer-display" id="tpDisplay">0:00</span>
+    <button class="timer-btn specular-fx" id="tpStartBtn" onclick="toggleTP()"><span class="specular-button__label">▶ Play</span></button>
+    <button class="timer-btn specular-fx" id="tpRestartBtn" onclick="restartTP()"><span class="specular-button__label">↺</span></button>
+    <button class="timer-btn specular-fx" id="tpMuteBtn" onclick="toggleMuteTP()"><span class="specular-button__label">🔇</span></button>
+    <button class="timer-btn specular-fx" onclick="closeTimer()"><span class="specular-button__label">✕</span></button>
+  </div>
+</div>
+
 </body></html>
