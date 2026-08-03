@@ -135,6 +135,19 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 @keyframes sb-shine { to { --sb-angle: 360deg; } }
 @property --sb-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 .specular-button__label { display: inline-flex; align-items: center; justify-content: center; }
+
+/* ═══ Timer (matches deck-1) ═══ */
+.timer-trigger{display:inline-flex;align-items:center;gap:5px;background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:5px 12px;border-radius:14px;cursor:pointer;transition:all .15s;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.timer-trigger:hover{background:var(--accent-glow);box-shadow:0 0 8px var(--accent-glow)}
+.timer-popup{display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:500;align-items:center;justify-content:center;padding:8px 0}
+.timer-popup.show{display:flex}
+.timer-popup-box{display:flex;align-items:center;gap:14px;background:color-mix(in srgb,var(--bg) 92%,transparent);border:1px solid var(--accent-glow);border-radius:0 0 16px 16px;padding:10px 24px;backdrop-filter:blur(16px);box-shadow:0 4px 24px var(--accent-glow)}
+.timer-popup-box .timer-display{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:700;color:var(--accent);min-width:60px;text-align:center}
+.timer-popup-box .timer-phase{font-size:.85rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
+.timer-btn{background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:6px 14px;border-radius:18px;cursor:pointer;transition:all .15s;min-width:44px;min-height:34px;box-shadow:0 0 8px var(--accent-glow)}
+.timer-btn:hover{box-shadow:0 0 18px var(--accent-glow);transform:scale(1.05)}
+.timer-btn:active{transform:scale(.95)}
+.timer-btn.running{background:var(--accent-glow);border-color:var(--accent)}
 </style></head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
@@ -145,25 +158,25 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 
 <section class="slide active" style="background-image:url('https://pixabay.com/get/g630b056fbfa91152931052f997104a04ccb0e6f83629540d39f43a0e3dddafb9905caf8bc54cfaf0cfe1e3577a0cab432552fa843590dad50e4e1755ad4a6e91_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Shopping &amp; Consumer Habits</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g77c5352c68b218cfe127a526dfd9f78a57f3b4774a3eb978837929c5b91394e29b3146eb7aa5ee5a4b7617d77c53c961953c1e96d4b017b5773648cd1935e3b2_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2><div class="card"><span class="ctag">Question 1 &middot; Shopping</span><p>What do you usually shop for?</p></div><div class="card"><span class="ctag">Question 2 &middot; Malls</span><p>Do you often go to malls?</p></div><div class="card"><span class="ctag">Question 3 &middot; Online</span><p>Do you shop online a lot?</p></div></div></section>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g77c5352c68b218cfe127a526dfd9f78a57f3b4774a3eb978837929c5b91394e29b3146eb7aa5ee5a4b7617d77c53c961953c1e96d4b017b5773648cd1935e3b2_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 1&ndash;3</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span><div class="card"><span class="ctag">Question 1 &middot; Shopping</span><p>What do you usually shop for?</p></div><div class="card"><span class="ctag">Question 2 &middot; Malls</span><p>Do you often go to malls?</p></div><div class="card"><span class="ctag">Question 3 &middot; Online</span><p>Do you shop online a lot?</p></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g8f585ea9e3779033dd09e898e5dfd3f4377a8d65015ed894adac7222c68cba13bfeb8ba8f8e5d906be8f9cb6eed0db1ff0c49db1da4c09ec78a40e7f1d5db282_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2><div class="card"><span class="ctag">Question 4 &middot; Shopping Centres</span><p>How common are shopping centres in your country?</p></div><div class="card"><span class="ctag">Question 5 &middot; Advertising</span><p>Will you buy something because of an advertisement?</p></div><div class="card"><span class="ctag">Question 6 &middot; Advertising</span><p>What makes a good advertisement?</p></div></div></section>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g8f585ea9e3779033dd09e898e5dfd3f4377a8d65015ed894adac7222c68cba13bfeb8ba8f8e5d906be8f9cb6eed0db1ff0c49db1da4c09ec78a40e7f1d5db282_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 4&ndash;6</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span><div class="card"><span class="ctag">Question 4 &middot; Shopping Centres</span><p>How common are <span class="vocab-word" data-word="shopping">shopping</span> centres in your country?</p></div><div class="card"><span class="ctag">Question 5 &middot; Advertising</span><p>Will you buy something because of an <span class="vocab-word" data-word="advertisement">advertisement</span>?</p></div><div class="card"><span class="ctag">Question 6 &middot; Advertising</span><p>What makes a good <span class="vocab-word" data-word="advertisement">advertisement</span>?</p></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g5cee2a1f580c01668402a427ff37b1766ca761213bdca284e90f347ee7e5c22e12edbce4d61c3e5f11f351aaaa4fc299c001877d8a231691b783def3eaedcea0_1280.jpg')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe a shop that you like to visit.</div><ul class="cue-bullets">
+<section class="slide" style="background-image:url('https://pixabay.com/get/g5cee2a1f580c01668402a427ff37b1766ca761213bdca284e90f347ee7e5c22e12edbce4d61c3e5f11f351aaaa4fc299c001877d8a231691b783def3eaedcea0_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 2 &middot; Cue Card</h2><span class="timer-trigger" onclick="openTimer('p2',120)">⏱ 2:00</span><div class="cue-box"><div class="cue-main">Describe a shop that you like to visit.</div><ul class="cue-bullets">
       <li>what things you can buy there</li>
       <li>what the most popular shops are</li>
-      <li>what the advantages of shopping there are</li>
+      <li>what the advantages of <span class="vocab-word" data-word="shopping">shopping</span> there are</li>
       <li>and explain why you enjoy going there</li>
     </ul></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/geb11640e613d24dc4df225376a074260f5bd1a7bea92da01025e1d8e198553053b66718ee457264f3f5f2818cfe591ca10fc6aeb46d90b89366cfda1ed4be4d0_1280.jpg')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2><div class="card"><span class="ctag">Discussion 1</span><p>Is shopping a popular activity in your country?</p></div><div class="card"><span class="ctag">Discussion 2</span><p>How have shopping habits changed over recent years?</p></div><div class="card"><span class="ctag">Discussion 3</span><p>To what extent do you think advertising affects the way people shop?</p></div><div class="card"><span class="ctag">Discussion 4</span><p>Do you think shopping habits are likely to change in the future?</p></div></div></section>
+<section class="slide" style="background-image:url('https://pixabay.com/get/geb11640e613d24dc4df225376a074260f5bd1a7bea92da01025e1d8e198553053b66718ee457264f3f5f2818cfe591ca10fc6aeb46d90b89366cfda1ed4be4d0_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 3 &middot; Discussion</h2><span class="timer-trigger" onclick="openTimer('p3',270)">⏱ 4:30</span><div class="card"><span class="ctag">Discussion 1</span><p>Is <span class="vocab-word" data-word="shopping">shopping</span> a popular <span class="vocab-word" data-word="activity">activity</span> in your country?</p></div><div class="card"><span class="ctag">Discussion 2</span><p>How have <span class="vocab-word" data-word="shopping">shopping</span> <span class="vocab-word" data-word="habits">habits</span> changed over recent years?</p></div><div class="card"><span class="ctag">Discussion 3</span><p>To what extent do you think <span class="vocab-word" data-word="advertising">advertising</span> <span class="vocab-word" data-word="affects">affects</span> the way people shop?</p></div><div class="card"><span class="ctag">Discussion 4</span><p>Do you think <span class="vocab-word" data-word="shopping">shopping</span> <span class="vocab-word" data-word="habits">habits</span> are likely to change in the future?</p></div></div></section>
 
 <section class="slide" style="background-image:url('https://pixabay.com/get/gcf83d6c22b6c2f9f00e306b3969808f500033f051c660b8799e0c1add76f8dcc09c327e433ad6315efed85a7de78198a_1280.jpg')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);"><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="retail">retail</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="bargain">bargain</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="receipt">receipt</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="discount">discount</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="consumer">consumer</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="impulse">impulse</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="brand">brand</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="affordable">affordable</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="luxury">luxury</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="refund">refund</span></p></div></div></section><div class="nav"><button id="prevBtn" class="specular-button"><span class="specular-button__label">&larr; Prev</span></button><span class="slide-counter" id="slideCounter">1 / 6</span><button id="nextBtn" class="specular-button"><span class="specular-button__label">Next &rarr;</span></button></div>
 
 <div class="vocab-tooltip" id="vocabTooltip"><span class="tt-pos" id="ttPos"></span> <span class="tt-word" id="ttWord"></span><div class="tt-def" id="ttDef"></div></div>
 
 <script>
-var vocabDict = {"retail": {"pos": "noun", "def": "the sale of goods to the public in shops"}, "bargain": {"pos": "noun", "def": "something bought for less than its usual price"}, "receipt": {"pos": "noun", "def": "a document showing you have paid for something"}, "discount": {"pos": "noun", "def": "a reduction in the usual price"}, "consumer": {"pos": "noun", "def": "a person who buys goods or services"}, "impulse": {"pos": "noun", "def": "a sudden strong wish to do or buy something"}, "brand": {"pos": "noun", "def": "a type of product made by a particular company"}, "affordable": {"pos": "adj", "def": "cheap enough for most people to buy"}, "luxury": {"pos": "noun", "def": "something expensive that is nice to have but not essential"}, "refund": {"pos": "noun", "def": "money given back because you returned goods"}};
+var vocabDict = {"retail": {"pos": "noun", "def": "the sale of goods to the public in shops"}, "bargain": {"pos": "noun", "def": "something bought for less than its usual price"}, "receipt": {"pos": "noun", "def": "a document showing you have paid for something"}, "discount": {"pos": "noun", "def": "a reduction in the usual price"}, "consumer": {"pos": "noun", "def": "a person who buys goods or services"}, "impulse": {"pos": "noun", "def": "a sudden strong wish to do or buy something"}, "brand": {"pos": "noun", "def": "a type of product made by a particular company"}, "affordable": {"pos": "adj", "def": "cheap enough for most people to buy"}, "luxury": {"pos": "noun", "def": "something expensive that is nice to have but not essential"}, "refund": {"pos": "noun", "def": "money given back because you returned goods"}, "shopping": {"pos": "noun", "def": "buying things from shops"}, "habits": {"pos": "noun", "def": "things you do regularly, often without thinking"}, "advertising": {"pos": "noun", "def": "the business of promoting products"}, "advertisement": {"pos": "noun", "def": "a public notice trying to sell something"}, "activity": {"pos": "noun", "def": "something you do"}, "affects": {"pos": "verb", "def": "changes or influences something"}};
 
 var tooltip = document.getElementById('vocabTooltip');
 document.addEventListener('mouseover', function(e) {
@@ -443,5 +456,36 @@ update();
   else initAll();
 })();
 
+
+// ═══ Popup Timer ═══
+var tpInterval = null, tpSeconds = 0, tpLabel = '', tpMuted = false;
+function openTimer(label, secs) { tpLabel = label; tpSeconds = secs; document.getElementById('tpLabel').textContent = label === 'p1' ? 'Part 1' : label === 'p2' ? 'Part 2' : 'Part 3'; updateTPDisplay(); var b = document.getElementById('tpStartBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); document.getElementById('timerPopup').classList.add('show'); }
+function closeTimer() { if (tpInterval) { clearInterval(tpInterval); tpInterval = null; } document.getElementById('timerPopup').classList.remove('show'); }
+function toggleTP() {
+  var b = document.getElementById('tpStartBtn'), l = b ? b.querySelector('.specular-button__label') : null;
+  if (tpInterval) { clearInterval(tpInterval); tpInterval = null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); return; }
+  if (l) l.textContent = '⏸ Pause'; if (b) b.classList.add('running');
+  tpInterval = setInterval(function() {
+    tpSeconds--; updateTPDisplay();
+    if (tpSeconds <= 0) { clearInterval(tpInterval); tpInterval = null; if (l) l.textContent = '↻ Done'; if (b) b.classList.remove('running'); beep(1320, 0.6); }
+  }, 1000);
+}
+function restartTP() { if (tpInterval) { clearInterval(tpInterval); tpInterval = null; } tpSeconds = tpLabel === 'p1' ? 270 : tpLabel === 'p2' ? 120 : 270; updateTPDisplay(); var b = document.getElementById('tpStartBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); }
+function toggleMuteTP() { tpMuted = !tpMuted; var b = document.getElementById('tpMuteBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = tpMuted ? '🔊' : '🔇'; }
+function updateTPDisplay() { var m = Math.floor(tpSeconds / 60), s = tpSeconds % 60; document.getElementById('tpDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s; }
+function beep(freq, dur) { if (tpMuted) return; try { var ctx = new (window.AudioContext||window.webkitAudioContext)(), o = ctx.createOscillator(), g = ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.frequency.value = freq; o.type = 'sine'; g.gain.setValueAtTime(0.15, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur); o.start(); o.stop(ctx.currentTime + dur); } catch(e) {} }
+
 </script>
+
+<div class="timer-popup" id="timerPopup">
+  <div class="timer-popup-box">
+    <span class="timer-phase" id="tpLabel">Timer</span>
+    <span class="timer-display" id="tpDisplay">0:00</span>
+    <button class="timer-btn specular-fx" id="tpStartBtn" onclick="toggleTP()"><span class="specular-button__label">▶ Play</span></button>
+    <button class="timer-btn specular-fx" id="tpRestartBtn" onclick="restartTP()"><span class="specular-button__label">↺</span></button>
+    <button class="timer-btn specular-fx" id="tpMuteBtn" onclick="toggleMuteTP()"><span class="specular-button__label">🔇</span></button>
+    <button class="timer-btn specular-fx" onclick="closeTimer()"><span class="specular-button__label">✕</span></button>
+  </div>
+</div>
+
 </body></html>
