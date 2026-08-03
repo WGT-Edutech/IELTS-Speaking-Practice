@@ -135,6 +135,19 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 @keyframes sb-shine { to { --sb-angle: 360deg; } }
 @property --sb-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 .specular-button__label { display: inline-flex; align-items: center; justify-content: center; }
+
+/* ═══ Timer (matches deck-1) ═══ */
+.timer-trigger{display:inline-flex;align-items:center;gap:5px;background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:5px 12px;border-radius:14px;cursor:pointer;transition:all .15s;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.timer-trigger:hover{background:var(--accent-glow);box-shadow:0 0 8px var(--accent-glow)}
+.timer-popup{display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:500;align-items:center;justify-content:center;padding:8px 0}
+.timer-popup.show{display:flex}
+.timer-popup-box{display:flex;align-items:center;gap:14px;background:color-mix(in srgb,var(--bg) 92%,transparent);border:1px solid var(--accent-glow);border-radius:0 0 16px 16px;padding:10px 24px;backdrop-filter:blur(16px);box-shadow:0 4px 24px var(--accent-glow)}
+.timer-popup-box .timer-display{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:700;color:var(--accent);min-width:60px;text-align:center}
+.timer-popup-box .timer-phase{font-size:.85rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
+.timer-btn{background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:6px 14px;border-radius:18px;cursor:pointer;transition:all .15s;min-width:44px;min-height:34px;box-shadow:0 0 8px var(--accent-glow)}
+.timer-btn:hover{box-shadow:0 0 18px var(--accent-glow);transform:scale(1.05)}
+.timer-btn:active{transform:scale(.95)}
+.timer-btn.running{background:var(--accent-glow);border-color:var(--accent)}
 </style></head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
@@ -145,29 +158,29 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 
 <section class="slide active" style="background-image:url('https://pixabay.com/get/g344bfb6251606c73a76a785084db3e49d3e816f0479b66f56646a94a30af08ac803a2239669938ac12454dff4f25c7c32cce9a5e31373e226726c3cb108dd468_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Education &amp; Learning</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g7e025ecd438ec6c0e3f9fc8911eccac805aec0a491298f8c6a14130f198d83bb51aeb43872be67771b9cfd82fcdb9f67597f6c65563c9acadca361e5528376a1_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 1&ndash;3</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g7e025ecd438ec6c0e3f9fc8911eccac805aec0a491298f8c6a14130f198d83bb51aeb43872be67771b9cfd82fcdb9f67597f6c65563c9acadca361e5528376a1_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 1&ndash;3</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span>
 <div class="card"><span class="ctag">Question 1 &middot; Major</span><p>Why did you choose your major or field of study?</p></div>
 <div class="card"><span class="ctag">Question 2 &middot; Books</span><p>What kind of books do you like to read?</p></div>
 <div class="card"><span class="ctag">Question 3 &middot; High School</span><p>Do you still keep in touch with friends from high school?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g2382b8117095cc1ac7e01896d6208de39075d1e2fe895fafea15ccc1a6028ba03297beb01d19c19f2c5365889ae512075ce5c7675f25ad68d629c05b594e3879_1280.jpg')"><div class="content"><h2>Part 1 &middot; Questions 4&ndash;6</h2>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g2382b8117095cc1ac7e01896d6208de39075d1e2fe895fafea15ccc1a6028ba03297beb01d19c19f2c5365889ae512075ce5c7675f25ad68d629c05b594e3879_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 4&ndash;6</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span>
 <div class="card"><span class="ctag">Question 4 &middot; Teachers</span><p>Who was your favourite teacher in high school?</p></div>
 <div class="card"><span class="ctag">Question 5 &middot; Study</span><p>Do you work or are you a student?</p></div>
-<div class="card"><span class="ctag">Question 6 &middot; Books</span><p>Do you think electronic books are better than paper books?</p></div>
+<div class="card"><span class="ctag">Question 6 &middot; Books</span><p>Do you think <span class="vocab-word" data-word="electronic">electronic</span> books are better than paper books?</p></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g500c889f81e6464784c41e6f61852761c8fd683207bade225b241b2f9aca3bb709708694e0df6f4269803c427cd170859d3261de1a1fed9d2cdfd7a7bb6f15f3_1280.jpg')"><div class="content wide"><h2>Part 2 &middot; Cue Card</h2><div class="cue-box"><div class="cue-main">Describe a school you attended or are attending.</div><ul class="cue-bullets">
+<section class="slide" style="background-image:url('https://pixabay.com/get/g500c889f81e6464784c41e6f61852761c8fd683207bade225b241b2f9aca3bb709708694e0df6f4269803c427cd170859d3261de1a1fed9d2cdfd7a7bb6f15f3_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 2 &middot; Cue Card</h2><span class="timer-trigger" onclick="openTimer('p2',120)">⏱ 2:00</span><div class="cue-box"><div class="cue-main">Describe a school you attended or are attending.</div><ul class="cue-bullets">
       <li>what it looks like from the outside</li>
       <li>what it looks like inside</li>
-      <li>what facilities it has</li>
+      <li>what <span class="vocab-word" data-word="facilities">facilities</span> it has</li>
       <li>and explain whether it is a good school building</li>
     </ul></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g91cd139618aca980e77d94abac98f8ac33619f577672e8c991f1cd35b457798ba1a1e02265749af469acb2f45d20a24546cd934c459ea7a0000c5ef4780c3edb_1280.jpg')"><div class="content wide"><h2>Part 3 &middot; Discussion</h2>
-<div class="card"><span class="ctag">Discussion 1</span><p>How are education priorities today different from those in the past?</p></div>
-<div class="card"><span class="ctag">Discussion 2</span><p>What is your opinion on the way languages are taught in schools?</p></div>
-<div class="card"><span class="ctag">Discussion 3</span><p>How can the type of school you attend affect career success?</p></div>
+<section class="slide" style="background-image:url('https://pixabay.com/get/g91cd139618aca980e77d94abac98f8ac33619f577672e8c991f1cd35b457798ba1a1e02265749af469acb2f45d20a24546cd934c459ea7a0000c5ef4780c3edb_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 3 &middot; Discussion</h2><span class="timer-trigger" onclick="openTimer('p3',270)">⏱ 4:30</span>
+<div class="card"><span class="ctag">Discussion 1</span><p>How are education <span class="vocab-word" data-word="priorities">priorities</span> today different from those in the past?</p></div>
+<div class="card"><span class="ctag">Discussion 2</span><p>What is your <span class="vocab-word" data-word="opinion">opinion</span> on the way <span class="vocab-word" data-word="languages">languages</span> are taught in schools?</p></div>
+<div class="card"><span class="ctag">Discussion 3</span><p>How can the type of school you attend affect career <span class="vocab-word" data-word="success">success</span>?</p></div>
 <div class="card"><span class="ctag">Discussion 4</span><p>What changes do you think will happen in classrooms in the near future?</p></div>
 </div></section>
 
@@ -189,18 +202,7 @@ h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.
 <div class="vocab-tooltip" id="vocabTooltip"><span class="tt-pos" id="ttPos"></span> <span class="tt-word" id="ttWord"></span><div class="tt-def" id="ttDef"></div></div>
 
 <script>
-var vocabDict = {
-  "curriculum": {"pos": "noun", "def": "the subjects that make up a course of study"},
-  "academic": {"pos": "adj", "def": "relating to education, especially at college or university level"},
-  "scholarship": {"pos": "noun", "def": "money awarded to a student to help pay for their education"},
-  "pedagogy": {"pos": "noun", "def": "the method and practice of teaching"},
-  "literacy": {"pos": "noun", "def": "the ability to read and write"},
-  "discipline": {"pos": "noun", "def": "the practice of training people to obey rules"},
-  "vocational": {"pos": "adj", "def": "relating to skills needed for a particular job"},
-  "assessment": {"pos": "noun", "def": "the process of judging or measuring someone's progress"},
-  "enrollment": {"pos": "noun", "def": "the act of officially joining a school or course"},
-  "cognitive": {"pos": "adj", "def": "relating to mental processes of understanding and learning"}
-};
+var vocabDict = {"curriculum": {"pos": "noun", "def": "the subjects that make up a course of study"}, "academic": {"pos": "adj", "def": "relating to education, especially at college or university level"}, "scholarship": {"pos": "noun", "def": "money awarded to a student to help pay for their education"}, "pedagogy": {"pos": "noun", "def": "the method and practice of teaching"}, "literacy": {"pos": "noun", "def": "the ability to read and write"}, "discipline": {"pos": "noun", "def": "the practice of training people to obey rules"}, "vocational": {"pos": "adj", "def": "relating to skills needed for a particular job"}, "assessment": {"pos": "noun", "def": "the process of judging or measuring someone's progress"}, "enrollment": {"pos": "noun", "def": "the act of officially joining a school or course"}, "cognitive": {"pos": "adj", "def": "relating to mental processes of understanding and learning"}, "priorities": {"pos": "noun", "def": "the things that are most important to you"}, "facilities": {"pos": "noun", "def": "buildings, equipment and services provided for a purpose"}, "electronic": {"pos": "adj", "def": "using electricity and computer technology"}, "opinion": {"pos": "noun", "def": "what you think about something"}, "success": {"pos": "noun", "def": "achieving what you wanted to achieve"}, "languages": {"pos": "noun", "def": "the systems of words people use to communicate"}};
 
 var tooltip = document.getElementById('vocabTooltip');
 document.addEventListener('mouseover', function(e) {
@@ -480,5 +482,36 @@ update();
   else initAll();
 })();
 
+
+// ═══ Popup Timer ═══
+var tpInterval = null, tpSeconds = 0, tpLabel = '', tpMuted = false;
+function openTimer(label, secs) { tpLabel = label; tpSeconds = secs; document.getElementById('tpLabel').textContent = label === 'p1' ? 'Part 1' : label === 'p2' ? 'Part 2' : 'Part 3'; updateTPDisplay(); var b = document.getElementById('tpStartBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); document.getElementById('timerPopup').classList.add('show'); }
+function closeTimer() { if (tpInterval) { clearInterval(tpInterval); tpInterval = null; } document.getElementById('timerPopup').classList.remove('show'); }
+function toggleTP() {
+  var b = document.getElementById('tpStartBtn'), l = b ? b.querySelector('.specular-button__label') : null;
+  if (tpInterval) { clearInterval(tpInterval); tpInterval = null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); return; }
+  if (l) l.textContent = '⏸ Pause'; if (b) b.classList.add('running');
+  tpInterval = setInterval(function() {
+    tpSeconds--; updateTPDisplay();
+    if (tpSeconds <= 0) { clearInterval(tpInterval); tpInterval = null; if (l) l.textContent = '↻ Done'; if (b) b.classList.remove('running'); beep(1320, 0.6); }
+  }, 1000);
+}
+function restartTP() { if (tpInterval) { clearInterval(tpInterval); tpInterval = null; } tpSeconds = tpLabel === 'p1' ? 270 : tpLabel === 'p2' ? 120 : 270; updateTPDisplay(); var b = document.getElementById('tpStartBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); }
+function toggleMuteTP() { tpMuted = !tpMuted; var b = document.getElementById('tpMuteBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = tpMuted ? '🔊' : '🔇'; }
+function updateTPDisplay() { var m = Math.floor(tpSeconds / 60), s = tpSeconds % 60; document.getElementById('tpDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s; }
+function beep(freq, dur) { if (tpMuted) return; try { var ctx = new (window.AudioContext||window.webkitAudioContext)(), o = ctx.createOscillator(), g = ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.frequency.value = freq; o.type = 'sine'; g.gain.setValueAtTime(0.15, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur); o.start(); o.stop(ctx.currentTime + dur); } catch(e) {} }
+
 </script>
+
+<div class="timer-popup" id="timerPopup">
+  <div class="timer-popup-box">
+    <span class="timer-phase" id="tpLabel">Timer</span>
+    <span class="timer-display" id="tpDisplay">0:00</span>
+    <button class="timer-btn specular-fx" id="tpStartBtn" onclick="toggleTP()"><span class="specular-button__label">▶ Play</span></button>
+    <button class="timer-btn specular-fx" id="tpRestartBtn" onclick="restartTP()"><span class="specular-button__label">↺</span></button>
+    <button class="timer-btn specular-fx" id="tpMuteBtn" onclick="toggleMuteTP()"><span class="specular-button__label">🔇</span></button>
+    <button class="timer-btn specular-fx" onclick="closeTimer()"><span class="specular-button__label">✕</span></button>
+  </div>
+</div>
+
 </body></html>
