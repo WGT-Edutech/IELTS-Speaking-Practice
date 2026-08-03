@@ -54,7 +54,6 @@ body {
 #card-info { position: fixed; bottom: 14vh; left: 50%; transform: translateX(-50%); z-index: 30; text-align: center; opacity: 0; transition: opacity .4s; pointer-events: none; }
 #card-info.visible { opacity: 1; }
 .card-name { font-family: 'Montserrat', sans-serif; font-size: 1.45rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--cyan); text-shadow: 0 0 12px rgba(34,211,238,.4); }
-.card-desc { font-size: 1.1rem; color: var(--text-dim); margin-top: .2em; }
 /* gallery arrows */
 .cover-nav { position: fixed; bottom: 3vh; left: 50%; transform: translateX(-50%); z-index: 40; display: flex; align-items: center; gap: 1.4rem; padding: .7rem 1.6rem; background: rgba(10,14,26,.55); border: 1px solid rgba(34,211,238,.25); border-radius: 999px; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 8px 32px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08); }
 .cover-arrow { width: auto; min-width: 110px; padding: .85em 1.8em; border-radius: 999px; background: linear-gradient(135deg, rgba(34,211,238,.14), rgba(167,139,250,.14)); border: 1px solid rgba(34,211,238,.4); color: var(--text); font-size: 1.05rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: all .25s cubic-bezier(.25,.46,.45,.94); display: inline-flex; align-items: center; justify-content: center; gap: .55em; box-shadow: 0 0 0 rgba(34,211,238,0), inset 0 1px 0 rgba(255,255,255,.1); }
@@ -174,7 +173,7 @@ footer { text-align: center; color: var(--text-dim); margin-top: 3em; font-size:
 <div id="varprox" aria-hidden="true"></div>
 
 <section id="gallery"><div class="gallery-stage"><div class="card-ring" id="cardRing"></div></div></section>
-<div id="card-info"><div class="card-name" id="cardName"></div><div class="card-desc" id="cardDesc"></div></div>
+<div id="card-info"><div class="card-name" id="cardName"></div></div>
 <div class="cover-nav">
   <button class="cover-arrow prev specular-fx" id="prevBtn" aria-label="Back"><span class="specular-button__label"><span class="arr">&larr;</span> Back</span></button>
   <button class="cover-arrow next specular-fx" id="nextBtn" aria-label="Next"><span class="specular-button__label">Next <span class="arr">&rarr;</span></span></button>
@@ -231,7 +230,6 @@ function playSwish(dir){
 (function(){
   var ring = document.getElementById('cardRing');
   var cn = document.getElementById('cardName');
-  var cd = document.getElementById('cardDesc');
   var ci = document.getElementById('card-info');
   var cardEls = [];
 
@@ -253,7 +251,6 @@ function playSwish(dir){
     });
     el.addEventListener('mouseenter', function(){
       cn.textContent = d.title;
-      cd.textContent = d.p1 + ' Part 1 \u00b7 ' + d.p2 + ' Part 2 \u00b7 ' + d.p3 + ' Part 3';
       ci.classList.add('visible');
     });
     el.addEventListener('mouseleave', function(){
@@ -272,7 +269,6 @@ function playSwish(dir){
   function showInfo(i){
     var cur = decks[i];
     cn.textContent = cur.title;
-    cd.textContent = cur.p1 + ' Part 1 \u00b7 ' + cur.p2 + ' Part 2 \u00b7 ' + cur.p3 + ' Part 3';
     ci.classList.add('visible');
   }
 
@@ -300,14 +296,21 @@ function playSwish(dir){
     targetPos = Math.max(0, Math.min(cardEls.length - 1, targetPos));
   }, { passive: false });
 
-  var touchY = null;
+  var touchX = null, touchY = null;
   document.addEventListener('touchstart', function(e){
+    touchX = e.touches[0].clientX;
     touchY = e.touches[0].clientY;
   }, { passive: true });
   document.addEventListener('touchmove', function(e){
-    if (touchY === null) return;
+    if (touchX === null && touchY === null) return;
+    var dx = e.touches[0].clientX - touchX;
     var dy = e.touches[0].clientY - touchY;
-    if (Math.abs(dy) > 12) {
+    // horizontal swipe = next/prev (same as drag); vertical swipe also moves (legacy)
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 12) {
+      targetPos += dx > 0 ? -0.35 : 0.35;
+      targetPos = Math.max(0, Math.min(cardEls.length - 1, targetPos));
+      touchX = e.touches[0].clientX;
+    } else if (Math.abs(dy) > 12) {
       targetPos += dy > 0 ? -0.35 : 0.35;
       targetPos = Math.max(0, Math.min(cardEls.length - 1, targetPos));
       touchY = e.touches[0].clientY;
