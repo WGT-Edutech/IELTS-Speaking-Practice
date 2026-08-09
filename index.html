@@ -212,6 +212,28 @@ footer { text-align: center; color: var(--text-dim); margin-top: 3em; font-size:
 }
 @keyframes sb-shine { to { --sb-angle: 360deg; } }
 @property --sb-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+
+/* ═══ SIDEBAR MENU (VariableProximity items -> vanilla) ═══ */
+.side-menu {
+  position: fixed; left: 14px; top: 50%; transform: translateY(-50%);
+  z-index: 45; display: flex; flex-direction: column; gap: 2px;
+  padding: 10px 8px; border-radius: 14px;
+  background: rgba(10,14,26,.45); border: 1px solid rgba(34,211,238,.15);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 8px 32px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.side-item {
+  font-family: 'Roboto Flex', sans-serif; font-size: .82rem; font-weight: 400;
+  color: rgba(226,232,240,.55); text-align: left; letter-spacing: .02em;
+  background: none; border: none; padding: 5px 10px; border-radius: 8px;
+  cursor: pointer; white-space: nowrap; line-height: 1.35;
+  transition: color .2s ease, background .2s ease;
+}
+.side-item:hover { background: rgba(34,211,238,.08); }
+.side-item.is-active { color: var(--cyan); }
+.side-item:focus-visible { outline: 2px solid rgba(34,211,238,.6); outline-offset: 1px; }
+.side-item__label span { display: inline-block; }
+@media (max-width: 768px) { .side-menu { display: none; } }
 </style></head>
 <body>
 <div id="dotfield"></div>
@@ -271,6 +293,98 @@ function playSwish(dir){
     src.start(now); src.stop(now + dur + 0.05);
   } catch(e) {}
 }
+
+// ═══ SIDEBAR MENU (VariableProximity items -> vanilla) ═══
+(function(){
+  var menu = document.createElement('nav');
+  menu.className = 'side-menu';
+  menu.setAttribute('aria-label', 'Deck topics');
+  document.body.appendChild(menu);
+
+  var items = [];
+  decks.forEach(function(d, i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'side-item';
+    b.setAttribute('aria-label', 'Jump to ' + d.title);
+    var lab = document.createElement('span');
+    lab.className = 'side-item__label';
+    var letterEls = [];
+    var words = d.title.split(' ');
+    words.forEach(function(word, wi){
+      var wspan = document.createElement('span');
+      wspan.style.display = 'inline-block';
+      wspan.style.whiteSpace = 'nowrap';
+      word.split('').forEach(function(ch){
+        var l = document.createElement('span');
+        l.style.display = 'inline-block';
+        l.textContent = ch;
+        wspan.appendChild(l);
+        letterEls.push(l);
+      });
+      lab.appendChild(wspan);
+      if (wi < words.length - 1){
+        var sp = document.createElement('span');
+        sp.style.display = 'inline-block';
+        sp.innerHTML = '&nbsp;';
+        lab.appendChild(sp);
+      }
+    });
+    b.appendChild(lab);
+    b.addEventListener('click', function(){
+      var cur = window.DG ? window.DG.getFocus() : -1;
+      if (cur === i){ window.location.href = d.file; return; }
+      if (window.DG) window.DG.focus(i);
+    });
+    menu.appendChild(b);
+    items.push({ el: b, letterEls: letterEls, centers: null, itemCenter: null });
+  });
+
+  function cacheRects(){
+    items.forEach(function(it){
+      it.centers = it.letterEls.map(function(l){
+        var r = l.getBoundingClientRect();
+        return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+      });
+      var r = it.el.getBoundingClientRect();
+      it.itemCenter = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+    });
+  }
+  cacheRects();
+  window.addEventListener('resize', cacheRects);
+
+  // active highlight follows carousel focus
+  window.__dgChange = function(idx){
+    items.forEach(function(it, i){ it.el.classList.toggle('is-active', i === idx); });
+  };
+  window.__dgChange(0);
+
+  // VariableProximity: per-letter weight ramp near the cursor
+  var RADIUS = 120, BASE = 400, MAX = 900;
+  var mouse = { x: -9999, y: -9999 };
+  window.addEventListener('mousemove', function(e){ mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+  window.addEventListener('touchmove', function(e){ var t = e.touches[0]; if (t){ mouse.x = t.clientX; mouse.y = t.clientY; } }, { passive: true });
+
+  var lx = null, ly = null;
+  function loop(){
+    requestAnimationFrame(loop);
+    if (mouse.x === lx && mouse.y === ly) return;
+    lx = mouse.x; ly = mouse.y;
+    items.forEach(function(it){
+      if (!it.centers) return;
+      if (Math.hypot(mouse.x - it.itemCenter.x, mouse.y - it.itemCenter.y) > RADIUS + 80) return;
+      it.letterEls.forEach(function(l, li){
+        var c = it.centers[li];
+        var d = Math.hypot(mouse.x - c.x, mouse.y - c.y);
+        var norm = d >= RADIUS ? 0 : 1 - d / RADIUS;
+        var w = BASE + (MAX - BASE) * norm;
+        var o = 9 + (20 - 9) * norm;
+        l.style.fontVariationSettings = "'wght' " + w.toFixed(1) + ", 'opsz' " + o.toFixed(1);
+      });
+    });
+  }
+  requestAnimationFrame(loop);
+})();
 
 (function(){
   var gallery = document.getElementById('gallery');
@@ -427,6 +541,7 @@ function playSwish(dir){
     cn.textContent = decks[idx].title;
     ci.classList.add('visible');
     updateNavState();
+    if (window.__dgChange) window.__dgChange(idx);
   }
 
   function setFocus(rawIndex, animate){
@@ -541,6 +656,15 @@ function playSwish(dir){
 
   notify(0);
   layout(0);
+
+  // exposed API for the sidebar menu
+  window.DG = {
+    focus: function(i){
+      i = clamp(Math.round(i), 0, decks.length - 1);
+      if (i !== focusRef){ playSwish(i > focusRef ? 1 : -1); setFocus(i, true); }
+    },
+    getFocus: function(){ return focusRef; }
+  };
 })();
 
 // ═══ DOTFIELD BACKGROUND (React Bits DotField -> vanilla JS) ═══
