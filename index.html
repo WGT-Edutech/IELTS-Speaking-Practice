@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>IELTS Speaking Practice · B2</title>
+<title>IELTS Speaking Practice · Depth Gallery</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
 <style>
@@ -39,18 +39,55 @@ body {
   -webkit-user-select: none;
 }
 #gallery { position: fixed; inset: 0; z-index: 2; }
-.gallery-stage { position: relative; width: 100%; height: 100%; perspective: 1400px; display: flex; align-items: center; justify-content: center; }
-.card-ring { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
-.ring-card { position: absolute; width: 75vh; height: 50vh; cursor: pointer; will-change: transform, opacity; }
-.ring-card-inner {
-  width: 100%; height: 100%; border-radius: 16px; overflow: hidden;
-  border: 1px solid rgba(255,255,255,.15); background: rgba(15,15,30,.85);
-  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+/* ═══ DEPTH CAROUSEL (React Bits DepthCarousel -> vanilla JS, GSAP-free) ═══ */
+.depth-carousel {
+  position: relative; width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  perspective: 1400px; perspective-origin: 50% 50%;
+  touch-action: pan-y; outline: none; user-select: none; -webkit-user-select: none; cursor: grab;
+}
+.depth-carousel:active { cursor: grabbing; }
+.depth-carousel:focus-visible { outline: 2px solid rgba(255,255,255,.5); outline-offset: 4px; border-radius: 12px; }
+.depth-carousel__stage { position: absolute; inset: 0; transform-style: preserve-3d; }
+.depth-carousel__card {
+  position: absolute; top: 50%; left: 50%; transform-origin: center center;
+  overflow: hidden; background: #0b0d12;
+  border: 1px solid rgba(255,255,255,.15);
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,.65), 0 8px 20px -10px rgba(0,0,0,.5);
+  will-change: transform, opacity, filter; cursor: pointer;
   -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 35%);
 }
-.ring-card img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; display: block; }
-.ring-card .done-badge { position: absolute; top: 10px; right: 10px; z-index: 2; background: var(--green); color: #04120b; font-size: .85rem; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: .04em; display: none; }
-.ring-card.done .done-badge { display: block; }
+.depth-carousel__img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; -webkit-user-drag: none; }
+.depth-carousel__tint { position: absolute; inset: 0; opacity: 0; pointer-events: none; mix-blend-mode: multiply; }
+.done-badge {
+  position: absolute; top: 10px; right: 10px; z-index: 2;
+  background: var(--green); color: #04120b; font-size: .85rem; font-weight: 700;
+  padding: 3px 10px; border-radius: 12px; letter-spacing: .04em; display: none;
+}
+.depth-carousel__card.done .done-badge { display: block; }
+.depth-carousel__arrow {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 3000;
+  width: 44px; height: 44px; display: grid; place-items: center;
+  border: 1px solid rgba(255,255,255,.18); border-radius: 999px;
+  background: rgba(18,20,26,.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  color: #fff; cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease, opacity .2s ease;
+}
+.depth-carousel__arrow:hover { background: rgba(28,31,40,.85); border-color: rgba(255,255,255,.4); }
+.depth-carousel__arrow:active { transform: translateY(-50%) scale(.94); }
+.depth-carousel__arrow:disabled, .depth-carousel__arrow:disabled:hover {
+  background: rgba(18,20,26,.3); border-color: rgba(255,255,255,.1); color: rgba(255,255,255,.35);
+  cursor: default; opacity: .45;
+}
+.depth-carousel__arrow--prev { left: 16px; }
+.depth-carousel__arrow--next { right: 16px; }
+.depth-carousel__dots {
+  position: absolute; bottom: 9vh; left: 50%; transform: translateX(-50%); z-index: 3000;
+  display: flex; gap: 8px; padding: 8px 12px; border-radius: 999px;
+  background: rgba(14,16,22,.4); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.depth-carousel__dot { width: 7px; height: 7px; padding: 0; border: none; border-radius: 999px; background: rgba(255,255,255,.32); cursor: pointer; transition: width .25s ease, background .25s ease; }
+.depth-carousel__dot.is-active { width: 20px; background: var(--cyan); }
 #card-info { position: fixed; bottom: 14vh; left: 50%; transform: translateX(-50%); z-index: 30; text-align: center; opacity: 0; transition: opacity .4s; pointer-events: none; }
 #card-info.visible { opacity: 1; }
 .card-name { font-family: 'Montserrat', sans-serif; font-size: 1.45rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--cyan); text-shadow: 0 0 12px rgba(34,211,238,.4); }
@@ -67,7 +104,10 @@ body {
   box-shadow: none; transform: none; cursor: default;
 }
 @media (max-width: 768px) {
-  .ring-card { width: 90vw; height: 60vw; }
+  .depth-carousel__arrow { width: 38px; height: 38px; }
+  .depth-carousel__arrow--prev { left: 8px; }
+  .depth-carousel__arrow--next { right: 8px; }
+  .depth-carousel__dots { bottom: 10vh; }
   .cover-nav { bottom: 2vh; gap: .8rem; padding: .55rem 1rem; }
   .cover-arrow { min-width: 88px; padding: .7em 1.3em; font-size: .95rem; }
   #card-info { bottom: 15vh; }
@@ -177,7 +217,7 @@ footer { text-align: center; color: var(--text-dim); margin-top: 3em; font-size:
 <div id="dotfield"></div>
 <div id="varprox" aria-hidden="true"></div>
 
-<section id="gallery"><div class="gallery-stage"><div class="card-ring" id="cardRing"></div></div></section>
+<section id="gallery"></section>
 <div id="card-info"><div class="card-name" id="cardName"></div></div>
 <div class="cover-nav">
   <button class="cover-arrow prev specular-fx" id="prevBtn" aria-label="Back"><span class="specular-button__label"><span class="arr">&larr;</span> Back</span></button>
@@ -233,35 +273,54 @@ function playSwish(dir){
 }
 
 (function(){
-  var ring = document.getElementById('cardRing');
+  var gallery = document.getElementById('gallery');
+  if (!gallery) return;
+  gallery.classList.add('depth-carousel');
+  gallery.setAttribute('role', 'group');
+  gallery.setAttribute('aria-roledescription', 'carousel');
+  gallery.setAttribute('aria-label', 'IELTS Speaking Practice decks');
+  gallery.tabIndex = 0;
+
   var cn = document.getElementById('cardName');
   var ci = document.getElementById('card-info');
   var prevBtn = document.getElementById('prevBtn');
   var nextBtn = document.getElementById('nextBtn');
-  var cardEls = [];
 
-  function updateNav(){
-    var total = cardEls.length;
-    if (!total) return;
-    var idx = Math.max(0, Math.min(total - 1, Math.round(smoothPos)));
-    prevBtn.disabled = idx <= 0;
-    nextBtn.disabled = idx >= total - 1;
+  // DepthCarousel props
+  var cfg = {
+    depth: 220, spread: 90, tilt: 22, tiltDirection: 'right',
+    perspective: 1400, visibleCards: 4, falloff: 0.2, blur: 6,
+    duration: 700, tint: '#060a14', radius: 18
+  };
+
+  var stage = document.createElement('div');
+  stage.className = 'depth-carousel__stage';
+  gallery.appendChild(stage);
+
+  var cardEls = [], tintEls = [];
+  var scaleRef = 1;
+
+  function computeCardSize(){
+    // landscape 3:2 cards (deck covers are landscape), ~52vh tall, capped
+    var h = Math.min(window.innerHeight * 0.52, 520);
+    return { w: h * 1.5, h: h };
   }
+  var cardW = computeCardSize().w, cardH = computeCardSize().h;
 
+  // build cards
   decks.forEach(function(d, i){
     var el = document.createElement('div');
-    el.className = 'ring-card';
+    el.className = 'depth-carousel__card';
     if (progress[d.file] && progress[d.file].completed) el.classList.add('done');
-    el.innerHTML = '<div class="ring-card-inner"><span class="done-badge">&#10003; Done</span>'
-      + '<img src="' + d.img + '" alt="' + d.title + '" onerror="this.style.display=\'none\'"></div>';
+    el.style.width = cardW + 'px';
+    el.style.height = cardH + 'px';
+    el.style.borderRadius = cfg.radius + 'px';
+    el.innerHTML = '<img class="depth-carousel__img" src="' + d.img + '" alt="' + d.title + '" draggable="false" onerror="this.style.display=&quot;none&quot;">'
+      + '<span class="depth-carousel__tint" style="background:' + cfg.tint + '"></span>'
+      + '<span class="done-badge">&#10003; Done</span>';
     el.addEventListener('click', function(){
-      // ignore the click that follows a drag (swipe) — within 300ms of release
       if (Date.now() - lastDragTime < 300) return;
-      // bring non-focused card into focus; only the focused card opens the deck
-      if (Math.round(smoothPos) !== i) {
-        go(i);
-        return;
-      }
+      if (i !== focusRef) { setFocus(i, true); return; }
       window.location.href = d.file;
     });
     el.addEventListener('mouseenter', function(){
@@ -269,145 +328,219 @@ function playSwish(dir){
       ci.classList.add('visible');
     });
     el.addEventListener('mouseleave', function(){
-      // revert to the focused card's title (visible when card is in focus, not just on hover)
-      showInfo(Math.round(smoothPos));
+      cn.textContent = decks[focusRef].title;
     });
-    el._spring = {tx:0,tz:-400,ry:0,sc:.5,op:0,vtx:0,vtz:0,vry:0,vsc:0,vop:0};
-    if (i === 0) el._spring = {tx:0,tz:180,ry:0,sc:1,op:1,vtx:0,vtz:0,vry:0,vsc:0,vop:0};
-    ring.appendChild(el);
+    stage.appendChild(el);
     cardEls.push(el);
+    tintEls.push(el.querySelector('.depth-carousel__tint'));
   });
 
-  var STIFF = .06, DAMP = .78;
-  var lastActive = -1;
+  // arrows
+  function makeArrow(dir){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'depth-carousel__arrow depth-carousel__arrow--' + dir;
+    b.setAttribute('aria-label', dir === 'prev' ? 'Previous deck' : 'Next deck');
+    b.innerHTML = dir === 'prev'
+      ? '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+      : '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    b.addEventListener('click', function(){ navigateBy(dir === 'prev' ? -1 : 1); });
+    gallery.appendChild(b);
+    return b;
+  }
+  var arrPrev = makeArrow('prev'), arrNext = makeArrow('next');
 
-  function showInfo(i){
-    var cur = decks[i];
-    cn.textContent = cur.title;
+  // dots
+  var dotsWrap = document.createElement('div');
+  dotsWrap.className = 'depth-carousel__dots';
+  dotsWrap.setAttribute('role', 'tablist');
+  dotsWrap.setAttribute('aria-label', 'Slides');
+  var dots = [];
+  decks.forEach(function(d, i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'depth-carousel__dot';
+    b.setAttribute('aria-label', 'Go to deck ' + (i + 1));
+    b.addEventListener('click', function(){
+      if (i !== focusRef){ playSwish(i > focusRef ? 1 : -1); setFocus(i, true); }
+    });
+    dotsWrap.appendChild(b);
+    dots.push(b);
+  });
+  gallery.appendChild(dotsWrap);
+
+  var clamp = function(v, a, b){ return Math.min(Math.max(v, a), b); };
+  var power3Out = function(t){ return 1 - Math.pow(1 - t, 3); };
+
+  var posRef = 0, focusRef = 0;
+  var tween = null;
+  var reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  function killTween(){ if (tween){ cancelAnimationFrame(tween.raf); tween = null; } }
+
+  function layout(pos){
+    var n = cardEls.length;
+    if (!n) return;
+    var dir = cfg.tiltDirection === 'left' ? -1 : 1;
+    var spread = cardW * 0.3;   // lateral fan scales with card width
+    for (var i = 0; i < n; i++){
+      var el = cardEls[i];
+      var d = i - pos;
+      var back = Math.max(0, d);
+      var az = Math.abs(d);
+      var shown = az <= cfg.visibleCards + 0.5;
+      var tz = -cfg.depth * d;
+      var tx = dir * spread * d;
+      var ry = dir * cfg.tilt * clamp(d, 0, 1);
+      var opacity = d < 0 ? Math.max(0, 1 + d) : 1;
+      if (!shown) opacity = 0;
+      var brightness = Math.max(0.15, 1 - back * cfg.falloff);
+      var blurPx = cfg.blur > 0 ? Math.min(cfg.blur, (back / Math.max(1, cfg.visibleCards)) * cfg.blur) : 0;
+      var zi = Math.round(2000 - d * 20);
+      el.style.transform = 'translate(-50%, -50%) scale(' + scaleRef + ') translateX(' + tx.toFixed(2) + 'px) translateZ(' + tz.toFixed(2) + 'px) rotateY(' + ry.toFixed(3) + 'deg)';
+      el.style.opacity = opacity.toFixed(3);
+      el.style.filter = 'brightness(' + brightness.toFixed(3) + ') blur(' + blurPx.toFixed(2) + 'px)';
+      el.style.zIndex = String(zi);
+      el.style.pointerEvents = shown && opacity > 0.05 ? 'auto' : 'none';
+      if (tintEls[i]) tintEls[i].style.opacity = clamp(back * cfg.falloff * 1.25, 0, 0.86).toFixed(3);
+    }
+  }
+
+  function tweenTo(target, animate){
+    killTween();
+    var from = posRef;
+    var dur = animate && !reduced ? cfg.duration : 0;
+    if (dur <= 0){ posRef = target; layout(posRef); return; }
+    var t0 = performance.now();
+    function step(now){
+      var t = Math.min((now - t0) / dur, 1);
+      posRef = from + (target - from) * power3Out(t);
+      layout(posRef);
+      if (t < 1){ tween.raf = requestAnimationFrame(step); }
+      else { tween = null; posRef = target; layout(posRef); }
+    }
+    tween = { raf: requestAnimationFrame(step) };
+  }
+
+  function notify(idx){
+    focusRef = idx;
+    cn.textContent = decks[idx].title;
     ci.classList.add('visible');
+    updateNavState();
   }
 
-  // ── Wheel/touch-driven position (page never scrolls) ──
-  var targetPos = 0;   // fractional card position, 0 .. total-1
-  var smoothPos = 0;
-  var uiScale = 1;     // ctrl+wheel card/button zoom
-
-  function go(n){
-    var total = cardEls.length;
-    targetPos = Math.max(0, Math.min(total - 1, n));
+  function setFocus(rawIndex, animate){
+    var n = decks.length;
+    var idx = clamp(Math.round(rawIndex), 0, n - 1);
+    tweenTo(idx, animate);
+    if (idx !== focusRef) notify(idx);
   }
 
-  document.addEventListener('wheel', function(e){
+  function navigateBy(step){
+    var ni = clamp(focusRef + step, 0, decks.length - 1);
+    if (ni !== focusRef){ playSwish(step); setFocus(ni, true); }
+  }
+
+  function updateNavState(){
+    var n = decks.length;
+    if (!n) return;
+    prevBtn.disabled = focusRef <= 0;
+    nextBtn.disabled = focusRef >= n - 1;
+    arrPrev.disabled = focusRef <= 0;
+    arrNext.disabled = focusRef >= n - 1;
+    dots.forEach(function(dot, i){ dot.classList.toggle('is-active', i === focusRef); });
+  }
+
+  // wheel: navigate; ctrl+wheel = UI zoom
+  var wheelTimer = null;
+  var uiScale = 1;
+  gallery.addEventListener('wheel', function(e){
     e.preventDefault();
-    if (e.ctrlKey) {
-      uiScale = Math.max(0.5, Math.min(2.5, uiScale + (e.deltaY < 0 ? 0.1 : -0.1)));
-      var stage = document.querySelector('.gallery-stage');
+    if (e.ctrlKey){
+      uiScale = clamp(uiScale + (e.deltaY < 0 ? 0.1 : -0.1), 0.5, 2.5);
+      gallery.style.transform = 'scale(' + uiScale + ')';
       var nav = document.querySelector('.cover-nav');
-      if (stage) stage.style.transform = 'scale(' + uiScale + ')';
       if (nav) nav.style.transform = 'translateX(-50%) scale(' + uiScale + ')';
       return;
     }
-    targetPos += e.deltaY > 0 ? 0.35 : -0.35;
-    targetPos = Math.max(0, Math.min(cardEls.length - 1, targetPos));
+    killTween();
+    var raw = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    var delta = e.deltaMode === 1 ? raw * 24 : raw;
+    var step = clamp(delta / (cardW * 0.9), -0.6, 0.6);
+    posRef = clamp(posRef + step, 0, decks.length - 1);
+    layout(posRef);
+    if (wheelTimer) clearTimeout(wheelTimer);
+    wheelTimer = setTimeout(function(){ setFocus(Math.round(posRef), true); }, 130);
   }, { passive: false });
 
-  var touchX = null, touchY = null;
-  document.addEventListener('touchstart', function(e){
-    touchX = e.touches[0].clientX;
-    touchY = e.touches[0].clientY;
-  }, { passive: true });
-  document.addEventListener('touchmove', function(e){
-    if (touchX === null && touchY === null) return;
-    var dx = e.touches[0].clientX - touchX;
-    var dy = e.touches[0].clientY - touchY;
-    // horizontal swipe = next/prev (same as drag); vertical swipe also moves (legacy)
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 12) {
-      targetPos += dx > 0 ? -0.35 : 0.35;
-      targetPos = Math.max(0, Math.min(cardEls.length - 1, targetPos));
-      touchX = e.touches[0].clientX;
-    } else if (Math.abs(dy) > 12) {
-      targetPos += dy > 0 ? -0.35 : 0.35;
-      targetPos = Math.max(0, Math.min(cardEls.length - 1, targetPos));
-      touchY = e.touches[0].clientY;
-    }
-  }, { passive: true });
-
-  // ── Mouse click-and-drag through decks (swipe-like, only while held) ──
-  var dragX = null, dragMoved = false, lastDragTime = 0;
-  document.addEventListener('pointerdown', function(e){
-    if (e.pointerType === 'mouse' && e.button === 0) { dragX = e.clientX; dragMoved = false; }
+  // drag (pointer)
+  var drag = null, lastDragTime = 0;
+  gallery.addEventListener('pointerdown', function(e){
+    if (decks.length < 2) return;
+    killTween();
+    drag = { x: e.clientX, startPos: posRef, lastX: e.clientX, lastT: performance.now(), v: 0, moved: false, id: e.pointerId };
   });
-  document.addEventListener('pointermove', function(e){
-    if (dragX === null || e.pointerType !== 'mouse') return;
-    var dx = e.clientX - dragX;
-    if (Math.abs(dx) > 6) {
-      dragMoved = true;
-      targetPos += dx > 0 ? -0.35 : 0.35;
-      targetPos = Math.max(0, Math.min(cardEls.length - 1, targetPos));
-      dragX = e.clientX;
-    }
+  gallery.addEventListener('pointermove', function(e){
+    if (!drag) return;
+    var stepPx = Math.max(cardW * 0.55 * scaleRef, 40);
+    var dx = e.clientX - drag.x;
+    if (!drag.moved && Math.abs(dx) > 4){ drag.moved = true; try { gallery.setPointerCapture(drag.id); } catch(err){} }
+    if (!drag.moved) return;
+    var now = performance.now();
+    var dt = Math.max(now - drag.lastT, 1);
+    drag.v = (e.clientX - drag.lastX) / dt;
+    drag.lastX = e.clientX; drag.lastT = now;
+    posRef = clamp(drag.startPos - dx / stepPx, 0, decks.length - 1);
+    layout(posRef);
   });
-  function endDrag(e){
-    if (dragX !== null && dragMoved) lastDragTime = Date.now();
-    dragX = null; dragMoved = false;   // ALWAYS release — never stick
+  function endDrag(){
+    var d = drag;
+    drag = null;
+    if (!d || !d.moved) return;
+    lastDragTime = Date.now();
+    var stepPx = Math.max(cardW * 0.55 * scaleRef, 40);
+    var projected = posRef - (d.v * 180) / stepPx;
+    setFocus(Math.round(projected), true);
   }
-  document.addEventListener('pointerup', endDrag);
-  document.addEventListener('pointercancel', endDrag);
-  document.addEventListener('mouseup', endDrag);   // fallback if pointer events are unreliable
+  gallery.addEventListener('pointerup', endDrag);
+  gallery.addEventListener('pointercancel', endDrag);
 
-  function frameLoop(){
-    requestAnimationFrame(frameLoop);
-    var total = cardEls.length;
-    // --- buttery position smoothing ---
-    smoothPos += (targetPos - smoothPos) * 0.14;
-    var activeIdx = Math.max(0, Math.min(total - 1, Math.round(smoothPos)));
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowLeft') navigateBy(-1);
+    else if (e.key === 'ArrowRight') navigateBy(1);
+  });
 
-    if (activeIdx !== lastActive) { showInfo(activeIdx); lastActive = activeIdx; }
-    updateNav();
-
-    cardEls.forEach(function(card, i){
-      var dist = i - activeIdx, s = card._spring, tx, tz, ry, sc, op;
-      var s1 = Math.max(window.innerWidth * 0.34, 460);
-      var s2 = Math.max(window.innerWidth * 0.52, 700);
-      if (dist === 0) { tx = 0; tz = 180; ry = 0; sc = 1; op = 1; }
-      else if (dist === -1) { tx = -s1; tz = -220; ry = 30; sc = 1; op = 1; }
-      else if (dist === 1) { tx = s1; tz = -220; ry = -30; sc = 1; op = 1; }
-      else if (dist === -2) { tx = -s2; tz = -360; ry = 40; sc = .92; op = .5; }
-      else if (dist === 2) { tx = s2; tz = -360; ry = -40; sc = .92; op = .5; }
-      else { tx = 0; tz = -500; ry = 0; sc = .5; op = 0; }
-
-      s.vtx += (tx - s.tx) * STIFF; s.vtx *= DAMP; s.tx += s.vtx;
-      s.vtz += (tz - s.tz) * STIFF; s.vtz *= DAMP; s.tz += s.vtz;
-      s.vry += (ry - s.ry) * STIFF; s.vry *= DAMP; s.ry += s.vry;
-      s.vsc += (sc - s.sc) * STIFF; s.vsc *= DAMP; s.sc += s.vsc;
-      s.vop += (op - s.op) * STIFF; s.vop *= DAMP; s.op += s.vop;
-
-      card.style.transform = 'translateX(' + s.tx.toFixed(1) + 'px) translateZ(' + s.tz.toFixed(1)
-        + 'px) rotateY(' + s.ry.toFixed(1) + 'deg) scale(' + s.sc.toFixed(2) + ')';
-      card.style.opacity = Math.max(0, Math.min(1, s.op)).toFixed(3);
-      card.style.zIndex = dist === 0 ? '100' : Math.abs(dist) === 1 ? '50' : '30';
-      card.style.pointerEvents = s.op > .3 ? 'auto' : 'none';
-      // active glow border
-      card.style.boxShadow = dist === 0 ? '0 0 50px rgba(34,211,238,.3), 0 25px 80px rgba(0,0,0,.6)' : '';
+  // sizing
+  function applyCardSize(){
+    var s = computeCardSize();
+    cardW = s.w; cardH = s.h;
+    cardEls.forEach(function(el){
+      el.style.width = cardW + 'px';
+      el.style.height = cardH + 'px';
     });
   }
+  var rszT = null;
+  window.addEventListener('resize', function(){
+    clearTimeout(rszT);
+    rszT = setTimeout(function(){
+      applyCardSize();
+      var needed = cardW + cardW * 0.3 * 2 + 120;
+      scaleRef = clamp(gallery.clientWidth / needed, 0.4, 1);
+      layout(posRef);
+    }, 150);
+  });
+  if (window.ResizeObserver){
+    var ro = new ResizeObserver(function(entries){
+      var w = entries[0].contentRect.width;
+      var needed = cardW + cardW * 0.3 * 2 + 120;
+      scaleRef = clamp(w / needed, 0.4, 1);
+      layout(posRef);
+    });
+    ro.observe(gallery);
+  }
 
-  document.getElementById('prevBtn').addEventListener('click', function(){
-    playSwish(-1);
-    go(Math.round(smoothPos) - 1);
-  });
-  document.getElementById('nextBtn').addEventListener('click', function(){
-    playSwish(1);
-    go(Math.round(smoothPos) + 1);
-  });
-  document.addEventListener('keydown', function(e){
-    var total = cardEls.length;
-    if (e.key === 'ArrowLeft' && Math.round(smoothPos) > 0) { playSwish(-1); go(Math.round(smoothPos) - 1); }
-    if (e.key === 'ArrowRight' && Math.round(smoothPos) < total - 1) { playSwish(1); go(Math.round(smoothPos) + 1); }
-  });
-
-  showInfo(0);
-  requestAnimationFrame(frameLoop);
+  notify(0);
+  layout(0);
 })();
 
 // ═══ DOTFIELD BACKGROUND (React Bits DotField -> vanilla JS) ═══
