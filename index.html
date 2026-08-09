@@ -41,12 +41,12 @@ body {
 #gallery { position: fixed; inset: 0; z-index: 2; }
 .gallery-stage { position: relative; width: 100%; height: 100%; perspective: 1400px; display: flex; align-items: center; justify-content: center; }
 .card-ring { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
-.ring-card { position: absolute; width: 50vh; height: 33.3vh; cursor: pointer; will-change: transform, opacity; }
+.ring-card { position: absolute; width: 75vh; height: 50vh; cursor: pointer; will-change: transform, opacity; }
 .ring-card-inner {
   width: 100%; height: 100%; border-radius: 16px; overflow: hidden;
   border: 1px solid rgba(255,255,255,.15); background: rgba(15,15,30,.85);
   box-shadow: 0 20px 60px rgba(0,0,0,.5);
-  -webkit-box-reflect: below 14px linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.35));
+  -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 35%);
 }
 .ring-card img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; display: block; }
 .ring-card .done-badge { position: absolute; top: 10px; right: 10px; z-index: 2; background: var(--green); color: #04120b; font-size: .85rem; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: .04em; display: none; }
@@ -61,8 +61,13 @@ body {
 .cover-arrow:hover { background: linear-gradient(135deg, rgba(34,211,238,.28), rgba(167,139,250,.28)); border-color: rgba(34,211,238,.75); color: #fff; box-shadow: 0 0 24px rgba(34,211,238,.35), 0 6px 24px rgba(0,0,0,.35); transform: translateY(-3px); }
 .cover-arrow:active { transform: translateY(-1px) scale(.97); box-shadow: 0 0 12px rgba(34,211,238,.2); }
 .cover-arrow.next { background: linear-gradient(135deg, rgba(34,211,238,.22), rgba(167,139,250,.22)); }
+.cover-arrow:disabled, .cover-arrow:disabled:hover {
+  background: linear-gradient(135deg, rgba(34,211,238,.08), rgba(167,139,250,.08));
+  border-color: rgba(255,255,255,.15); color: rgba(226,232,240,.35);
+  box-shadow: none; transform: none; cursor: default;
+}
 @media (max-width: 768px) {
-  .ring-card { width: 60vw; height: 40vw; }
+  .ring-card { width: 90vw; height: 60vw; }
   .cover-nav { bottom: 2vh; gap: .8rem; padding: .55rem 1rem; }
   .cover-arrow { min-width: 88px; padding: .7em 1.3em; font-size: .95rem; }
   #card-info { bottom: 15vh; }
@@ -180,18 +185,18 @@ footer { text-align: center; color: var(--text-dim); margin-top: 3em; font-size:
 </div>
 <script>
 var decks = [
-  { file: "deck-1-technology.html", title: "Technology & Society", img: "https://pixabay.com/get/g94aea9eeb1d65197e4940f687f4d99d45198a3d008352fb8017cab05a98851762c7221e9ec06579602c7f9d5eb52d5d3c687bff2f67dbc24a36a3cbb751a1997_1280.jpg", p1: 6, p2: 1, p3: 4 },
-  { file: "deck-2-environment.html", title: "Environment & Climate", img: "https://pixabay.com/get/g5557f620e9cf5dc402d23e55e9d8375028ac183746294f8b3d49332d245758c04003463d1016260ae837af679e6d7bbf53102552b118fb7f310e8582c1eff737_1280.jpg", p1: 6, p2: 1, p3: 4 },
-  { file: "deck-3-education.html", title: "Education & Learning", img: "https://pixabay.com/get/gaa66563ffcaa919a4bb1702ac5d2e1e33a77492783cd893b60abbf3bd574f5ef4a3e8b24a014c3ffacd28e7f70e446c513dda8810e3078b44bee5b662cf43560_1280.jpg", p1: 6, p2: 1, p3: 4 },
-  { file: "deck-4-health.html", title: "Health & Wellbeing", img: "https://pixabay.com/get/gcbbf6bc5549cfbf8cdea1889296e45e1bb503d55264dd94b985de8f45806b452a3a51a6f3aa01f23d7f533a445cbb02717c58ac99fe025bef6cb6efed13be7bd_1280.jpg", p1: 6, p2: 1, p3: 4 },
-  { file: "deck-5-work.html", title: "Work & Employment", img: "https://pixabay.com/get/g29631c3e6ef34ca955598772c451604e8f37c10b0600e8837dc9657575c5821eee143920b24f259cd68be7e058d7fe32b6bf79b6065587897e527d758ded2cf5_1280.jpg", p1: 6, p2: 1, p3: 4 },
-  { file: "deck-6-culture.html", title: "Culture & Tradition", img: "https://pixabay.com/get/gb3246f62f92fd314ad765f6b7501ec20b0aafbc67c416f06596efb428dff13dfbb4a29db1bf4d59919e8aabb25488723cd1a72f13cee5b630fa0e97d3929f16f_1280.jpg", p1: 6, p2: 1, p3: 4 },
-  { file: "deck-7-globalization.html", title: "Globalization", img: "https://pixabay.com/get/g79887e6159600de87e28184154d2ba88ae28b740214e8fff8c4af1969c7788d243a609538f1378c16e160acd157454771991c48c3567948687211c8242fbd2a3_1280.jpg", p1: 6, p2: 1, p3: 4 },
-  { file: "deck-8-media.html", title: "Media & Communication", img: "https://pixabay.com/get/g5c45bb674892466e718b11581ade6a2f1510a670bff9798d649bc99862fd67436303011e5431824bb3a48d546341dc22d0e5b7b17b738fec2bd8fee86a4c092c_1280.jpg", p1: 6, p2: 1, p3: 4 },
-  { file: "deck-9-science.html", title: "Science & Innovation", img: "https://pixabay.com/get/g07624c21b89de329e726d8abd5492a11d9f9dff2dc6dcb401b9cf54aef5061caa0910aeec1126bb2905e9d2a64639e97dbae686ad4cc8c557d5cae11c3082e97_1280.jpg", p1: 6, p2: 1, p3: 4 },
-  { file: "deck-10-city.html", title: "City & Urban Life", img: "https://pixabay.com/get/g1532f2435dc56206234af522a8321defdb31f6352863bc4370ee39cbb6f466a4bc93306b3ca586efd23bcf666e66dfda3f72c1dedf83f4b874e067b92371abc3_1280.jpg", p1: 6, p2: 1, p3: 4 },
-  { file: "deck-11-food.html", title: "Food & Cooking", img: "https://pixabay.com/get/gdfedabc2ef757f431a63522c1675484af7d0970ff9a78b367fdd15774a83f7e689b31ed4d85b57e3dcdf00b613ddd9d7106d1036350236f7caa8067a6edb9489_1280.jpg", p1: 6, p2: 1, p3: 4 },
-  { file: "deck-12-shopping.html", title: "Shopping & Consumer Habits", img: "https://pixabay.com/get/g630b056fbfa91152931052f997104a04ccb0e6f83629540d39f43a0e3dddafb9905caf8bc54cfaf0cfe1e3577a0cab432552fa843590dad50e4e1755ad4a6e91_1280.jpg", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-1-technology.html", title: "Technology & Society", img: "https://images.pexels.com/photos/29871288/pexels-photo-29871288.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-2-environment.html", title: "Environment & Climate", img: "https://images.pexels.com/photos/37507631/pexels-photo-37507631.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-3-education.html", title: "Education & Learning", img: "https://images.pexels.com/photos/8199602/pexels-photo-8199602.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-4-health.html", title: "Health & Wellbeing", img: "https://images.pexels.com/photos/8381744/pexels-photo-8381744.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-5-work.html", title: "Work & Employment", img: "https://images.pexels.com/photos/7693692/pexels-photo-7693692.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-6-culture.html", title: "Culture & Tradition", img: "https://images.pexels.com/photos/38800651/pexels-photo-38800651.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-7-globalization.html", title: "Globalization", img: "https://images.pexels.com/photos/9331326/pexels-photo-9331326.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-8-media.html", title: "Media & Communication", img: "https://images.pexels.com/photos/32007691/pexels-photo-32007691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-9-science.html", title: "Science & Innovation", img: "https://images.pexels.com/photos/9243751/pexels-photo-9243751.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-10-city.html", title: "City & Urban Life", img: "https://images.pexels.com/photos/20208915/pexels-photo-20208915.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-11-food.html", title: "Food & Cooking", img: "https://images.pexels.com/photos/4253300/pexels-photo-4253300.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", p1: 6, p2: 1, p3: 4 },
+  { file: "deck-12-shopping.html", title: "Shopping & Consumer Habits", img: "https://images.pexels.com/photos/264502/pexels-photo-264502.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", p1: 6, p2: 1, p3: 4 },
 ];
 
 var progress = JSON.parse(localStorage.getItem('ielts-b2-progress') || '{}');
@@ -231,7 +236,17 @@ function playSwish(dir){
   var ring = document.getElementById('cardRing');
   var cn = document.getElementById('cardName');
   var ci = document.getElementById('card-info');
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
   var cardEls = [];
+
+  function updateNav(){
+    var total = cardEls.length;
+    if (!total) return;
+    var idx = Math.max(0, Math.min(total - 1, Math.round(smoothPos)));
+    prevBtn.disabled = idx <= 0;
+    nextBtn.disabled = idx >= total - 1;
+  }
 
   decks.forEach(function(d, i){
     var el = document.createElement('div');
@@ -348,6 +363,7 @@ function playSwish(dir){
     var activeIdx = Math.max(0, Math.min(total - 1, Math.round(smoothPos)));
 
     if (activeIdx !== lastActive) { showInfo(activeIdx); lastActive = activeIdx; }
+    updateNav();
 
     cardEls.forEach(function(card, i){
       var dist = i - activeIdx, s = card._spring, tx, tz, ry, sc, op;
@@ -385,8 +401,9 @@ function playSwish(dir){
     go(Math.round(smoothPos) + 1);
   });
   document.addEventListener('keydown', function(e){
-    if (e.key === 'ArrowLeft') { playSwish(-1); go(Math.round(smoothPos) - 1); }
-    if (e.key === 'ArrowRight') { playSwish(1); go(Math.round(smoothPos) + 1); }
+    var total = cardEls.length;
+    if (e.key === 'ArrowLeft' && Math.round(smoothPos) > 0) { playSwish(-1); go(Math.round(smoothPos) - 1); }
+    if (e.key === 'ArrowRight' && Math.round(smoothPos) < total - 1) { playSwish(1); go(Math.round(smoothPos) + 1); }
   });
 
   showInfo(0);
