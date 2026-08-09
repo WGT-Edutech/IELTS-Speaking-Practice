@@ -34,7 +34,7 @@ body {
   letter-spacing: .02em;
   line-height: 1.2;
   text-align: center;
-  color: rgba(226,232,240,.16);
+  color: #d6e9ff;
   user-select: none;
   -webkit-user-select: none;
 }
@@ -339,7 +339,6 @@ function playSwish(dir){
   document.addEventListener('pointerup', endDrag);
   document.addEventListener('pointercancel', endDrag);
   document.addEventListener('mouseup', endDrag);   // fallback if pointer events are unreliable
-
 
   function frameLoop(){
     requestAnimationFrame(frameLoop);
