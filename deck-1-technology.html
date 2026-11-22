@@ -407,6 +407,20 @@ function update() {
 }
 update();
 
+// Band 9 model answer toggle
+document.addEventListener('click', function(e){
+  var t = e.target.closest('.answer-toggle');
+  if(!t) return;
+  var box = t.nextElementSibling;
+  if(!box || !box.classList.contains('model-answer')) return;
+  var open = box.classList.toggle('show');
+  t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  t.innerHTML = open ? 'Hide Model Answer' : 'Model Answer';
+  if (open){
+    try { box.scrollIntoView({block:'nearest', inline:'nearest'}); }
+    catch(err){ try { box.scrollIntoView(); } catch(e2){} }
+  }
+});
 </script><div class="timer-popup" id="timerPopup">
   <div class="timer-popup-box">
     <span class="timer-phase" id="tpLabel">Timer</span>

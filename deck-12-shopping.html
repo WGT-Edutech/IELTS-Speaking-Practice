@@ -353,6 +353,10 @@ document.addEventListener('click', function(e){
   var open = box.classList.toggle('show');
   t.setAttribute('aria-expanded', open ? 'true' : 'false');
   t.innerHTML = open ? 'Hide Model Answer' : 'Model Answer';
+  if (open){
+    try { box.scrollIntoView({block:'nearest', inline:'nearest'}); }
+    catch(err){ try { box.scrollIntoView(); } catch(e2){} }
+  }
 });
 </script>
 
