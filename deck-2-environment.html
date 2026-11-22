@@ -1,200 +1,242 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://images.pexels.com https://cdn.pixabay.com https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; base-uri 'self'">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Environment &amp; Climate &middot; IELTS Speaking B2</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@700;800;900&amp;display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #060a14; --cyan: #22d3ee; --purple: #a78bfa; --gold: #fbbf24;
-  --green: #34d399; --red: #f87171; --text: #f2f0f8; --text-dim: #b8bcc8;
-  --accent: #fbbf24; --accent-glow: rgba(251,191,36,.22);
-  --accent-dim: rgba(251,191,36,.1); --bg-deep: #060a14;
+/* ══════════════════════════════════════════════════════════════
+   IELTS Speaking Practice — Sliding In style
+   flat dark UI · photo-led slides · Ken Burns zoom · theme cycler
+   ══════════════════════════════════════════════════════════════ */
+:root{
+  --bg:#08090a; --bg2:#0f1011; --bg3:#191a1b; --bg-deep:#08090a;
+  --bg-card:rgba(255,255,255,0.02);
+  --border:rgba(255,255,255,0.08); --border-subtle:rgba(255,255,255,0.05);
+  --text:#f7f8f8; --text-secondary:#d0d6e0; --text-muted:#8a8f98; --text-dim:#62666d;
+  --accent:#5e6ad2; --accent-hover:#7170ff; --accent-glow:rgba(94,106,210,0.25);
+  --accent-dim:rgba(94,106,210,0.08); --accent-bg:rgba(94,106,210,0.08);
+  --cyan:#22d3ee; --purple:#a78bfa; --gold:#fbbf24; --green:#10b981; --red:#f87171;
+  --font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  --panel:rgba(0,0,0,.6);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:clamp(1.1rem,1.5vw,1.35rem);line-height:1.75}
-.slide{position:fixed;inset:0;background-size:cover;background-position:center;opacity:0;pointer-events:none;transition:opacity .35s ease;display:flex;flex-direction:column;justify-content:flex-start;padding:3vh 5vw 10vh;overflow-y:auto}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
+  font-family:var(--font);font-size:clamp(1.02rem,1.35vw,1.25rem);line-height:1.7}
+
+/* progress */
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);
+  box-shadow:0 0 8px var(--accent-glow);z-index:200;transition:width .35s ease}
+
+/* ── top bar ── */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:210;display:flex;align-items:center;
+  justify-content:space-between;gap:12px;padding:9px 14px;
+  background:rgba(8,9,10,.9);border-bottom:1px solid var(--border-subtle);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.topbar .home-link{display:inline-flex;align-items:center;gap:6px;color:var(--text-muted);
+  text-decoration:none;font-family:var(--mono);font-size:.7rem;font-weight:510;
+  padding:6px 10px;border:1px solid var(--border-subtle);border-radius:6px;transition:all .2s}
+.topbar .home-link:hover{color:var(--text);border-color:var(--accent);background:var(--accent-bg)}
+.theme-cycle{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.03);
+  border:1px solid var(--border-subtle);color:var(--text-secondary);
+  font-family:var(--mono);font-size:.7rem;font-weight:510;padding:6px 11px;border-radius:6px;
+  cursor:pointer;transition:all .2s}
+.theme-cycle:hover{border-color:var(--accent);color:var(--text);background:var(--accent-bg)}
+.theme-cycle .theme-dot{width:9px;height:9px;border-radius:50%;background:var(--accent);
+  transition:background .25s;flex:none}
+.theme-cycle .theme-name{min-width:76px;text-align:left}
+.theme-cycle svg{width:13px;height:13px;stroke:var(--accent);fill:none;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* ── slides + Ken Burns ── */
+.slide{position:fixed;inset:0;opacity:0;pointer-events:none;transition:opacity .4s ease;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:78px 5vw 100px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
 .slide::-webkit-scrollbar{width:0;background:transparent}
-.slide{scrollbar-width:none;-ms-overflow-style:none}
 .slide.active{opacity:1;pointer-events:auto}
-.slide::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--bg) 78%,transparent) 0%,color-mix(in srgb,var(--bg) 45%,transparent) 45%,color-mix(in srgb,var(--bg) 18%,transparent) 100%);z-index:0}
-.content{position:relative;z-index:1;max-width:88vw;width:100%;background:color-mix(in srgb,var(--bg) 60%,transparent);border:1px solid var(--accent-glow);box-shadow:0 0 25px var(--accent-glow),0 0 60px rgba(0,0,0,.3);border-radius:16px;padding:2.5em 3em;backdrop-filter:blur(10px);margin:auto 0}
-.content.wide{max-width:92vw}
-.progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-dim));z-index:200;transition:width .35s ease}
-.nav{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:1.2em;z-index:200;background:color-mix(in srgb,var(--bg) 85%,transparent);border:1px solid var(--accent-glow);border-radius:40px;padding:10px 24px;backdrop-filter:blur(6px)}
-.nav button{background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:1rem;padding:8px 18px;border-radius:24px;cursor:pointer;transition:transform .15s ease,box-shadow .2s;min-width:44px;min-height:44px}
-.nav button:hover{background:var(--accent-glow);box-shadow:0 0 15px var(--accent-glow);transform:scale(1.05)}
-.nav button:active{transform:scale(.94)}
-.nav .slide-counter{font-family:'Inter',monospace;color:var(--text-dim);font-size:1rem;min-width:60px;text-align:center}
-h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(2rem,4.5vw,3.8rem);background:linear-gradient(135deg,var(--accent),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5em;line-height:1.15;filter:drop-shadow(0 2px 14px var(--accent-glow)) drop-shadow(0 1px 2px rgba(0,0,0,.6))}
-h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.5vw,1.8rem);color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.7em;text-shadow:0 0 14px var(--accent-glow),0 1px 3px rgba(0,0,0,.6);animation:popGlow 3.2s ease-in-out infinite}
-@keyframes popGlow{0%,100%{text-shadow:0 0 10px var(--accent-glow),0 1px 3px rgba(0,0,0,.6)}50%{text-shadow:0 0 22px var(--accent-glow),0 0 40px var(--accent-glow),0 1px 3px rgba(0,0,0,.6)}}
-.card{background:color-mix(in srgb,var(--bg) 55%,transparent);border:1.5px solid var(--accent-glow);border-radius:14px;padding:1em 1.4em;margin:.7em 0;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 4px 16px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,.04)}
-.card .ctag{display:inline-block;font-size:.9rem;padding:3px 10px;border-radius:10px;background:var(--accent-dim);color:var(--accent);margin-bottom:.5em;font-weight:700;text-transform:uppercase;letter-spacing:.04em;box-shadow:0 0 10px var(--accent-glow)}
-.card p{font-size:1.2rem;line-height:1.7;text-shadow:0 1px 3px rgba(0,0,0,.55),0 0 12px rgba(0,0,0,.3)}
-.cue-box{background:color-mix(in srgb,var(--bg) 58%,transparent);border:2px solid var(--accent-glow);box-shadow:0 0 30px var(--accent-glow);border-radius:14px;padding:1.4em 1.8em;margin:1em 0;text-align:center}
-.cue-box .cue-main{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--accent);font-size:1.8rem;margin-bottom:.6em;text-shadow:0 0 18px var(--accent-glow),0 2px 4px rgba(0,0,0,.6);animation:popGlow 3.2s ease-in-out infinite}
-.cue-box ul.cue-bullets{list-style:disc;padding-left:1.6em;margin:.4em 0;text-align:left}.cue-box ul.cue-bullets li{font-size:1.2rem;color:var(--text);margin:.35em 0;line-height:1.6;text-shadow:0 1px 3px rgba(0,0,0,.55)}
-.mark-complete-btn{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.4);color:var(--green);font-family:'Inter',sans-serif;font-size:1.05rem;padding:10px 24px;border-radius:24px;cursor:pointer;transition:all .2s;font-weight:600;min-width:44px;min-height:44px}
-.mark-complete-btn:hover{background:rgba(52,211,153,.2);box-shadow:0 0 15px rgba(52,211,153,.3);transform:scale(1.05)}
-.mark-complete-btn.completed{background:rgba(52,211,153,.25);border-color:rgba(52,211,153,.7);box-shadow:0 0 20px rgba(52,211,153,.4)}
-.mark-complete-btn:active{transform:scale(.94)}
-.vocab-word{border-bottom:1.5px dotted var(--accent);cursor:pointer;transition:background .2s;position:relative;color:var(--accent);font-weight:600;text-shadow:0 0 10px var(--accent-glow),0 1px 2px rgba(0,0,0,.6)}
-.vocab-word:hover{background:var(--accent-glow);text-shadow:0 0 16px var(--accent-glow),0 0 30px var(--accent-glow),0 1px 2px rgba(0,0,0,.6)}
-.vocab-tooltip{display:none;position:fixed;z-index:999;background:var(--bg-deep);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px 14px;max-width:340px;font-size:1rem;line-height:1.5;color:var(--text);box-shadow:0 6px 24px rgba(0,0,0,0.5);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);pointer-events:none}
+.slide-bg{position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--bg2)}
+.slide-bg img{width:100%;height:100%;object-fit:cover;display:block;
+  animation:kenBurns 12s ease-in-out infinite alternate;will-change:transform}
+.slide-bg::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,0,0,.12) 0%,rgba(0,0,0,.32) 52%,rgba(0,0,0,.74) 100%)}
+@keyframes kenBurns{0%{transform:scale(1) translate(0,0)}
+  50%{transform:scale(1.08) translate(-1%,-1%)}100%{transform:scale(1.04) translate(1%,1%)}}
+
+/* ── content card ── */
+.content{position:relative;z-index:1;width:100%;max-width:1080px;margin:0 auto;
+  background:var(--panel);border:1px solid var(--border);border-top:2px solid var(--accent);
+  border-radius:12px;padding:26px 32px;box-shadow:0 4px 24px rgba(0,0,0,.35);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.content.wide{max-width:1180px}
+.content.narrow{max-width:720px}
+
+h1{font-family:var(--font);font-weight:700;font-size:clamp(1.9rem,4vw,3.1rem);
+  line-height:1.1;letter-spacing:-.02em;color:#fff;margin-bottom:.35em}
+h2{font-family:var(--font);font-weight:600;font-size:clamp(.95rem,1.5vw,1.1rem);
+  letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin-bottom:.7em}
+.subtitle{color:var(--text-muted);font-size:1rem}
+
+/* question cards */
+.card{background:rgba(255,255,255,.03);border:1px solid var(--border-subtle);
+  border-left:2px solid var(--accent);border-radius:8px;padding:14px 18px;margin:.6em 0}
+.card .ctag{display:inline-block;font-family:var(--mono);font-size:.62rem;font-weight:510;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.5em}
+.card p{font-size:1rem;color:var(--text);line-height:1.65}
+
+/* cue card */
+.cue-box{background:var(--accent-bg);border:1px solid var(--border);
+  border-top:2px solid var(--accent);border-radius:10px;padding:18px 22px;margin:1em 0}
+.cue-box .cue-main{font-family:var(--font);font-weight:600;font-size:1.28rem;color:#fff;margin-bottom:.5em}
+.cue-box ul.cue-bullets{list-style:none;padding:0;margin:.4em 0;text-align:left}
+.cue-box ul.cue-bullets li{font-size:.98rem;color:var(--text-secondary);margin:.3em 0;
+  line-height:1.6;padding-left:1.15em;position:relative}
+.cue-box ul.cue-bullets li::before{content:'A';position:absolute;left:0;color:var(--accent);font-weight:700}
+.cue-box .cue-prompt{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text-muted);margin-bottom:.5em}
+
+/* vocab */
+.vocab-word{border-bottom:2px dotted var(--accent);cursor:pointer;color:var(--accent);font-weight:560}
+.vocab-tooltip{display:none;position:fixed;z-index:999;background:var(--bg3);
+  border:1px solid var(--border);border-radius:10px;padding:10px 14px;max-width:340px;
+  font-size:.9rem;line-height:1.5;color:var(--text);box-shadow:0 6px 24px rgba(0,0,0,.5);
+  pointer-events:none}
 .vocab-tooltip.show{display:block}
-.vocab-tooltip .tt-word{font-weight:700;color:var(--cyan)}
-.vocab-tooltip .tt-pos{font-size:.85rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px}
+.vocab-tooltip .tt-word{font-weight:700;color:var(--accent)}
+.vocab-tooltip .tt-pos{font-family:var(--mono);font-size:.62rem;color:var(--text-muted);
+  text-transform:uppercase;letter-spacing:.1em}
 .vocab-tooltip .tt-def{margin-top:4px}
-.theme-btn{position:fixed;top:1em;right:1em;z-index:300;width:44px;height:44px;border-radius:50%;background:var(--accent-dim);border:1.5px solid var(--accent-glow);cursor:pointer;backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;transition:transform .15s ease}
-.theme-btn:hover{transform:scale(1.1);background:rgba(255,255,255,0.08)}
-.theme-btn:active{transform:scale(.93)}
-.theme-btn svg{width:22px;height:22px;fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s,filter .3s;filter:drop-shadow(0 0 6px var(--accent-glow))}
-[data-theme="1"]{--accent:#fbbf24;--accent-glow:rgba(251,191,36,.22);--accent-dim:rgba(251,191,36,.1)}
-[data-theme="2"]{--accent:#34d399;--accent-glow:rgba(52,211,153,.22);--accent-dim:rgba(52,211,153,.1)}
-[data-theme="3"]{--accent:#a78bfa;--accent-glow:rgba(167,139,250,.22);--accent-dim:rgba(167,139,250,.1)}
-[data-theme="4"]{--accent:#f59e0b;--accent-glow:rgba(245,158,11,.22);--accent-dim:rgba(245,158,11,.1)}
-[data-theme="5"]{--accent:#fb7185;--accent-glow:rgba(251,113,133,.22);--accent-dim:rgba(251,113,133,.1)}
-[data-theme="6"]{--accent:#22d3ee;--accent-glow:rgba(34,211,238,.22);--accent-dim:rgba(34,211,238,.1)}
-[data-theme="7"]{--bg:#0a0a24;--accent:#818cf8;--accent-glow:rgba(129,140,248,.25);--accent-dim:rgba(129,140,248,.12)}
-.home-link{position:fixed;top:1em;left:1em;z-index:300;color:var(--accent);text-decoration:none;font-size:.95rem;padding:6px 12px;border-radius:16px;background:var(--accent-dim);border:1px solid var(--accent-glow);transition:all .2s;backdrop-filter:blur(8px)}
-.home-link:hover{color:var(--accent);background:var(--accent-glow);box-shadow:0 0 12px var(--accent-glow)}
-@media(max-width:768px){.content{max-width:92vw;padding:1.5em 1.8em}.content.wide{max-width:95vw}h1{font-size:1.8rem}h2{font-size:1.3rem}.nav{bottom:12px;padding:8px 16px;gap:.6em}.nav button{padding:6px 12px;font-size:.95rem}}
 
-/* ═══ SPECULAR BUTTON (React Bits SpecularButton, vanilla WebGL2 port) ═══ */
-.specular-button {
-  --sb-radius: 18px;
-  --sb-tint: #ffffff;
-  --sb-tint-opacity: 0;
-  --sb-blur: 0px;
-  --sb-text-color: var(--text, #f5f5f5);
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  margin: 0;
-  font-family: inherit;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  line-height: 1;
-  color: var(--sb-text-color);
-  background: color-mix(in srgb, var(--sb-tint) calc(var(--sb-tint-opacity) * 100%), transparent);
-  border-radius: var(--sb-radius);
-  backdrop-filter: blur(var(--sb-blur));
-  -webkit-backdrop-filter: blur(var(--sb-blur));
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 8px 24px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  outline: none;
-  transition: transform 0.15s ease;
-}
-.specular-button:active { transform: scale(0.97); }
-.specular-button:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--sb-text-color) 60%, transparent);
-  outline-offset: 3px;
-}
-.specular-button__fx {
-  position: absolute;
-  inset: -20px;
-  pointer-events: none;
-  z-index: 1;
-}
-.specular-button__fx canvas { display: block; width: 100%; height: 100%; }
-.specular-button__label { position: relative; z-index: 2; }
+/* buttons */
+.mark-complete-btn{display:inline-block;background:var(--accent-bg);border:1px solid var(--accent);
+  color:var(--accent);font-family:var(--mono);font-size:.72rem;font-weight:510;letter-spacing:.06em;
+  padding:10px 18px;border-radius:6px;cursor:pointer;transition:all .2s;min-width:44px;min-height:40px}
+.mark-complete-btn:hover{background:var(--accent);color:#fff}
+.mark-complete-btn.completed{background:var(--accent);color:#fff;border-color:var(--accent)}
+.answer-toggle{display:inline-block;margin-top:.8em;background:rgba(255,255,255,.03);
+  border:1px solid var(--border);color:var(--text-secondary);font-family:var(--mono);
+  font-size:.68rem;font-weight:510;letter-spacing:.08em;text-transform:uppercase;
+  padding:8px 14px;border-radius:6px;cursor:pointer;transition:all .2s;min-width:44px;min-height:38px}
+.answer-toggle:hover{border-color:var(--accent);color:var(--text);background:var(--accent-bg)}
+.model-answer{display:none;margin-top:.8em;padding:14px 18px;border-left:2px solid var(--accent);
+  background:rgba(255,255,255,.03);border-radius:0 8px 8px 0;font-size:.95rem;line-height:1.7;color:var(--text)}
+.model-answer.show{display:block}
+.model-answer p{margin:.35em 0}
+.ma-badge{display:inline-block;font-family:var(--mono);font-size:.6rem;font-weight:510;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.3em}
 
+/* nav */
+.nav{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);z-index:200;
+  display:flex;align-items:center;gap:10px;padding:8px 12px;
+  background:rgba(8,9,10,.9);border:1px solid var(--border-subtle);border-radius:10px;
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nav button{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.03);
+  border:1px solid var(--border);color:var(--text-secondary);font-family:var(--mono);
+  font-size:.72rem;font-weight:510;padding:8px 14px;border-radius:6px;cursor:pointer;
+  transition:all .15s;min-width:44px;min-height:40px}
+.nav button:hover{border-color:var(--accent);color:var(--text);background:var(--accent-bg)}
+.nav button:active{transform:scale(.97)}
+.nav .slide-counter{font-family:var(--mono);font-size:.72rem;color:var(--text-muted);
+  min-width:52px;text-align:center}
 
-/* specular-fx: adds the shine to ANY button without fighting its own styles */
-.specular-fx { position: relative; }
-/* keep fixed-position controls anchored despite specular-fx */
-.theme-btn.specular-fx, .home-link.specular-fx { position: fixed; }
-
-/* Specular fallback for browsers without WebGL2: rotating edge shine */
-.specular-fallback::after {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  padding: 2px;
-  background: conic-gradient(from var(--sb-angle, 0deg),
-    transparent 0deg,
-    var(--accent) 60deg,
-    #ffffff 90deg,
-    var(--accent) 120deg,
-    transparent 180deg,
-    transparent 360deg);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  animation: sb-shine 2.6s linear infinite;
-  pointer-events: none;
-  z-index: 3;
-  opacity: .85;
-}
-@keyframes sb-shine { to { --sb-angle: 360deg; } }
-@property --sb-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
-.specular-button__label { display: inline-flex; align-items: center; justify-content: center; }
-
-/* ═══ Timer (matches deck-1) ═══ */
-.timer-trigger{display:inline-flex;align-items:center;gap:5px;background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:5px 12px;border-radius:14px;cursor:pointer;transition:all .15s;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.5)}
-.timer-trigger:hover{background:var(--accent-glow);box-shadow:0 0 8px var(--accent-glow)}
-.timer-popup{display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:500;align-items:center;justify-content:center;padding:8px 0}
+/* timer */
+.timer-trigger{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.03);
+  border:1px solid var(--border);color:var(--text-secondary);font-family:var(--mono);
+  font-size:.68rem;font-weight:510;letter-spacing:.06em;padding:6px 11px;border-radius:6px;
+  cursor:pointer;transition:all .2s;margin-bottom:.8em}
+.timer-trigger:hover{border-color:var(--accent);color:var(--text);background:var(--accent-bg)}
+.timer-popup{display:none;position:fixed;top:0;left:0;right:0;transform:none;z-index:500;
+  align-items:center;justify-content:center;padding:8px 0}
 .timer-popup.show{display:flex}
-.timer-popup-box{display:flex;align-items:center;gap:14px;background:color-mix(in srgb,var(--bg) 92%,transparent);border:1px solid var(--accent-glow);border-radius:0 0 16px 16px;padding:10px 24px;backdrop-filter:blur(16px);box-shadow:0 4px 24px var(--accent-glow)}
-.timer-popup-box .timer-display{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:700;color:var(--accent);min-width:60px;text-align:center}
-.timer-popup-box .timer-phase{font-size:.85rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
-.timer-btn{background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:6px 14px;border-radius:18px;cursor:pointer;transition:all .15s;min-width:44px;min-height:34px;box-shadow:0 0 8px var(--accent-glow)}
-.timer-btn:hover{box-shadow:0 0 18px var(--accent-glow);transform:scale(1.05)}
-.timer-btn:active{transform:scale(.95)}
-.timer-btn.running{background:var(--accent-glow);border-color:var(--accent)}
+.timer-popup-box{display:flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:10px;
+  max-width:calc(100vw - 16px);background:rgba(8,9,10,.94);border:1px solid var(--border);
+  border-top:2px solid var(--accent);border-radius:0 0 12px 12px;padding:10px 18px;
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.timer-popup-box .timer-display{font-family:var(--mono);font-size:1.35rem;font-weight:510;
+  color:var(--accent);min-width:52px;text-align:center}
+.timer-popup-box .timer-phase{font-family:var(--mono);font-size:.6rem;color:var(--text-muted);
+  text-transform:uppercase;letter-spacing:.12em}
+.timer-btn{background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--text-secondary);
+  font-family:var(--mono);font-size:.72rem;padding:6px 12px;border-radius:6px;cursor:pointer;
+  transition:all .2s;min-width:40px;min-height:36px}
+.timer-btn:hover{border-color:var(--accent);color:var(--text);background:var(--accent-bg)}
+.timer-btn.running{border-color:var(--accent);color:var(--accent);background:var(--accent-bg)}
+
+/* specular legacy classes -> neutralised for the flat design */
+.specular-button,.specular-fx{position:static}
+.specular-button::after,.specular-fx::after,.specular-fallback::after{display:none}
+.specular-button__label{position:static;display:inline}
+
+/* disclaimer */
+.deck-disclaimer{position:fixed;bottom:0;left:0;right:0;z-index:150;text-align:center;
+  font-size:.6rem;line-height:24px;height:24px;color:var(--text-dim);
+  padding:0 16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  background:rgba(8,9,10,.9)}
+
+@media(max-width:768px){
+  html,body{font-size:1rem}
+  .slide{padding:70px 4vw 96px}
+  .content{max-width:94vw;padding:18px 18px}
+  .content.wide{max-width:94vw}
+  .nav{bottom:28px;padding:6px 8px;gap:6px}
+  .nav button{padding:6px 10px;font-size:.66rem}
+  .theme-cycle .theme-name{min-width:60px}
+  .timer-popup-box{gap:8px;padding:8px 12px}
+  .timer-popup-box .timer-display{font-size:1.15rem}
+}
+
 </style></head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="index.html" class="home-link">&larr; Portal</a>
-<button class="theme-btn specular-fx" id="themeBtn" title="Cycle theme" aria-label="Cycle color theme"><span class="specular-button__label">
-  <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-</span></button>
+<div class="topbar">
+  <a href="index.html" class="home-link">&larr; Portal</a>
+  <button class="theme-cycle" id="themeCycleBtn" title="Cycle colour theme" aria-label="Cycle colour theme">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.84-.44-1.13-.25-.29-.43-.68-.43-1.12A1.68 1.68 0 0 1 14.46 16.4h2.09A5.45 5.45 0 0 0 22 10.95C22 5.9 17.5 2 12 2z"/></svg>
+    <span class="theme-dot"></span>
+    <span class="theme-name">Sliding In</span>
+  </button>
+</div>
 
-<section class="slide active" style="background-image:url('https://pixabay.com/get/g86dda5e7b8e4643cdfb4fc41e565864cb960177e26e14abd425fc8ea9da99e9d209451d5525e8431b6f2d474e8465606690a069e0421d53db899c5e24b29ed25_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Environment &amp; Climate</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
+<section class="slide active"><div class="slide-bg"><img src="https://images.pexels.com/photos/35208811/pexels-photo-35208811.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="Free stock photo of alpine river, blue river, clear water"></div><div class="content narrow" style="text-align:center;"><h1>Environment &amp; Climate</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking Practice &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g8a1059f6cbd6e3e932a682ae54ecdf1b954bd802da092a5df992d54e086cc5eb48e734370dd2e2f4ed2cbfa0460833d416e09d6a8b83faabc9938e12cdd195ed_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 1&ndash;3</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span>
-<div class="card"><span class="ctag">Question 1 &middot; Weather</span><p>What is the <span class="vocab-word" data-word="climate">climate</span> like in your country?</p></div>
-<div class="card"><span class="ctag">Question 2 &middot; Seasons</span><p>What is your favourite season?</p></div>
-<div class="card"><span class="ctag">Question 3 &middot; Environment</span><p>What are some <span class="vocab-word" data-word="environmental">environmental</span> problems in your country?</p></div>
+<section class="slide"><div class="slide-bg"><img src="https://images.pexels.com/photos/4028958/pexels-photo-4028958.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="Moody sky filled with dense, dark clouds representing a dramatic atmosphere."></div><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 1&ndash;3</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span>
+<div class="card"><span class="ctag">Question 1 &middot; Weather</span><p>What is the climate like in your country?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>The <span class="vocab-word" data-word="climate">climate</span> in my country is genuinely temperate, with four distinct seasons, although the weather has become noticeably more erratic in recent years. We get crisp, cold winters, a pleasant spring, warm summers that occasionally tip into heatwaves, and a long, golden autumn. What I find striking is how much the seasons have started to blur — winters feel milder than they once did, and I think most people would attribute that to broader <span class="vocab-word" data-word="climate">climate</span> patterns rather than simple annual variation.</p></div></div>
+<div class="card"><span class="ctag">Question 2 &middot; Seasons</span><p>What is your favourite season?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>Without hesitation, autumn — or fall, as some people call it. There's something almost magical about the way the landscape turns amber and copper, and the air has that crisp, clean quality that makes a walk genuinely invigorating. I also love that it's a season of transition: the intense summer heat has subsided, but the harshness of winter hasn't arrived, so it's the perfect time for outdoor <span class="vocab-word" data-word="activities">activities</span>. It's the season when I feel most energised, both physically and creatively.</p></div></div>
+<div class="card"><span class="ctag">Question 3 &middot; Environment</span><p>What are some environmental problems in your country?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>We face a familiar set of <span class="vocab-word" data-word="environmental">environmental</span> challenges, though I'd say the most visible one is air <span class="vocab-word" data-word="pollution">pollution</span> in the larger cities, largely driven by traffic and industrial <span class="vocab-word" data-word="emissions">emissions</span>. Alongside that, there's a persistent problem with plastic waste, particularly single-use packaging, and our rivers have suffered from industrial runoff for decades. What's encouraging is that these issues are finally getting the attention they deserve — recycling schemes have expanded, and there's real momentum behind <span class="vocab-word" data-word="renewable">renewable</span> energy, so I'm cautiously optimistic that the trajectory is shifting.</p></div></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g30c90e6e25a90f0fa5c2c23c8eefb554dd6c60909e934ca792e2833f77954b9992c62dd8e3bb5f5b2881a864e0db86de24c03cfefaeafc0e265baf4b186be8ab_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 4&ndash;6</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span>
-<div class="card"><span class="ctag">Question 4 &middot; Trees</span><p>Do you think there are enough trees in most cities?</p></div>
-<div class="card"><span class="ctag">Question 5 &middot; Animals</span><p>What types of animals are kept as pets in your country?</p></div>
-<div class="card"><span class="ctag">Question 6 &middot; Outdoor Activities</span><p>Do you like outdoor <span class="vocab-word" data-word="activities">activities</span>?</p></div>
+<section class="slide"><div class="slide-bg"><img src="https://images.pexels.com/photos/12695321/pexels-photo-12695321.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="A peaceful tree-lined pathway along parked cars in a lush urban area, perfect for a scenic walk."></div><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 4&ndash;6</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span>
+<div class="card"><span class="ctag">Question 4 &middot; Trees</span><p>Do you think there are enough trees in most cities?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>Not really, and I think it's a fair criticism of modern urban planning. In the city centres you typically find ornamental trees lining the boulevards, but vast swathes of residential and commercial areas are dominated by concrete, with precious little greenery to soften them. Trees do far more than look pleasant — they absorb <span class="vocab-word" data-word="carbon">carbon</span>, cool the streets in summer, and provide habitats for birds and insects. So I'd welcome a serious push toward urban forestry, not as a cosmetic afterthought, but as a core part of how we design cities.</p></div></div>
+<div class="card"><span class="ctag">Question 5 &middot; Animals</span><p>What types of animals are kept as pets in your country?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>Cats and dogs dominate by a wide margin — they're almost a cultural institution in my country. Beyond that, you see a growing number of people keeping smaller pets, particularly rabbits, hamsters, and increasingly exotic species like reptiles, though I have mixed feelings about that trend, since many of those animals have very specific welfare needs. What heartens me is the parallel growth in adoption culture; shelters are far busier than they used to be, and people are increasingly choosing to rescue rather than buy.</p></div></div>
+<div class="card"><span class="ctag">Question 6 &middot; Outdoor Activities</span><p>Do you like outdoor activities?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>I love them, and I'd say they're an essential counterweight to my largely desk-bound life. Whether it's hiking in the hills, cycling along the river, or simply a long walk in the park, being outdoors has a remarkable effect on my mood — it's almost as if the fresh air resets my mind. I particularly value <span class="vocab-word" data-word="activities">activities</span> that get me away from screens altogether, because that's when I feel the mental clutter finally begin to clear.</p></div></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/gce796d7c33427eedbc669e748b43779512293db903ca574ead049f442f9dc14cb91d4f34b7fc178854e27cbfd5e832ea1d5801bf32d3e6a0756a2d592c9c8272_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 2 &middot; Cue Card</h2><span class="timer-trigger" onclick="openTimer('p2',120)">⏱ 2:00</span><div class="cue-box"><div class="cue-main">Describe an <span class="vocab-word" data-word="environmental">environmental</span> problem or event.</div><ul class="cue-bullets">
+<section class="slide"><div class="slide-bg"><img src="https://images.pexels.com/photos/15060365/pexels-photo-15060365.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="An aerial shot of a polluted riverbank covered with plastic waste and debris highlighting environmental issues."></div><div class="content wide"><h2 style="margin-bottom:0">Part 2 &middot; Cue Card</h2><span class="timer-trigger" onclick="openTimer('p2',120)">⏱ 2:00</span><div class="cue-box"><div class="cue-main">Describe an environmental problem or event.</div><ul class="cue-bullets">
       <li>what it is</li>
       <li>where it is happening</li>
       <li>what problems it causes</li>
+      <li>what you think should be done about it</li>
       <li>and explain what you think will happen in the future</li>
-    </ul></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
+    </ul></div><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>The <span class="vocab-word" data-word="environmental">environmental</span> problem I'd like to talk about is the <span class="vocab-word" data-word="pollution">pollution</span> of the river that runs through my hometown. It's not a dramatic, headline-grabbing disaster, but it's a persistent and damaging issue that has shaped the area for decades.</p><p>What's happening is that the river, which once supported fishing and swimming, has become badly polluted through a combination of industrial discharge upstream and untreated wastewater during heavy rains. The visible consequences are hard to ignore: the water frequently takes on an unhealthy tinge, algae blooms appear in summer, and there's a constant litter problem along the banks. The less visible consequences are arguably worse — the <span class="vocab-word" data-word="ecosystem">ecosystem</span> has suffered significantly, fish populations have collapsed, and the <span class="vocab-word" data-word="biodiversity">biodiversity</span> that once thrived there has diminished to a fraction of what it was.</p><p>The problems this causes ripple outward into the community. People no longer use the river for recreation, property values near the water have suffered, and there's a lingering sense among residents that the authorities have simply accepted the <span class="vocab-word" data-word="pollution">pollution</span> as the price of industrial activity. There's also a public health dimension, because contaminated water isn't only an <span class="vocab-word" data-word="environmental">environmental</span> issue — it poses risks to anyone who comes into contact with it.</p><p>In terms of what should happen next, I think it comes down to three things. First, the authorities need to enforce the regulations that already exist, because a lot of the discharge happens simply because penalties are cheaper than compliance. Second, there has to be genuine investment in treatment infrastructure, not just promises. And third, local communities need a real say in how the river is managed, since they are the ones who live with the consequences. If those three things line up, I think recovery is genuinely possible.</p><p>Looking ahead, I'm cautiously optimistic, and I can see a plausible path toward improvement. There's been growing public pressure, and local campaigns have succeeded in forcing the issue onto the political agenda. New treatment infrastructure is being planned, and there are encouraging examples of similar rivers elsewhere that have been restored to health within a generation. My hope is that my hometown's river follows that same trajectory — I think it will take sustained commitment and genuine investment, but I genuinely believe the situation can be turned around within my lifetime.</p></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/gf53b381e58999d135f5c84e89f47d0a20ef16228a23b34d4a6aa4c50c367c8029ed3cfa33e9ec1a91d9af36d0ef82f4d6aade2dbad97234c479bffe117788161_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 3 &middot; Discussion</h2><span class="timer-trigger" onclick="openTimer('p3',270)">⏱ 4:30</span>
-<div class="card"><span class="ctag">Discussion 1</span><p>Why should people be <span class="vocab-word" data-word="concerned">concerned</span> about the <span class="vocab-word" data-word="environment">environment</span>?</p></div>
-<div class="card"><span class="ctag">Discussion 2</span><p>Is water <span class="vocab-word" data-word="pollution">pollution</span> a problem in your country?</p></div>
-<div class="card"><span class="ctag">Discussion 3</span><p>How can people <span class="vocab-word" data-word="protect">protect</span> the <span class="vocab-word" data-word="environment">environment</span>?</p></div>
-<div class="card"><span class="ctag">Discussion 4</span><p>Do you think problems with water <span class="vocab-word" data-word="cleanliness">cleanliness</span> will improve in the future?</p></div>
+<section class="slide"><div class="slide-bg"><img src="https://images.pexels.com/photos/36198132/pexels-photo-36198132.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="Arid cracked soil with sparse green grass growth showcasing drought conditions."></div><div class="content wide"><h2 style="margin-bottom:0">Part 3 &middot; Discussion</h2><span class="timer-trigger" onclick="openTimer('p3',270)">⏱ 4:30</span>
+<div class="card"><span class="ctag">Discussion 1</span><p>Why should people be concerned about the environment?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>Because the stakes could hardly be higher — the <span class="vocab-word" data-word="environment">environment</span> isn't a peripheral concern, it's the system that sustains every aspect of our lives, from the air we breathe to the food we eat. What worries me is that <span class="vocab-word" data-word="environmental">environmental</span> damage tends to be cumulative and invisible: you don't notice a declining <span class="vocab-word" data-word="ecosystem">ecosystem</span> until it collapses, by which point the damage is often irreversible. There's also a question of fairness, because the communities that suffer most from <span class="vocab-word" data-word="pollution">pollution</span> and <span class="vocab-word" data-word="climate">climate</span> disruption are frequently those that contributed least to it. So concern isn't a luxury; it's a rational response to genuine risk.</p></div></div>
+<div class="card"><span class="ctag">Discussion 2</span><p>Is water pollution a problem in your country?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>It's a real concern, though the picture varies enormously between regions. In the cities, ageing infrastructure means wastewater occasionally seeps into waterways, and agricultural runoff — fertilisers and pesticides — remains a stubborn problem in rural areas. On the brighter side, there's been a visible improvement over the past couple of decades, with stricter regulations on industrial discharge and a growing number of river restoration projects. So while it's far from solved, I'd say the direction of travel is genuinely positive.</p></div></div>
+<div class="card"><span class="ctag">Discussion 3</span><p>How can people protect the environment?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>I think the most powerful shifts start at home, precisely because they compound over time. Things like cutting down on single-use plastics, choosing public transport over driving, and being conscious of energy use might seem trivial in isolation, but multiplied across millions of households they become significant. Beyond personal habits, there's also real power in collective action — supporting <span class="vocab-word" data-word="conservation">conservation</span> organisations, choosing <span class="vocab-word" data-word="sustainable">sustainable</span> brands, and voting for policies that prioritise the <span class="vocab-word" data-word="environment">environment</span>. The key insight is that individual and systemic change reinforce each other; neither is effective on its own.</p></div></div>
+<div class="card"><span class="ctag">Discussion 4</span><p>Do you think problems with water cleanliness will improve in the future?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>I'm cautiously hopeful, though I'd stop short of confident. On the one hand, water treatment technology has advanced dramatically, and public awareness is higher than it's ever been, which creates genuine political pressure for cleaner rivers and lakes. On the other hand, the pace of change is glacial, and new threats keep emerging — microplastics, for instance, were barely on the radar a decade ago. So I'd say the trend is upward, but whether it moves fast enough to outpace the damage is still very much an open question.</p></div></div>
 </div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g76b8ecca93bab86ac4d1ccd611e240af2bec660ac642f2cb25e74a63278c35d8c37273057fff688f99fc356c9cfa81a0a1bc84f3097761b7b8f757129a7f3c40_1280.jpg')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
-<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="pollution">pollution</span></p>
-<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="climate">climate</span></p>
-<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="emissions">emissions</span></p>
-<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="conservation">conservation</span></p>
-<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="renewable">renewable</span></p>
-<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="sustainable">sustainable</span></p>
-<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="ecosystem">ecosystem</span></p>
-<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="biodiversity">biodiversity</span></p>
-<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="carbon">carbon</span></p>
-<p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="habitat">habitat</span></p>
+<section class="slide"><div class="slide-bg"><img src="https://images.pexels.com/photos/34985169/pexels-photo-34985169.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="Aerial view of a densely packed and sunlit forest canopy in summer."></div><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);">
+<p style="display:inline-block;margin:.3em;">pollution</p>
+<p style="display:inline-block;margin:.3em;">climate</p>
+<p style="display:inline-block;margin:.3em;">emissions</p>
+<p style="display:inline-block;margin:.3em;">conservation</p>
+<p style="display:inline-block;margin:.3em;">renewable</p>
+<p style="display:inline-block;margin:.3em;">sustainable</p>
+<p style="display:inline-block;margin:.3em;">ecosystem</p>
+<p style="display:inline-block;margin:.3em;">biodiversity</p>
+<p style="display:inline-block;margin:.3em;">carbon</p>
+<p style="display:inline-block;margin:.3em;">habitat</p>
 </div></div></section>
 
 <div class="nav"><button id="prevBtn" class="specular-button"><span class="specular-button__label">&larr; Prev</span></button><span class="slide-counter" id="slideCounter">1 / 6</span><button id="nextBtn" class="specular-button"><span class="specular-button__label">Next &rarr;</span></button></div>
@@ -225,21 +267,47 @@ document.addEventListener('mouseout', function(e) {
   if (e.target.closest('.vocab-word')) tooltip.classList.remove('show');
 });
 
-var themes = ["Classic","Forest","Violet","Gold","Rose","Ocean","Indigo"];
-var themeIcons = {1: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>', 2: '<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>', 3: '<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/>', 4: '<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>', 5: '<path d="M12 18.176a3 3 0 1 1 -4.953 -2.449l-.025 .023a4.502 4.502 0 0 1 1.483 -8.75c1.414 0 2.675 .652 3.5 1.671a4.5 4.5 0 1 1 4.983 7.079a3 3 0 1 1 -4.983 2.25l-.005 .176"/><path d="M12 19v-10"/><path d="M9 3l3 2l3 -2"/>', 6: '<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>', 7: '<path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/><path d="M18 5h4"/><path d="M20 3v4"/>'};
-var currentTheme = parseInt(localStorage.getItem('ielts-b2-theme')) || 1;
-function applyTheme(n) {
-  currentTheme = n;
-  if (n === 1) document.body.removeAttribute('data-theme');
-  else document.body.setAttribute('data-theme', n);
-  localStorage.setItem('ielts-b2-theme', n);
-  var icon = document.getElementById('themeIcon');
-  if (icon && themeIcons[n]) icon.innerHTML = themeIcons[n];
+var THEMES = [
+  {name:'Sliding In', accent:'#5e6ad2', hover:'#7170ff', bg:'#08090a', text:'#f7f8f8'},
+  {name:'Deep Ocean', accent:'#22d3ee', hover:'#67e8f9', bg:'#0a1228', text:'#e2e8f0'},
+  {name:'Evergreen',  accent:'#34d399', hover:'#6ee7b7', bg:'#0c2416', text:'#d1fae5'},
+  {name:'Coral',      accent:'#fb7185', hover:'#fda4af', bg:'#2a1018', text:'#fce7f3'},
+  {name:'Orchid',     accent:'#c4b5fd', hover:'#ddd6fe', bg:'#1f1028', text:'#ede9fe'},
+  {name:'Ember',      accent:'#fbbf24', hover:'#fcd34d', bg:'#2a1a08', text:'#fef3c7'},
+  {name:'Nebula',     accent:'#a78bfa', hover:'#c4b5fd', bg:'#160b2b', text:'#ede9fe'},
+  {name:'Glacier',    accent:'#67e8f9', hover:'#a5f3fc', bg:'#081828', text:'#cffafe'},
+  {name:'Dune',       accent:'#d4a574', hover:'#e7c9a9', bg:'#241a14', text:'#f5e6d3'},
+  {name:'Sterling',   accent:'#9ca3af', hover:'#d1d5db', bg:'#18181c', text:'#e5e7eb'},
+  {name:'Sky',        accent:'#7dd3fc', hover:'#bae6fd', bg:'#0a1a32', text:'#e0f2fe'},
+  {name:'Aurora',     accent:'#a3e635', hover:'#bef264', bg:'#0f240c', text:'#ecfccb'},
+  {name:'Pearl',      accent:'#a2a7a5', hover:'#e2dadb', bg:'#2b2b2e', text:'#e2dadb'}
+];
+var currentThemeIndex = 0;
+function hexRgb(h){h=h.replace('#','');return parseInt(h.substr(0,2),16)+','+parseInt(h.substr(2,2),16)+','+parseInt(h.substr(4,2),16);}
+function applyThemeByIndex(idx){
+  currentThemeIndex = ((idx % THEMES.length) + THEMES.length) % THEMES.length;
+  var t = THEMES[currentThemeIndex], root = document.documentElement;
+  root.style.setProperty('--bg', t.bg);
+  root.style.setProperty('--bg2', t.bg);
+  root.style.setProperty('--bg-deep', t.bg);
+  root.style.setProperty('--accent', t.accent);
+  root.style.setProperty('--accent-hover', t.hover);
+  root.style.setProperty('--accent-glow', 'rgba('+hexRgb(t.accent)+',.25)');
+  root.style.setProperty('--accent-dim', 'rgba('+hexRgb(t.accent)+',.08)');
+  root.style.setProperty('--accent-bg', 'rgba('+hexRgb(t.accent)+',.08)');
+  root.style.setProperty('--text', t.text);
+  var b = document.getElementById('themeCycleBtn');
+  if (b) {
+    var d = b.querySelector('.theme-dot'), n = b.querySelector('.theme-name');
+    if (d) d.style.background = t.accent;
+    if (n) n.textContent = t.name;
+  }
+  try { localStorage.setItem('ielts-b2-theme-2', String(currentThemeIndex)); } catch(e) {}
 }
-document.getElementById('themeBtn').addEventListener('click', function() {
-  applyTheme(currentTheme === 7 ? 1 : currentTheme + 1);
-});
-applyTheme(currentTheme);
+function cycleTheme(){ applyThemeByIndex(currentThemeIndex + 1); }
+document.getElementById('themeCycleBtn').addEventListener('click', cycleTheme);
+try { var saved = parseInt(localStorage.getItem('ielts-b2-theme-2')); if (!isNaN(saved)) currentThemeIndex = saved; } catch(e) {}
+applyThemeByIndex(currentThemeIndex);
 
 function toggleMarkComplete(btn) {
   var key = 'deck-2-environment';
@@ -283,206 +351,6 @@ function update() {
 }
 update();
 
-// ═══ SPECULAR BUTTON (React Bits SpecularButton -> vanilla WebGL2, theme-aware) ═══
-(function(){
-  var PAD = 20;
-  var VERT = '#version 300 es\nin vec2 position;\nvoid main() {\n  gl_Position = vec4(position, 0.0, 1.0);\n}\n';
-  var FRAG = [
-    '#version 300 es',
-    'precision highp float;',
-    'uniform vec2 uCenter;',
-    'uniform vec2 uHalfSize;',
-    'uniform float uRadius;',
-    'uniform float uAngle;',
-    'uniform float uPx;',
-    'uniform vec3 uLineColor;',
-    'uniform vec3 uBaseColor;',
-    'uniform float uIntensity;',
-    'uniform float uShineSize;',
-    'uniform float uShineFade;',
-    'uniform float uThickness;',
-    'uniform float uBaseWidth;',
-    'out vec4 fragColor;',
-    'float sdRoundedRect(vec2 p, vec2 b, float r) {',
-    '  vec2 q = abs(p) - b + r;',
-    '  return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r;',
-    '}',
-    'float shapeSDF(vec2 p) { return sdRoundedRect(p, uHalfSize, uRadius); }',
-    'float gaussianLine(float d, float sigma) {',
-    '  float x = d / (sigma + 1e-6);',
-    '  float k = mix(1.0, 1.6, smoothstep(0.0, 1.5, x));',
-    '  return exp(-k * x * x);',
-    '}',
-    'void main() {',
-    '  vec2 p = gl_FragCoord.xy - uCenter;',
-    '  float d = shapeSDF(p);',
-    '  vec2 L = vec2(cos(uAngle), sin(uAngle));',
-    '  float base = (1.0 - smoothstep(0.0, uBaseWidth, abs(d))) * 0.45;',
-    '  vec2 nEll = normalize(p / (uHalfSize * uHalfSize) + 1e-6);',
-    '  float phi = acos(clamp(abs(dot(nEll, L)), 0.0, 1.0));',
-    '  float rim = 1.0 - smoothstep(uShineSize - uShineFade, uShineSize + uShineFade + 1e-4, phi);',
-    '  float line = gaussianLine(d, uThickness);',
-    '  float edgeClamp = 1.0 - smoothstep(0.5 * uPx, 3.0 * uPx, abs(d));',
-    '  float hi = line * rim * edgeClamp * uIntensity;',
-    '  vec3 col = uBaseColor * base + uLineColor * hi;',
-    '  float a = clamp(base + hi, 0.0, 1.0);',
-    '  fragColor = vec4(col, a);',
-    '}'
-  ].join('\n');
-
-  function hexToRgb(hex) {
-    hex = (hex || '').trim().replace('#', '');
-    if (hex.length === 3) hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
-    var n = parseInt(hex, 16);
-    if (isNaN(n)) return [1, 1, 1];
-    return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
-  }
-  function cssVar(name, fallback) {
-    var v = getComputedStyle(document.body).getPropertyValue(name).trim();
-    return v || fallback;
-  }
-  function accentRgb() {
-    var accent = cssVar('--accent', '#818cf8');
-    if (accent.indexOf('#') === 0) return hexToRgb(accent);
-    // rgba(...) fallback
-    var m = accent.match(/[\d.]+/g);
-    if (m && m.length >= 3) return [m[0]/255, m[1]/255, m[2]/255];
-    return [1, 1, 1];
-  }
-  function dim(rgb, f) { return [rgb[0]*f, rgb[1]*f, rgb[2]*f]; }
-
-  function initAll() {
-    var buttons = document.querySelectorAll('.specular-button, .specular-fx');
-    if (!buttons.length || !window.WebGL2RenderingContext) return;
-
-  Array.prototype.forEach.call(buttons, function(btn){
-    var fx = document.createElement('span');
-    fx.className = 'specular-button__fx';
-    fx.setAttribute('aria-hidden', 'true');
-    btn.appendChild(fx);
-
-    var canvas = document.createElement('canvas');
-    fx.appendChild(canvas);
-    var gl = canvas.getContext('webgl2', { alpha: true, premultipliedAlpha: true, antialias: true });
-    if (!gl) { btn.classList.add('specular-fallback'); return; }
-    gl.clearColor(0, 0, 0, 0);
-    gl.enable(gl.BLEND);
-    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
-
-    function compile(type, src) {
-      var s = gl.createShader(type);
-      gl.shaderSource(s, src);
-      gl.compileShader(s);
-      return s;
-    }
-    var prog = gl.createProgram();
-    gl.attachShader(prog, compile(gl.VERTEX_SHADER, VERT));
-    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FRAG));
-    gl.linkProgram(prog);
-    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
-    gl.useProgram(prog);
-
-    // fullscreen triangle
-    var buf = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
-    var posLoc = gl.getAttribLocation(prog, 'position');
-    gl.enableVertexAttribArray(posLoc);
-    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
-
-    var U = {};
-    ['uCenter','uHalfSize','uRadius','uAngle','uPx','uLineColor','uBaseColor','uIntensity','uShineSize','uShineFade','uThickness','uBaseWidth'].forEach(function(n){
-      U[n] = gl.getUniformLocation(prog, n);
-    });
-
-    var dpr = window.devicePixelRatio || 1;
-    var sizeRef = { w: 1, h: 1 };
-    var radius = 18;
-    var lineColor = [1,1,1], baseColor = [0.32,0.32,0.32];
-
-    function readThemeColors() {
-      lineColor = accentRgb();
-      baseColor = dim(lineColor, 0.62);
-    }
-    readThemeColors();
-    if (window.MutationObserver) {
-      new MutationObserver(readThemeColors).observe(document.body, { attributes: true, attributeFilter: ['data-theme'] });
-    }
-
-    function resize() {
-      var rect = btn.getBoundingClientRect();
-      var w = rect.width, h = rect.height;
-      if (w < 1 || h < 1) return;  // hidden (timer popup) — wait for ResizeObserver when shown
-      sizeRef.w = w; sizeRef.h = h;
-      var cw = w + PAD * 2, ch = h + PAD * 2;
-      canvas.width = Math.max(2, Math.round(cw * dpr));
-      canvas.height = Math.max(2, Math.round(ch * dpr));
-      canvas.style.width = cw + 'px';
-      canvas.style.height = ch + 'px';
-      gl.viewport(0, 0, canvas.width, canvas.height);
-      gl.uniform2f(U.uCenter, (PAD + w/2) * dpr, (PAD + h/2) * dpr);
-      gl.uniform2f(U.uHalfSize, (w/2) * dpr, (h/2) * dpr);
-      gl.uniform1f(U.uRadius, Math.min(radius, Math.min(w, h)/2) * dpr);
-    }
-    var ro = new ResizeObserver(resize);
-    ro.observe(btn);
-    resize();
-
-    var pointerAngle = null;
-    var proximityT = 0;
-    function onPointerMove(e) {
-      var rect = btn.getBoundingClientRect();
-      var cx = rect.left + rect.width/2, cy = rect.top + rect.height/2;
-      var dx = Math.max(rect.left - e.clientX, 0, e.clientX - rect.right);
-      var dy = Math.max(rect.top - e.clientY, 0, e.clientY - rect.bottom);
-      var dist = Math.hypot(dx, dy);
-      if (dist === 0) {
-        var nx = (e.clientX - cx) / (rect.width/2);
-        var ny = (cy - e.clientY) / (rect.height/2);
-        pointerAngle = Math.atan2(2/rect.height, -2/rect.width) + nx*0.3 + ny*0.15;
-      } else {
-        pointerAngle = Math.atan2(cy - e.clientY, e.clientX - cx);
-      }
-      var t = Math.max(0, 1 - dist / Math.max(250, 1));
-      proximityT = t * t * (3 - 2 * t);
-    }
-    window.addEventListener('pointermove', onPointerMove);
-
-    var angle = 2.4, idleAngle = 2.4, bright = 0;
-    var last = performance.now();
-
-    function update(now) {
-      requestAnimationFrame(update);
-      var dt = Math.min((now - last) / 1000, 0.05);
-      last = now;
-      idleAngle += 0.35 * dt;
-      var steer = pointerAngle != null && proximityT > 0.01;
-      var target = steer ? pointerAngle : idleAngle;
-      var diff = ((target - angle + Math.PI*3) % (Math.PI*2)) - Math.PI;
-      angle += diff * (1 - Math.exp(-dt * 7));
-      var brightTarget = 0.9 + proximityT * 0.1;  // always-on shine, brighter on hover
-      bright += (brightTarget - bright) * (1 - Math.exp(-dt * 8));
-
-      gl.uniform1f(U.uAngle, angle);
-      gl.uniform1f(U.uPx, dpr);
-      gl.uniform3fv(U.uLineColor, lineColor);
-      gl.uniform3fv(U.uBaseColor, baseColor);
-      gl.uniform1f(U.uIntensity, bright);
-      gl.uniform1f(U.uShineSize, (10 * Math.PI) / 180);
-      gl.uniform1f(U.uShineFade, (40 * Math.PI) / 180);
-      gl.uniform1f(U.uThickness, 2.5 * dpr);
-      gl.uniform1f(U.uBaseWidth, dpr);
-      gl.clear(gl.COLOR_BUFFER_BIT);
-      gl.drawArrays(gl.TRIANGLES, 0, 3);
-    }
-    requestAnimationFrame(update);
-  });
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAll);
-  else initAll();
-})();
-
-
 // ═══ Popup Timer ═══
 var tpInterval = null, tpSeconds = 0, tpLabel = '', tpMuted = false;
 function openTimer(label, secs) { tpLabel = label; tpSeconds = secs; document.getElementById('tpLabel').textContent = label === 'p1' ? 'Part 1' : label === 'p2' ? 'Part 2' : 'Part 3'; updateTPDisplay(); var b = document.getElementById('tpStartBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); document.getElementById('timerPopup').classList.add('show'); }
@@ -501,6 +369,17 @@ function toggleMuteTP() { tpMuted = !tpMuted; var b = document.getElementById('t
 function updateTPDisplay() { var m = Math.floor(tpSeconds / 60), s = tpSeconds % 60; document.getElementById('tpDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s; }
 function beep(freq, dur) { if (tpMuted) return; try { var ctx = new (window.AudioContext||window.webkitAudioContext)(), o = ctx.createOscillator(), g = ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.frequency.value = freq; o.type = 'sine'; g.gain.setValueAtTime(0.15, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur); o.start(); o.stop(ctx.currentTime + dur); } catch(e) {} }
 
+
+// Band 9 model answer toggle
+document.addEventListener('click', function(e){
+  var t = e.target.closest('.answer-toggle');
+  if(!t) return;
+  var box = t.nextElementSibling;
+  if(!box || !box.classList.contains('model-answer')) return;
+  var open = box.classList.toggle('show');
+  t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  t.innerHTML = open ? 'Hide Model Answer' : 'Model Answer';
+});
 </script>
 
 <div class="timer-popup" id="timerPopup">
@@ -514,4 +393,5 @@ function beep(freq, dur) { if (tpMuted) return; try { var ctx = new (window.Audi
   </div>
 </div>
 
+<div class="deck-disclaimer">Disclaimer: This is an independent practice resource for IELTS-style exam preparation. It is not affiliated with, endorsed by, or connected to IELTS, IDP Education, British Council, or Cambridge Assessment English. IELTS is a registered trademark of its respective owners.</div>
 </body></html>

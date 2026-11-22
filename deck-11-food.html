@@ -1,177 +1,219 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://images.pexels.com https://cdn.pixabay.com https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; base-uri 'self'">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Food & Cooking &middot; IELTS Speaking B2</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@700;800;900&amp;display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #060a14; --cyan: #22d3ee; --purple: #a78bfa; --gold: #fbbf24;
-  --green: #34d399; --red: #f87171; --text: #f2f0f8; --text-dim: #b8bcc8;
-  --accent: #fbbf24; --accent-glow: rgba(251,191,36,.22);
-  --accent-dim: rgba(251,191,36,.1); --bg-deep: #060a14;
+/* ══════════════════════════════════════════════════════════════
+   IELTS Speaking Practice — Sliding In style
+   flat dark UI · photo-led slides · Ken Burns zoom · theme cycler
+   ══════════════════════════════════════════════════════════════ */
+:root{
+  --bg:#08090a; --bg2:#0f1011; --bg3:#191a1b; --bg-deep:#08090a;
+  --bg-card:rgba(255,255,255,0.02);
+  --border:rgba(255,255,255,0.08); --border-subtle:rgba(255,255,255,0.05);
+  --text:#f7f8f8; --text-secondary:#d0d6e0; --text-muted:#8a8f98; --text-dim:#62666d;
+  --accent:#5e6ad2; --accent-hover:#7170ff; --accent-glow:rgba(94,106,210,0.25);
+  --accent-dim:rgba(94,106,210,0.08); --accent-bg:rgba(94,106,210,0.08);
+  --cyan:#22d3ee; --purple:#a78bfa; --gold:#fbbf24; --green:#10b981; --red:#f87171;
+  --font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  --panel:rgba(0,0,0,.6);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:clamp(1.1rem,1.5vw,1.35rem);line-height:1.75}
-.slide{position:fixed;inset:0;background-size:cover;background-position:center;opacity:0;pointer-events:none;transition:opacity .35s ease;display:flex;flex-direction:column;justify-content:flex-start;padding:3vh 5vw 10vh;overflow-y:auto}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
+  font-family:var(--font);font-size:clamp(1.02rem,1.35vw,1.25rem);line-height:1.7}
+
+/* progress */
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);
+  box-shadow:0 0 8px var(--accent-glow);z-index:200;transition:width .35s ease}
+
+/* ── top bar ── */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:210;display:flex;align-items:center;
+  justify-content:space-between;gap:12px;padding:9px 14px;
+  background:rgba(8,9,10,.9);border-bottom:1px solid var(--border-subtle);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.topbar .home-link{display:inline-flex;align-items:center;gap:6px;color:var(--text-muted);
+  text-decoration:none;font-family:var(--mono);font-size:.7rem;font-weight:510;
+  padding:6px 10px;border:1px solid var(--border-subtle);border-radius:6px;transition:all .2s}
+.topbar .home-link:hover{color:var(--text);border-color:var(--accent);background:var(--accent-bg)}
+.theme-cycle{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.03);
+  border:1px solid var(--border-subtle);color:var(--text-secondary);
+  font-family:var(--mono);font-size:.7rem;font-weight:510;padding:6px 11px;border-radius:6px;
+  cursor:pointer;transition:all .2s}
+.theme-cycle:hover{border-color:var(--accent);color:var(--text);background:var(--accent-bg)}
+.theme-cycle .theme-dot{width:9px;height:9px;border-radius:50%;background:var(--accent);
+  transition:background .25s;flex:none}
+.theme-cycle .theme-name{min-width:76px;text-align:left}
+.theme-cycle svg{width:13px;height:13px;stroke:var(--accent);fill:none;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* ── slides + Ken Burns ── */
+.slide{position:fixed;inset:0;opacity:0;pointer-events:none;transition:opacity .4s ease;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:78px 5vw 100px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
 .slide::-webkit-scrollbar{width:0;background:transparent}
-.slide{scrollbar-width:none;-ms-overflow-style:none}
 .slide.active{opacity:1;pointer-events:auto}
-.slide::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--bg) 78%,transparent) 0%,color-mix(in srgb,var(--bg) 45%,transparent) 45%,color-mix(in srgb,var(--bg) 18%,transparent) 100%);z-index:0}
-.content{position:relative;z-index:1;max-width:88vw;width:100%;background:color-mix(in srgb,var(--bg) 60%,transparent);border:1px solid var(--accent-glow);box-shadow:0 0 25px var(--accent-glow),0 0 60px rgba(0,0,0,.3);border-radius:16px;padding:2.5em 3em;backdrop-filter:blur(10px);margin:auto 0}
-.content.wide{max-width:92vw}
-.progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-dim));z-index:200;transition:width .35s ease}
-.nav{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:1.2em;z-index:200;background:color-mix(in srgb,var(--bg) 85%,transparent);border:1px solid var(--accent-glow);border-radius:40px;padding:10px 24px;backdrop-filter:blur(6px)}
-.nav button{background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:1rem;padding:8px 18px;border-radius:24px;cursor:pointer;transition:transform .15s ease,box-shadow .2s;min-width:44px;min-height:44px}
-.nav button:hover{background:var(--accent-glow);box-shadow:0 0 15px var(--accent-glow);transform:scale(1.05)}
-.nav button:active{transform:scale(.94)}
-.nav .slide-counter{font-family:'Inter',monospace;color:var(--text-dim);font-size:1rem;min-width:60px;text-align:center}
-h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(2rem,4.5vw,3.8rem);background:linear-gradient(135deg,var(--accent),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5em;line-height:1.15;filter:drop-shadow(0 2px 14px var(--accent-glow)) drop-shadow(0 1px 2px rgba(0,0,0,.6))}
-h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.5vw,1.8rem);color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.7em;text-shadow:0 0 14px var(--accent-glow),0 1px 3px rgba(0,0,0,.6);animation:popGlow 3.2s ease-in-out infinite}
-@keyframes popGlow{0%,100%{text-shadow:0 0 10px var(--accent-glow),0 1px 3px rgba(0,0,0,.6)}50%{text-shadow:0 0 22px var(--accent-glow),0 0 40px var(--accent-glow),0 1px 3px rgba(0,0,0,.6)}}
-.card{background:color-mix(in srgb,var(--bg) 55%,transparent);border:1.5px solid var(--accent-glow);border-radius:14px;padding:1em 1.4em;margin:.7em 0;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 4px 16px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,.04)}
-.card .ctag{display:inline-block;font-size:.9rem;padding:3px 10px;border-radius:10px;background:var(--accent-dim);color:var(--accent);margin-bottom:.5em;font-weight:700;text-transform:uppercase;letter-spacing:.04em;box-shadow:0 0 10px var(--accent-glow)}
-.card p{font-size:1.2rem;line-height:1.7;text-shadow:0 1px 3px rgba(0,0,0,.55),0 0 12px rgba(0,0,0,.3)}
-.cue-box{background:color-mix(in srgb,var(--bg) 58%,transparent);border:2px solid var(--accent-glow);box-shadow:0 0 30px var(--accent-glow);border-radius:14px;padding:1.4em 1.8em;margin:1em 0;text-align:center}
-.cue-box .cue-main{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--accent);font-size:1.8rem;margin-bottom:.6em;text-shadow:0 0 18px var(--accent-glow),0 2px 4px rgba(0,0,0,.6);animation:popGlow 3.2s ease-in-out infinite}
-.cue-box ul.cue-bullets{list-style:disc;padding-left:1.6em;margin:.4em 0;text-align:left}.cue-box ul.cue-bullets li{font-size:1.2rem;color:var(--text);margin:.35em 0;line-height:1.6;text-shadow:0 1px 3px rgba(0,0,0,.55)}
-.mark-complete-btn{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.4);color:var(--green);font-family:'Inter',sans-serif;font-size:1.05rem;padding:10px 24px;border-radius:24px;cursor:pointer;transition:all .2s;font-weight:600;min-width:44px;min-height:44px}
-.mark-complete-btn:hover{background:rgba(52,211,153,.2);box-shadow:0 0 15px rgba(52,211,153,.3);transform:scale(1.05)}
-.mark-complete-btn.completed{background:rgba(52,211,153,.25);border-color:rgba(52,211,153,.7);box-shadow:0 0 20px rgba(52,211,153,.4)}
-.mark-complete-btn:active{transform:scale(.94)}
-.vocab-word{border-bottom:1.5px dotted var(--accent);cursor:pointer;transition:background .2s;position:relative;color:var(--accent);font-weight:600;text-shadow:0 0 10px var(--accent-glow),0 1px 2px rgba(0,0,0,.6)}
-.vocab-word:hover{background:var(--accent-glow);text-shadow:0 0 16px var(--accent-glow),0 0 30px var(--accent-glow),0 1px 2px rgba(0,0,0,.6)}
-.vocab-tooltip{display:none;position:fixed;z-index:999;background:var(--bg-deep);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px 14px;max-width:340px;font-size:1rem;line-height:1.5;color:var(--text);box-shadow:0 6px 24px rgba(0,0,0,0.5);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);pointer-events:none}
+.slide-bg{position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--bg2)}
+.slide-bg img{width:100%;height:100%;object-fit:cover;display:block;
+  animation:kenBurns 12s ease-in-out infinite alternate;will-change:transform}
+.slide-bg::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,0,0,.12) 0%,rgba(0,0,0,.32) 52%,rgba(0,0,0,.74) 100%)}
+@keyframes kenBurns{0%{transform:scale(1) translate(0,0)}
+  50%{transform:scale(1.08) translate(-1%,-1%)}100%{transform:scale(1.04) translate(1%,1%)}}
+
+/* ── content card ── */
+.content{position:relative;z-index:1;width:100%;max-width:1080px;margin:0 auto;
+  background:var(--panel);border:1px solid var(--border);border-top:2px solid var(--accent);
+  border-radius:12px;padding:26px 32px;box-shadow:0 4px 24px rgba(0,0,0,.35);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.content.wide{max-width:1180px}
+.content.narrow{max-width:720px}
+
+h1{font-family:var(--font);font-weight:700;font-size:clamp(1.9rem,4vw,3.1rem);
+  line-height:1.1;letter-spacing:-.02em;color:#fff;margin-bottom:.35em}
+h2{font-family:var(--font);font-weight:600;font-size:clamp(.95rem,1.5vw,1.1rem);
+  letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin-bottom:.7em}
+.subtitle{color:var(--text-muted);font-size:1rem}
+
+/* question cards */
+.card{background:rgba(255,255,255,.03);border:1px solid var(--border-subtle);
+  border-left:2px solid var(--accent);border-radius:8px;padding:14px 18px;margin:.6em 0}
+.card .ctag{display:inline-block;font-family:var(--mono);font-size:.62rem;font-weight:510;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.5em}
+.card p{font-size:1rem;color:var(--text);line-height:1.65}
+
+/* cue card */
+.cue-box{background:var(--accent-bg);border:1px solid var(--border);
+  border-top:2px solid var(--accent);border-radius:10px;padding:18px 22px;margin:1em 0}
+.cue-box .cue-main{font-family:var(--font);font-weight:600;font-size:1.28rem;color:#fff;margin-bottom:.5em}
+.cue-box ul.cue-bullets{list-style:none;padding:0;margin:.4em 0;text-align:left}
+.cue-box ul.cue-bullets li{font-size:.98rem;color:var(--text-secondary);margin:.3em 0;
+  line-height:1.6;padding-left:1.15em;position:relative}
+.cue-box ul.cue-bullets li::before{content:'A';position:absolute;left:0;color:var(--accent);font-weight:700}
+.cue-box .cue-prompt{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text-muted);margin-bottom:.5em}
+
+/* vocab */
+.vocab-word{border-bottom:2px dotted var(--accent);cursor:pointer;color:var(--accent);font-weight:560}
+.vocab-tooltip{display:none;position:fixed;z-index:999;background:var(--bg3);
+  border:1px solid var(--border);border-radius:10px;padding:10px 14px;max-width:340px;
+  font-size:.9rem;line-height:1.5;color:var(--text);box-shadow:0 6px 24px rgba(0,0,0,.5);
+  pointer-events:none}
 .vocab-tooltip.show{display:block}
-.vocab-tooltip .tt-word{font-weight:700;color:var(--cyan)}
-.vocab-tooltip .tt-pos{font-size:.85rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px}
+.vocab-tooltip .tt-word{font-weight:700;color:var(--accent)}
+.vocab-tooltip .tt-pos{font-family:var(--mono);font-size:.62rem;color:var(--text-muted);
+  text-transform:uppercase;letter-spacing:.1em}
 .vocab-tooltip .tt-def{margin-top:4px}
-.theme-btn{position:fixed;top:1em;right:1em;z-index:300;width:44px;height:44px;border-radius:50%;background:var(--accent-dim);border:1.5px solid var(--accent-glow);cursor:pointer;backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;transition:transform .15s ease}
-.theme-btn:hover{transform:scale(1.1);background:rgba(255,255,255,0.08)}
-.theme-btn:active{transform:scale(.93)}
-.theme-btn svg{width:22px;height:22px;fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s,filter .3s;filter:drop-shadow(0 0 6px var(--accent-glow))}
-[data-theme="1"]{--accent:#fbbf24;--accent-glow:rgba(251,191,36,.22);--accent-dim:rgba(251,191,36,.1)}
-[data-theme="2"]{--accent:#34d399;--accent-glow:rgba(52,211,153,.22);--accent-dim:rgba(52,211,153,.1)}
-[data-theme="3"]{--accent:#a78bfa;--accent-glow:rgba(167,139,250,.22);--accent-dim:rgba(167,139,250,.1)}
-[data-theme="4"]{--accent:#f59e0b;--accent-glow:rgba(245,158,11,.22);--accent-dim:rgba(245,158,11,.1)}
-[data-theme="5"]{--accent:#fb7185;--accent-glow:rgba(251,113,133,.22);--accent-dim:rgba(251,113,133,.1)}
-[data-theme="6"]{--accent:#22d3ee;--accent-glow:rgba(34,211,238,.22);--accent-dim:rgba(34,211,238,.1)}
-[data-theme="7"]{--bg:#0a0a24;--accent:#818cf8;--accent-glow:rgba(129,140,248,.25);--accent-dim:rgba(129,140,248,.12)}
-.home-link{position:fixed;top:1em;left:1em;z-index:300;color:var(--accent);text-decoration:none;font-size:.95rem;padding:6px 12px;border-radius:16px;background:var(--accent-dim);border:1px solid var(--accent-glow);transition:all .2s;backdrop-filter:blur(8px)}
-.home-link:hover{color:var(--accent);background:var(--accent-glow);box-shadow:0 0 12px var(--accent-glow)}
-@media(max-width:768px){.content{max-width:92vw;padding:1.5em 1.8em}.content.wide{max-width:95vw}h1{font-size:1.8rem}h2{font-size:1.3rem}.nav{bottom:12px;padding:8px 16px;gap:.6em}.nav button{padding:6px 12px;font-size:.95rem}}
 
-/* ═══ SPECULAR BUTTON (React Bits SpecularButton, vanilla WebGL2 port) ═══ */
-.specular-button {
-  --sb-radius: 18px;
-  --sb-tint: #ffffff;
-  --sb-tint-opacity: 0;
-  --sb-blur: 0px;
-  --sb-text-color: var(--text, #f5f5f5);
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  margin: 0;
-  font-family: inherit;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  line-height: 1;
-  color: var(--sb-text-color);
-  background: color-mix(in srgb, var(--sb-tint) calc(var(--sb-tint-opacity) * 100%), transparent);
-  border-radius: var(--sb-radius);
-  backdrop-filter: blur(var(--sb-blur));
-  -webkit-backdrop-filter: blur(var(--sb-blur));
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 8px 24px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  outline: none;
-  transition: transform 0.15s ease;
-}
-.specular-button:active { transform: scale(0.97); }
-.specular-button:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--sb-text-color) 60%, transparent);
-  outline-offset: 3px;
-}
-.specular-button__fx {
-  position: absolute;
-  inset: -20px;
-  pointer-events: none;
-  z-index: 1;
-}
-.specular-button__fx canvas { display: block; width: 100%; height: 100%; }
-.specular-button__label { position: relative; z-index: 2; }
+/* buttons */
+.mark-complete-btn{display:inline-block;background:var(--accent-bg);border:1px solid var(--accent);
+  color:var(--accent);font-family:var(--mono);font-size:.72rem;font-weight:510;letter-spacing:.06em;
+  padding:10px 18px;border-radius:6px;cursor:pointer;transition:all .2s;min-width:44px;min-height:40px}
+.mark-complete-btn:hover{background:var(--accent);color:#fff}
+.mark-complete-btn.completed{background:var(--accent);color:#fff;border-color:var(--accent)}
+.answer-toggle{display:inline-block;margin-top:.8em;background:rgba(255,255,255,.03);
+  border:1px solid var(--border);color:var(--text-secondary);font-family:var(--mono);
+  font-size:.68rem;font-weight:510;letter-spacing:.08em;text-transform:uppercase;
+  padding:8px 14px;border-radius:6px;cursor:pointer;transition:all .2s;min-width:44px;min-height:38px}
+.answer-toggle:hover{border-color:var(--accent);color:var(--text);background:var(--accent-bg)}
+.model-answer{display:none;margin-top:.8em;padding:14px 18px;border-left:2px solid var(--accent);
+  background:rgba(255,255,255,.03);border-radius:0 8px 8px 0;font-size:.95rem;line-height:1.7;color:var(--text)}
+.model-answer.show{display:block}
+.model-answer p{margin:.35em 0}
+.ma-badge{display:inline-block;font-family:var(--mono);font-size:.6rem;font-weight:510;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.3em}
 
+/* nav */
+.nav{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);z-index:200;
+  display:flex;align-items:center;gap:10px;padding:8px 12px;
+  background:rgba(8,9,10,.9);border:1px solid var(--border-subtle);border-radius:10px;
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nav button{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.03);
+  border:1px solid var(--border);color:var(--text-secondary);font-family:var(--mono);
+  font-size:.72rem;font-weight:510;padding:8px 14px;border-radius:6px;cursor:pointer;
+  transition:all .15s;min-width:44px;min-height:40px}
+.nav button:hover{border-color:var(--accent);color:var(--text);background:var(--accent-bg)}
+.nav button:active{transform:scale(.97)}
+.nav .slide-counter{font-family:var(--mono);font-size:.72rem;color:var(--text-muted);
+  min-width:52px;text-align:center}
 
-/* specular-fx: adds the shine to ANY button without fighting its own styles */
-.specular-fx { position: relative; }
-/* keep fixed-position controls anchored despite specular-fx */
-.theme-btn.specular-fx, .home-link.specular-fx { position: fixed; }
-
-/* Specular fallback for browsers without WebGL2: rotating edge shine */
-.specular-fallback::after {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  padding: 2px;
-  background: conic-gradient(from var(--sb-angle, 0deg),
-    transparent 0deg,
-    var(--accent) 60deg,
-    #ffffff 90deg,
-    var(--accent) 120deg,
-    transparent 180deg,
-    transparent 360deg);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  animation: sb-shine 2.6s linear infinite;
-  pointer-events: none;
-  z-index: 3;
-  opacity: .85;
-}
-@keyframes sb-shine { to { --sb-angle: 360deg; } }
-@property --sb-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
-.specular-button__label { display: inline-flex; align-items: center; justify-content: center; }
-
-/* ═══ Timer (matches deck-1) ═══ */
-.timer-trigger{display:inline-flex;align-items:center;gap:5px;background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:5px 12px;border-radius:14px;cursor:pointer;transition:all .15s;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.5)}
-.timer-trigger:hover{background:var(--accent-glow);box-shadow:0 0 8px var(--accent-glow)}
-.timer-popup{display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:500;align-items:center;justify-content:center;padding:8px 0}
+/* timer */
+.timer-trigger{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.03);
+  border:1px solid var(--border);color:var(--text-secondary);font-family:var(--mono);
+  font-size:.68rem;font-weight:510;letter-spacing:.06em;padding:6px 11px;border-radius:6px;
+  cursor:pointer;transition:all .2s;margin-bottom:.8em}
+.timer-trigger:hover{border-color:var(--accent);color:var(--text);background:var(--accent-bg)}
+.timer-popup{display:none;position:fixed;top:0;left:0;right:0;transform:none;z-index:500;
+  align-items:center;justify-content:center;padding:8px 0}
 .timer-popup.show{display:flex}
-.timer-popup-box{display:flex;align-items:center;gap:14px;background:color-mix(in srgb,var(--bg) 92%,transparent);border:1px solid var(--accent-glow);border-radius:0 0 16px 16px;padding:10px 24px;backdrop-filter:blur(16px);box-shadow:0 4px 24px var(--accent-glow)}
-.timer-popup-box .timer-display{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:700;color:var(--accent);min-width:60px;text-align:center}
-.timer-popup-box .timer-phase{font-size:.85rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
-.timer-btn{background:var(--accent-dim);border:1px solid var(--accent);color:var(--accent);font-family:'Inter',sans-serif;font-size:.95rem;padding:6px 14px;border-radius:18px;cursor:pointer;transition:all .15s;min-width:44px;min-height:34px;box-shadow:0 0 8px var(--accent-glow)}
-.timer-btn:hover{box-shadow:0 0 18px var(--accent-glow);transform:scale(1.05)}
-.timer-btn:active{transform:scale(.95)}
-.timer-btn.running{background:var(--accent-glow);border-color:var(--accent)}
+.timer-popup-box{display:flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:10px;
+  max-width:calc(100vw - 16px);background:rgba(8,9,10,.94);border:1px solid var(--border);
+  border-top:2px solid var(--accent);border-radius:0 0 12px 12px;padding:10px 18px;
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.timer-popup-box .timer-display{font-family:var(--mono);font-size:1.35rem;font-weight:510;
+  color:var(--accent);min-width:52px;text-align:center}
+.timer-popup-box .timer-phase{font-family:var(--mono);font-size:.6rem;color:var(--text-muted);
+  text-transform:uppercase;letter-spacing:.12em}
+.timer-btn{background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--text-secondary);
+  font-family:var(--mono);font-size:.72rem;padding:6px 12px;border-radius:6px;cursor:pointer;
+  transition:all .2s;min-width:40px;min-height:36px}
+.timer-btn:hover{border-color:var(--accent);color:var(--text);background:var(--accent-bg)}
+.timer-btn.running{border-color:var(--accent);color:var(--accent);background:var(--accent-bg)}
+
+/* specular legacy classes -> neutralised for the flat design */
+.specular-button,.specular-fx{position:static}
+.specular-button::after,.specular-fx::after,.specular-fallback::after{display:none}
+.specular-button__label{position:static;display:inline}
+
+/* disclaimer */
+.deck-disclaimer{position:fixed;bottom:0;left:0;right:0;z-index:150;text-align:center;
+  font-size:.6rem;line-height:24px;height:24px;color:var(--text-dim);
+  padding:0 16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  background:rgba(8,9,10,.9)}
+
+@media(max-width:768px){
+  html,body{font-size:1rem}
+  .slide{padding:70px 4vw 96px}
+  .content{max-width:94vw;padding:18px 18px}
+  .content.wide{max-width:94vw}
+  .nav{bottom:28px;padding:6px 8px;gap:6px}
+  .nav button{padding:6px 10px;font-size:.66rem}
+  .theme-cycle .theme-name{min-width:60px}
+  .timer-popup-box{gap:8px;padding:8px 12px}
+  .timer-popup-box .timer-display{font-size:1.15rem}
+}
+
 </style></head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
-<a href="index.html" class="home-link">&larr; Portal</a>
-<button class="theme-btn specular-fx" id="themeBtn" title="Cycle theme" aria-label="Cycle color theme"><span class="specular-button__label">
-  <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-</span></button>
+<div class="topbar">
+  <a href="index.html" class="home-link">&larr; Portal</a>
+  <button class="theme-cycle" id="themeCycleBtn" title="Cycle colour theme" aria-label="Cycle colour theme">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.84-.44-1.13-.25-.29-.43-.68-.43-1.12A1.68 1.68 0 0 1 14.46 16.4h2.09A5.45 5.45 0 0 0 22 10.95C22 5.9 17.5 2 12 2z"/></svg>
+    <span class="theme-dot"></span>
+    <span class="theme-name">Sliding In</span>
+  </button>
+</div>
 
-<section class="slide active" style="background-image:url('https://pixabay.com/get/gdfedabc2ef757f431a63522c1675484af7d0970ff9a78b367fdd15774a83f7e689b31ed4d85b57e3dcdf00b613ddd9d7106d1036350236f7caa8067a6edb9489_1280.jpg')"><div class="content narrow" style="text-align:center;"><h1>Food &amp; Cooking</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
+<section class="slide active"><div class="slide-bg"><img src="https://images.pexels.com/photos/6287244/pexels-photo-6287244.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="Crop anonymous person adding egg in flour while cooking pastry for recipe with cherry tomatoes and spaghetti"></div><div class="content narrow" style="text-align:center;"><h1>Food &amp; Cooking</h1><p style="font-size:1.2rem;color:var(--text-dim);">IELTS Speaking Practice &middot; B2 Level</p><div style="margin-top:1.5em;"><button class="mark-complete-btn specular-fx" id="markCompleteBtn" onclick="toggleMarkComplete(this)"><span class="specular-button__label">Mark Complete</span></button></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/ga79865634b6b2b6c1c720254ad3852fefab16d0b9eb7a2201e6f5e65e822143ebfaf0f3dc7f7e94f3923ebff70068fd0f300d70727b517f4d86f778f7acbc19a_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 1&ndash;3</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span><div class="card"><span class="ctag">Question 1 &middot; Cooking</span><p>Do you enjoy cooking?</p></div><div class="card"><span class="ctag">Question 2 &middot; Cooking</span><p>What types of things can you cook?</p></div><div class="card"><span class="ctag">Question 3 &middot; National Food</span><p>What kinds of food are <span class="vocab-word" data-word="popular">popular</span> in your country?</p></div></div></section>
+<section class="slide"><div class="slide-bg"><img src="https://images.pexels.com/photos/6910727/pexels-photo-6910727.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="Close-up of a person frying food in a pan using tongs on a stove indoors."></div><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 1&ndash;3</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span><div class="card"><span class="ctag">Question 1 &middot; Cooking</span><p>Do you enjoy cooking?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>I do, though I came to it relatively late and I'm still learning. There's something genuinely satisfying about cooking — the combination of technique, timing, and taste means no two attempts are ever quite the same, and a well-executed dish carries a quiet sense of achievement. I also find it meditative in a strange way: the focus required to chop, season, and time everything properly pushes aside the noise of the day. My only regret is that I didn't start earlier, because I'd have saved a fortune and eaten better.</p></div></div><div class="card"><span class="ctag">Question 2 &middot; Cooking</span><p>What types of things can you cook?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>My repertoire is practical rather than adventurous — I'd describe myself as a solid home cook with a small set of reliable dishes. I can handle the classics: pasta dishes, curries, soups, roasted vegetables, and a few recipes passed down from my family that I guard jealously. What I've noticed is that my cooking improved dramatically once I stopped following recipes slavishly and started understanding principles — why things brown, why sauces split, why seasoning matters. Since then, I've been comfortable improvising, which is where the real fun lies.</p></div></div><div class="card"><span class="ctag">Question 3 &middot; National Food</span><p>What kinds of food are popular in your country?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>The food scene is wonderfully diverse, but a few things define it. We have a strong tradition of hearty, home-cooked food built on fresh, seasonal ingredients, and there are regional specialities that locals defend with surprising passion. Alongside the traditional, the cities have embraced global <span class="vocab-word" data-word="cuisine">cuisine</span> enthusiastically, and I'd say the younger generation is genuinely adventurous — more likely to try a new <span class="vocab-word" data-word="cuisine">cuisine</span> than their parents were. The unifying theme, I think, is that food is central to social life here; meals are rarely just fuel.</p></div></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g92866d8af0ce09dc8690185a63076ea453b3c1cce6d4e15fd2fef3f6ce903dbf0685cbc99de9af5c45dde51d2c89b862856800a8722bf18be0463cd5cc3a2938_1280.jpg')"><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 4&ndash;6</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span><div class="card"><span class="ctag">Question 4 &middot; Diet</span><p>Do you have a healthy diet?</p></div><div class="card"><span class="ctag">Question 5 &middot; Eating Habits</span><p>Do you prefer to eat with other people or on your own?</p></div><div class="card"><span class="ctag">Question 6 &middot; Culture</span><p>Is it an important part of your <span class="vocab-word" data-word="culture">culture</span> to have dinner <span class="vocab-word" data-word="parties">parties</span>?</p></div></div></section>
+<section class="slide"><div class="slide-bg"><img src="https://images.pexels.com/photos/1652312/pexels-photo-1652312.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="A colorful assortment of fresh fruit bowls featuring mixed berries and citrus slices, perfect for healthy eating inspira"></div><div class="content"><h2 style="margin-bottom:0">Part 1 &middot; Questions 4&ndash;6</h2><span class="timer-trigger" onclick="openTimer('p1',270)">⏱ 4:30</span><div class="card"><span class="ctag">Question 4 &middot; Diet</span><p>Do you have a healthy diet?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>I'd say it's broadly healthy, though not fanatically so, and I think that moderation is itself part of a healthy approach. I cook most of my meals from scratch, eat plenty of vegetables, and try to keep processed food to a minimum, which I think puts me ahead of the average. That said, I have my weaknesses — pastry, cheese, and the occasional takeaway when I'm tired — and I've made peace with them, because I've learned that extreme regimes are rarely sustainable. My philosophy is simple: good food most of the time, with room for indulgence.</p></div></div><div class="card"><span class="ctag">Question 5 &middot; Eating Habits</span><p>Do you prefer to eat with other people or on your own?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>I prefer eating with other people, without much hesitation. A meal shared is a different experience entirely — the conversation, the pace, the sense of occasion all change, and I find food genuinely tastes better in company. That said, I've also come to appreciate eating alone, particularly at lunch, because it's one of the few moments of genuine solitude in a busy day, and there's a meditative quality to a meal eaten without distraction. So my honest answer is that both have their place, but if forced to choose, the company wins.</p></div></div><div class="card"><span class="ctag">Question 6 &middot; Culture</span><p>Is it an important part of your culture to have dinner parties?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>Yes, it's a deeply embedded tradition, and I'd argue it's one of the cultural pillars of hospitality here. Dinner <span class="vocab-word" data-word="parties">parties</span> are how we celebrate, how we reciprocate favours, and how we deepen friendships, and there's a real social weight attached to hosting well. What's interesting is that the tradition has adapted — the formal multi-course affair has relaxed into something more casual, but the core impulse, gathering people around a table, remains entirely intact. I suspect it will persist, because it serves a human need that no digital substitute has managed to replicate.</p></div></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/gc1a9d229dde0a62bd2b3c3f2ece741677a5b02488605d974787295ed3a3483e359e070ee546e44dd3a8221791204b32b93108583432137a058ebeb24a1e7b1d8_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 2 &middot; Cue Card</h2><span class="timer-trigger" onclick="openTimer('p2',120)">⏱ 2:00</span><div class="cue-box"><div class="cue-main">Describe a traditional dish from your country.</div><ul class="cue-bullets">
+<section class="slide"><div class="slide-bg"><img src="https://images.pexels.com/photos/37315863/pexels-photo-37315863.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="Explore the vibrant flavors of Peruvian cuisine with traditional dishes in a colorful Arequipa market setting."></div><div class="content wide"><h2 style="margin-bottom:0">Part 2 &middot; Cue Card</h2><span class="timer-trigger" onclick="openTimer('p2',120)">⏱ 2:00</span><div class="cue-box"><div class="cue-main">Describe a traditional dish from your country.</div><ul class="cue-bullets">
       <li>what it looks like</li>
       <li>what it tastes like</li>
       <li>when and how it is usually eaten</li>
-      <li>and explain why it is <span class="vocab-word" data-word="popular">popular</span></li>
-    </ul></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
+      <li>where you first tried it</li>
+      <li>and explain why it is popular</li>
+    </ul></div><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>The traditional dish I'd like to describe is one that occupies a special place in my country's culinary identity, and it's the dish my family serves whenever there's something to celebrate.</p><p>What it looks like is, frankly, not particularly glamorous — and I think that's part of its charm. It's a substantial, slow-cooked stew, rich and deeply coloured, with tender pieces of meat that have cooked until they're almost falling apart, surrounded by vegetables and a sauce that has thickened and darkened over hours of gentle simmering. It's served in a deep bowl, usually with bread or a soft dumpling to soak up the sauce, and it looks exactly like what it is: food made with patience.</p><p>What it tastes like is difficult to describe without sounding like a restaurant review, but I'll try. The flavour is deep and <span class="vocab-word" data-word="savoury">savoury</span>, built in layers — there's a richness from the slow-cooked meat, a sweetness from the vegetables that have caramelised into the sauce, and a subtle warmth from spices that perfume rather than dominate. The texture matters as much as the taste: the meat should be so tender that it yields without resistance, and the sauce should coat the back of a spoon. It's the kind of food that fills the house with a smell you can't mistake.</p><p>When and how it's eaten is almost as important as the dish itself. It's traditionally a weekend and celebration dish, because it demands time — it's not something you can produce on a rushed weekday evening. It's eaten slowly, with family, often as the centrepiece of a long Sunday lunch, and it's the kind of meal where seconds are expected and silence at the table is a sign of appreciation rather than awkwardness.</p><p>The first time I tried it was at my grandmother's house, at a family gathering when I was quite young. She cooked it herself, in enormous quantities, and the whole house smelled of it for days. I remember being allowed to help — admittedly with very small tasks, like picking herbs — and feeling enormously proud of that. Eating it at her table is still my strongest association with the dish; even now, if I order it at a restaurant, I inevitably compare it to hers, and it almost always measures up.</p><p>And why it's <span class="vocab-word" data-word="popular">popular</span>? I think because it embodies the values we associate with good food and good company: generosity, patience, and tradition. It's a dish that connects people to their grandmothers' kitchens, and in a world of convenience, food that demands time has become, paradoxically, a luxury. It's comfort, history, and hospitality all served in one bowl.</p></div><p style="color:var(--text-dim);font-size:.85rem;margin-top:1em;">Preparation: 1 minute &middot; Speaking: 1&ndash;2 minutes</p></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/gd4e52932a4d57102b7db4467380575323f7a069c94d7c19c2ee369c9ee09b6115ca555c035289a4e81560f7acaa8ce6c9d5a6f9d494a378411a966e597aaeb1a_1280.jpg')"><div class="content wide"><h2 style="margin-bottom:0">Part 3 &middot; Discussion</h2><span class="timer-trigger" onclick="openTimer('p3',270)">⏱ 4:30</span><div class="card"><span class="ctag">Discussion 1</span><p>In your country, is it important to have a meal together with your family?</p></div><div class="card"><span class="ctag">Discussion 2</span><p>What kinds of <span class="vocab-word" data-word="foreign">foreign</span> food are <span class="vocab-word" data-word="popular">popular</span> in your country?</p></div><div class="card"><span class="ctag">Discussion 3</span><p>Is food now better than in the past?</p></div><div class="card"><span class="ctag">Discussion 4</span><p>Why are more and more people <span class="vocab-word" data-word="unwilling">unwilling</span> to cook <span class="vocab-word" data-word="nowadays">nowadays</span>?</p></div></div></section>
+<section class="slide"><div class="slide-bg"><img src="https://images.pexels.com/photos/5990698/pexels-photo-5990698.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="A diverse family enjoying dinner together in a cozy living room setting."></div><div class="content wide"><h2 style="margin-bottom:0">Part 3 &middot; Discussion</h2><span class="timer-trigger" onclick="openTimer('p3',270)">⏱ 4:30</span><div class="card"><span class="ctag">Discussion 1</span><p>In your country, is it important to have a meal together with your family?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>Yes, it's genuinely important, and I'd go further: it's one of the mechanisms that hold families together. In my <span class="vocab-word" data-word="culture">culture</span>, the shared meal is where news is exchanged, decisions are discussed, and relationships are maintained, and I think its absence is one of the quieter casualties of modern life. What I find striking is that even busy families make the effort at least at weekends, which suggests the tradition is recognised as valuable rather than merely habitual. I'd argue that protecting that ritual is a small investment with outsized returns in family cohesion.</p></div></div><div class="card"><span class="ctag">Discussion 2</span><p>What kinds of foreign food are popular in your country?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>The range is impressive, and it's grown considerably in my lifetime. Asian cuisines are probably the most established — the curry houses and noodle bars have been staples for decades — but you now find excellent food from virtually everywhere, with newer waves bringing Latin American and Middle Eastern restaurants to prominence. What I find heartening is that the quality has risen alongside the variety; early adoptions of <span class="vocab-word" data-word="foreign">foreign</span> food were often sanitised for local palates, whereas today's restaurants increasingly pursue authenticity. I think that reflects a genuinely cosmopolitan shift in taste.</p></div></div><div class="card"><span class="ctag">Discussion 3</span><p>Is food now better than in the past?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>That's a question with a more complicated answer than it appears, because it depends what you mean by better. In terms of choice, safety, and convenience, food is almost incomparably better — the variety available, the standards of hygiene, and the ease of access to ingredients from around the world are all unprecedented. In terms of nutritional quality, the picture is darker: the proliferation of highly processed food has created health problems that previous generations barely knew. And in terms of flavour, I'd argue it's a draw — industrial production has made some foods blander, but global trade has put genuinely good ingredients within reach. So: better in every way except the ones that matter most for health.</p></div></div><div class="card"><span class="ctag">Discussion 4</span><p>Why are more and more people unwilling to cook nowadays?</p><button type="button" class="answer-toggle" aria-expanded="false">Model Answer</button><div class="model-answer" role="region"><span class="ma-badge">Band 9 &middot; Model Answer</span><p>I think the reasons are a mixture of economics and <span class="vocab-word" data-word="culture">culture</span>, and they reinforce each other. Time is the fundamental constraint — cooking well takes time that many people genuinely don't have, and the opportunity cost of an hour in the kitchen versus an affordable takeaway has shifted. There's also a skills dimension: cooking competence is no longer reliably passed down, so many people avoid it out of insecurity rather than disinterest. And the market has adapted accordingly, making cheap, convenient food more accessible than ever. The consequence is a paradox — we have more culinary resources than any previous generation, yet home cooking is in decline.</p></div></div></div></section>
 
-<section class="slide" style="background-image:url('https://pixabay.com/get/g8e2b9087b5f713820643b792724e401b9e55d9b82246f4f9fa9d22cb5ba8587737ec7f0d30cf76708c243ca853ce9efc796a3255a911197a58b70596ac4cdb25_1280.jpg')"><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);"><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="cuisine">cuisine</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="recipe">recipe</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="ingredient">ingredient</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="nutritious">nutritious</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="homemade">homemade</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="appetite">appetite</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="savoury">savoury</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="portion">portion</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="craving">craving</span></p><p style="display:inline-block;margin:.3em;"><span class="vocab-word" data-word="gourmet">gourmet</span></p></div></div></section><div class="nav"><button id="prevBtn" class="specular-button"><span class="specular-button__label">&larr; Prev</span></button><span class="slide-counter" id="slideCounter">1 / 6</span><button id="nextBtn" class="specular-button"><span class="specular-button__label">Next &rarr;</span></button></div>
+<section class="slide"><div class="slide-bg"><img src="https://images.pexels.com/photos/2575372/pexels-photo-2575372.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="Close-up of fresh basil and herbs in a bowl on a gray background."></div><div class="content"><h2>Vocabulary</h2><p style="color:var(--text-dim);margin-bottom:1em;">Click any word for its definition.</p><div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.2em 1.4em;backdrop-filter:blur(8px);"><p style="display:inline-block;margin:.3em;">cuisine</p><p style="display:inline-block;margin:.3em;">recipe</p><p style="display:inline-block;margin:.3em;">ingredient</p><p style="display:inline-block;margin:.3em;">nutritious</p><p style="display:inline-block;margin:.3em;">homemade</p><p style="display:inline-block;margin:.3em;">appetite</p><p style="display:inline-block;margin:.3em;">savoury</p><p style="display:inline-block;margin:.3em;">portion</p><p style="display:inline-block;margin:.3em;">craving</p><p style="display:inline-block;margin:.3em;">gourmet</p></div></div></section><div class="nav"><button id="prevBtn" class="specular-button"><span class="specular-button__label">&larr; Prev</span></button><span class="slide-counter" id="slideCounter">1 / 6</span><button id="nextBtn" class="specular-button"><span class="specular-button__label">Next &rarr;</span></button></div>
 
 <div class="vocab-tooltip" id="vocabTooltip"><span class="tt-pos" id="ttPos"></span> <span class="tt-word" id="ttWord"></span><div class="tt-def" id="ttDef"></div></div>
 
@@ -199,21 +241,47 @@ document.addEventListener('mouseout', function(e) {
   if (e.target.closest('.vocab-word')) tooltip.classList.remove('show');
 });
 
-var themes = ["Classic","Forest","Violet","Gold","Rose","Ocean","Indigo"];
-var themeIcons = {1: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>', 2: '<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>', 3: '<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/>', 4: '<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>', 5: '<path d="M12 18.176a3 3 0 1 1 -4.953 -2.449l-.025 .023a4.502 4.502 0 0 1 1.483 -8.75c1.414 0 2.675 .652 3.5 1.671a4.5 4.5 0 1 1 4.983 7.079a3 3 0 1 1 -4.983 2.25l-.005 .176"/><path d="M12 19v-10"/><path d="M9 3l3 2l3 -2"/>', 6: '<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>', 7: '<path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/><path d="M18 5h4"/><path d="M20 3v4"/>'};
-var currentTheme = parseInt(localStorage.getItem('ielts-b2-theme')) || 1;
-function applyTheme(n) {
-  currentTheme = n;
-  if (n === 1) document.body.removeAttribute('data-theme');
-  else document.body.setAttribute('data-theme', n);
-  localStorage.setItem('ielts-b2-theme', n);
-  var icon = document.getElementById('themeIcon');
-  if (icon && themeIcons[n]) icon.innerHTML = themeIcons[n];
+var THEMES = [
+  {name:'Sliding In', accent:'#5e6ad2', hover:'#7170ff', bg:'#08090a', text:'#f7f8f8'},
+  {name:'Deep Ocean', accent:'#22d3ee', hover:'#67e8f9', bg:'#0a1228', text:'#e2e8f0'},
+  {name:'Evergreen',  accent:'#34d399', hover:'#6ee7b7', bg:'#0c2416', text:'#d1fae5'},
+  {name:'Coral',      accent:'#fb7185', hover:'#fda4af', bg:'#2a1018', text:'#fce7f3'},
+  {name:'Orchid',     accent:'#c4b5fd', hover:'#ddd6fe', bg:'#1f1028', text:'#ede9fe'},
+  {name:'Ember',      accent:'#fbbf24', hover:'#fcd34d', bg:'#2a1a08', text:'#fef3c7'},
+  {name:'Nebula',     accent:'#a78bfa', hover:'#c4b5fd', bg:'#160b2b', text:'#ede9fe'},
+  {name:'Glacier',    accent:'#67e8f9', hover:'#a5f3fc', bg:'#081828', text:'#cffafe'},
+  {name:'Dune',       accent:'#d4a574', hover:'#e7c9a9', bg:'#241a14', text:'#f5e6d3'},
+  {name:'Sterling',   accent:'#9ca3af', hover:'#d1d5db', bg:'#18181c', text:'#e5e7eb'},
+  {name:'Sky',        accent:'#7dd3fc', hover:'#bae6fd', bg:'#0a1a32', text:'#e0f2fe'},
+  {name:'Aurora',     accent:'#a3e635', hover:'#bef264', bg:'#0f240c', text:'#ecfccb'},
+  {name:'Pearl',      accent:'#a2a7a5', hover:'#e2dadb', bg:'#2b2b2e', text:'#e2dadb'}
+];
+var currentThemeIndex = 0;
+function hexRgb(h){h=h.replace('#','');return parseInt(h.substr(0,2),16)+','+parseInt(h.substr(2,2),16)+','+parseInt(h.substr(4,2),16);}
+function applyThemeByIndex(idx){
+  currentThemeIndex = ((idx % THEMES.length) + THEMES.length) % THEMES.length;
+  var t = THEMES[currentThemeIndex], root = document.documentElement;
+  root.style.setProperty('--bg', t.bg);
+  root.style.setProperty('--bg2', t.bg);
+  root.style.setProperty('--bg-deep', t.bg);
+  root.style.setProperty('--accent', t.accent);
+  root.style.setProperty('--accent-hover', t.hover);
+  root.style.setProperty('--accent-glow', 'rgba('+hexRgb(t.accent)+',.25)');
+  root.style.setProperty('--accent-dim', 'rgba('+hexRgb(t.accent)+',.08)');
+  root.style.setProperty('--accent-bg', 'rgba('+hexRgb(t.accent)+',.08)');
+  root.style.setProperty('--text', t.text);
+  var b = document.getElementById('themeCycleBtn');
+  if (b) {
+    var d = b.querySelector('.theme-dot'), n = b.querySelector('.theme-name');
+    if (d) d.style.background = t.accent;
+    if (n) n.textContent = t.name;
+  }
+  try { localStorage.setItem('ielts-b2-theme-2', String(currentThemeIndex)); } catch(e) {}
 }
-document.getElementById('themeBtn').addEventListener('click', function() {
-  applyTheme(currentTheme === 7 ? 1 : currentTheme + 1);
-});
-applyTheme(currentTheme);
+function cycleTheme(){ applyThemeByIndex(currentThemeIndex + 1); }
+document.getElementById('themeCycleBtn').addEventListener('click', cycleTheme);
+try { var saved = parseInt(localStorage.getItem('ielts-b2-theme-2')); if (!isNaN(saved)) currentThemeIndex = saved; } catch(e) {}
+applyThemeByIndex(currentThemeIndex);
 
 function toggleMarkComplete(btn) {
   var key = 'deck-11-food';
@@ -257,206 +325,6 @@ function update() {
 }
 update();
 
-// ═══ SPECULAR BUTTON (React Bits SpecularButton -> vanilla WebGL2, theme-aware) ═══
-(function(){
-  var PAD = 20;
-  var VERT = '#version 300 es\nin vec2 position;\nvoid main() {\n  gl_Position = vec4(position, 0.0, 1.0);\n}\n';
-  var FRAG = [
-    '#version 300 es',
-    'precision highp float;',
-    'uniform vec2 uCenter;',
-    'uniform vec2 uHalfSize;',
-    'uniform float uRadius;',
-    'uniform float uAngle;',
-    'uniform float uPx;',
-    'uniform vec3 uLineColor;',
-    'uniform vec3 uBaseColor;',
-    'uniform float uIntensity;',
-    'uniform float uShineSize;',
-    'uniform float uShineFade;',
-    'uniform float uThickness;',
-    'uniform float uBaseWidth;',
-    'out vec4 fragColor;',
-    'float sdRoundedRect(vec2 p, vec2 b, float r) {',
-    '  vec2 q = abs(p) - b + r;',
-    '  return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r;',
-    '}',
-    'float shapeSDF(vec2 p) { return sdRoundedRect(p, uHalfSize, uRadius); }',
-    'float gaussianLine(float d, float sigma) {',
-    '  float x = d / (sigma + 1e-6);',
-    '  float k = mix(1.0, 1.6, smoothstep(0.0, 1.5, x));',
-    '  return exp(-k * x * x);',
-    '}',
-    'void main() {',
-    '  vec2 p = gl_FragCoord.xy - uCenter;',
-    '  float d = shapeSDF(p);',
-    '  vec2 L = vec2(cos(uAngle), sin(uAngle));',
-    '  float base = (1.0 - smoothstep(0.0, uBaseWidth, abs(d))) * 0.45;',
-    '  vec2 nEll = normalize(p / (uHalfSize * uHalfSize) + 1e-6);',
-    '  float phi = acos(clamp(abs(dot(nEll, L)), 0.0, 1.0));',
-    '  float rim = 1.0 - smoothstep(uShineSize - uShineFade, uShineSize + uShineFade + 1e-4, phi);',
-    '  float line = gaussianLine(d, uThickness);',
-    '  float edgeClamp = 1.0 - smoothstep(0.5 * uPx, 3.0 * uPx, abs(d));',
-    '  float hi = line * rim * edgeClamp * uIntensity;',
-    '  vec3 col = uBaseColor * base + uLineColor * hi;',
-    '  float a = clamp(base + hi, 0.0, 1.0);',
-    '  fragColor = vec4(col, a);',
-    '}'
-  ].join('\n');
-
-  function hexToRgb(hex) {
-    hex = (hex || '').trim().replace('#', '');
-    if (hex.length === 3) hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
-    var n = parseInt(hex, 16);
-    if (isNaN(n)) return [1, 1, 1];
-    return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
-  }
-  function cssVar(name, fallback) {
-    var v = getComputedStyle(document.body).getPropertyValue(name).trim();
-    return v || fallback;
-  }
-  function accentRgb() {
-    var accent = cssVar('--accent', '#818cf8');
-    if (accent.indexOf('#') === 0) return hexToRgb(accent);
-    // rgba(...) fallback
-    var m = accent.match(/[\d.]+/g);
-    if (m && m.length >= 3) return [m[0]/255, m[1]/255, m[2]/255];
-    return [1, 1, 1];
-  }
-  function dim(rgb, f) { return [rgb[0]*f, rgb[1]*f, rgb[2]*f]; }
-
-  function initAll() {
-    var buttons = document.querySelectorAll('.specular-button, .specular-fx');
-    if (!buttons.length || !window.WebGL2RenderingContext) return;
-
-  Array.prototype.forEach.call(buttons, function(btn){
-    var fx = document.createElement('span');
-    fx.className = 'specular-button__fx';
-    fx.setAttribute('aria-hidden', 'true');
-    btn.appendChild(fx);
-
-    var canvas = document.createElement('canvas');
-    fx.appendChild(canvas);
-    var gl = canvas.getContext('webgl2', { alpha: true, premultipliedAlpha: true, antialias: true });
-    if (!gl) { btn.classList.add('specular-fallback'); return; }
-    gl.clearColor(0, 0, 0, 0);
-    gl.enable(gl.BLEND);
-    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
-
-    function compile(type, src) {
-      var s = gl.createShader(type);
-      gl.shaderSource(s, src);
-      gl.compileShader(s);
-      return s;
-    }
-    var prog = gl.createProgram();
-    gl.attachShader(prog, compile(gl.VERTEX_SHADER, VERT));
-    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FRAG));
-    gl.linkProgram(prog);
-    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
-    gl.useProgram(prog);
-
-    // fullscreen triangle
-    var buf = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
-    var posLoc = gl.getAttribLocation(prog, 'position');
-    gl.enableVertexAttribArray(posLoc);
-    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
-
-    var U = {};
-    ['uCenter','uHalfSize','uRadius','uAngle','uPx','uLineColor','uBaseColor','uIntensity','uShineSize','uShineFade','uThickness','uBaseWidth'].forEach(function(n){
-      U[n] = gl.getUniformLocation(prog, n);
-    });
-
-    var dpr = window.devicePixelRatio || 1;
-    var sizeRef = { w: 1, h: 1 };
-    var radius = 18;
-    var lineColor = [1,1,1], baseColor = [0.32,0.32,0.32];
-
-    function readThemeColors() {
-      lineColor = accentRgb();
-      baseColor = dim(lineColor, 0.62);
-    }
-    readThemeColors();
-    if (window.MutationObserver) {
-      new MutationObserver(readThemeColors).observe(document.body, { attributes: true, attributeFilter: ['data-theme'] });
-    }
-
-    function resize() {
-      var rect = btn.getBoundingClientRect();
-      var w = rect.width, h = rect.height;
-      if (w < 1 || h < 1) return;  // hidden (timer popup) — wait for ResizeObserver when shown
-      sizeRef.w = w; sizeRef.h = h;
-      var cw = w + PAD * 2, ch = h + PAD * 2;
-      canvas.width = Math.max(2, Math.round(cw * dpr));
-      canvas.height = Math.max(2, Math.round(ch * dpr));
-      canvas.style.width = cw + 'px';
-      canvas.style.height = ch + 'px';
-      gl.viewport(0, 0, canvas.width, canvas.height);
-      gl.uniform2f(U.uCenter, (PAD + w/2) * dpr, (PAD + h/2) * dpr);
-      gl.uniform2f(U.uHalfSize, (w/2) * dpr, (h/2) * dpr);
-      gl.uniform1f(U.uRadius, Math.min(radius, Math.min(w, h)/2) * dpr);
-    }
-    var ro = new ResizeObserver(resize);
-    ro.observe(btn);
-    resize();
-
-    var pointerAngle = null;
-    var proximityT = 0;
-    function onPointerMove(e) {
-      var rect = btn.getBoundingClientRect();
-      var cx = rect.left + rect.width/2, cy = rect.top + rect.height/2;
-      var dx = Math.max(rect.left - e.clientX, 0, e.clientX - rect.right);
-      var dy = Math.max(rect.top - e.clientY, 0, e.clientY - rect.bottom);
-      var dist = Math.hypot(dx, dy);
-      if (dist === 0) {
-        var nx = (e.clientX - cx) / (rect.width/2);
-        var ny = (cy - e.clientY) / (rect.height/2);
-        pointerAngle = Math.atan2(2/rect.height, -2/rect.width) + nx*0.3 + ny*0.15;
-      } else {
-        pointerAngle = Math.atan2(cy - e.clientY, e.clientX - cx);
-      }
-      var t = Math.max(0, 1 - dist / Math.max(250, 1));
-      proximityT = t * t * (3 - 2 * t);
-    }
-    window.addEventListener('pointermove', onPointerMove);
-
-    var angle = 2.4, idleAngle = 2.4, bright = 0;
-    var last = performance.now();
-
-    function update(now) {
-      requestAnimationFrame(update);
-      var dt = Math.min((now - last) / 1000, 0.05);
-      last = now;
-      idleAngle += 0.35 * dt;
-      var steer = pointerAngle != null && proximityT > 0.01;
-      var target = steer ? pointerAngle : idleAngle;
-      var diff = ((target - angle + Math.PI*3) % (Math.PI*2)) - Math.PI;
-      angle += diff * (1 - Math.exp(-dt * 7));
-      var brightTarget = 0.9 + proximityT * 0.1;  // always-on shine, brighter on hover
-      bright += (brightTarget - bright) * (1 - Math.exp(-dt * 8));
-
-      gl.uniform1f(U.uAngle, angle);
-      gl.uniform1f(U.uPx, dpr);
-      gl.uniform3fv(U.uLineColor, lineColor);
-      gl.uniform3fv(U.uBaseColor, baseColor);
-      gl.uniform1f(U.uIntensity, bright);
-      gl.uniform1f(U.uShineSize, (10 * Math.PI) / 180);
-      gl.uniform1f(U.uShineFade, (40 * Math.PI) / 180);
-      gl.uniform1f(U.uThickness, 2.5 * dpr);
-      gl.uniform1f(U.uBaseWidth, dpr);
-      gl.clear(gl.COLOR_BUFFER_BIT);
-      gl.drawArrays(gl.TRIANGLES, 0, 3);
-    }
-    requestAnimationFrame(update);
-  });
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAll);
-  else initAll();
-})();
-
-
 // ═══ Popup Timer ═══
 var tpInterval = null, tpSeconds = 0, tpLabel = '', tpMuted = false;
 function openTimer(label, secs) { tpLabel = label; tpSeconds = secs; document.getElementById('tpLabel').textContent = label === 'p1' ? 'Part 1' : label === 'p2' ? 'Part 2' : 'Part 3'; updateTPDisplay(); var b = document.getElementById('tpStartBtn'); var l = b ? b.querySelector('.specular-button__label') : null; if (l) l.textContent = '▶ Play'; if (b) b.classList.remove('running'); document.getElementById('timerPopup').classList.add('show'); }
@@ -475,6 +343,17 @@ function toggleMuteTP() { tpMuted = !tpMuted; var b = document.getElementById('t
 function updateTPDisplay() { var m = Math.floor(tpSeconds / 60), s = tpSeconds % 60; document.getElementById('tpDisplay').textContent = m + ':' + (s < 10 ? '0' : '') + s; }
 function beep(freq, dur) { if (tpMuted) return; try { var ctx = new (window.AudioContext||window.webkitAudioContext)(), o = ctx.createOscillator(), g = ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.frequency.value = freq; o.type = 'sine'; g.gain.setValueAtTime(0.15, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur); o.start(); o.stop(ctx.currentTime + dur); } catch(e) {} }
 
+
+// Band 9 model answer toggle
+document.addEventListener('click', function(e){
+  var t = e.target.closest('.answer-toggle');
+  if(!t) return;
+  var box = t.nextElementSibling;
+  if(!box || !box.classList.contains('model-answer')) return;
+  var open = box.classList.toggle('show');
+  t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  t.innerHTML = open ? 'Hide Model Answer' : 'Model Answer';
+});
 </script>
 
 <div class="timer-popup" id="timerPopup">
@@ -488,4 +367,5 @@ function beep(freq, dur) { if (tpMuted) return; try { var ctx = new (window.Audi
   </div>
 </div>
 
+<div class="deck-disclaimer">Disclaimer: This is an independent practice resource for IELTS-style exam preparation. It is not affiliated with, endorsed by, or connected to IELTS, IDP Education, British Council, or Cambridge Assessment English. IELTS is a registered trademark of its respective owners.</div>
 </body></html>
